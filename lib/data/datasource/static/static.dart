@@ -1,6 +1,6 @@
 // import 'package:ecommerce_app/core/constant/imageasset.dart';
 // import 'package:ecommerce_app/data/model/onboardingmodel.dart';
-import 'package:get/get.dart';
+//import 'package:get/get.dart';
 //
 // List<OnBoardingModel> onBoardingList = [
 //   OnBoardingModel(
