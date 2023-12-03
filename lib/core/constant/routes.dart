@@ -1,6 +1,6 @@
 class AppRoute {
-  static const String login = "/login";
-  static const String signUp = "/signUp";
+  static const String loginScreen = "/loginScreen";
+  static const String signupScreen = "/signupScreen";
   //Home
-  static const String homePage = "/homePage";
+  static const String homeScreen = "/homeScreen";
 }
