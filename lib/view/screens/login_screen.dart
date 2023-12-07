@@ -1,5 +1,5 @@
 import 'package:pet_connect/controller/auth/login_controller.dart';
-import 'package:pet_connect/core/class/status_request.dart';
+import 'package:pet_connect/core/class/handling_data_view.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/functions/alert_exit_app.dart';
 import 'package:pet_connect/core/functions/valid_input.dart';
@@ -22,104 +22,96 @@ class LoginScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: AppColor.backgroundColorWhite,
         elevation: 0.0,
-        title: const Text(
-          'تسجيل دخول',
-          style: TextStyle(
+        title: Text(
+          '1'.tr,
+          style: const TextStyle(
               fontSize: 35, fontWeight: FontWeight.bold, color: AppColor.black),
         ),
       ),
       body: WillPopScope(
         onWillPop: alertExitApp,
         child: GetBuilder<LoginControllerImp>(
-          builder: (controller) => controller.statusRequest ==
-                  StatusRequest.loading
-              ? const Center(
-                  child: Text('loading'),
-                )
-              : Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                  child: Form(
-                    key: controller.formState,
-                    child: ListView(
-                      children: [
-                        const LogoAuth(),
-                        const SizedBox(height: 40),
-                        CustomTextForm(
+          builder: (controller) => HandlingDataRequest(
+              statusRequest: controller.statusRequest!,
+              widget: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                child: Form(
+                  key: controller.formState,
+                  child: ListView(
+                    children: [
+                      const LogoAuth(),
+                      const SizedBox(height: 40),
+                      CustomTextForm(
+                        isNumber: false,
+                        valid: (val) {
+                          return validInput(val!, 5, 100, 'email');
+                        },
+                        myController: controller.email,
+                        hintText: "3".tr,
+                        labelText: "4".tr,
+                        iconData: Icons.email_outlined,
+                        //myController: myController
+                      ),
+                      GetBuilder<LoginControllerImp>(
+                        builder: (controller) => CustomTextForm(
+                          obscureText: controller.isShowPassword,
                           isNumber: false,
-                          valid: (val) {
-                            return validInput(val!, 5, 100, 'email');
+                          onTapIcon: () {
+                            controller.showPassword();
                           },
-                          myController: controller.email,
-                          hintText: "ادخل البريد الالكتروني",
-                          labelText: "البريد الالكتروني",
-                          iconData: Icons.email_outlined,
+                          valid: (val) {
+                            return validInput(val!, 5, 40, 'password');
+                          },
+                          myController: controller.password,
+                          hintText: "5".tr,
+                          labelText: "6".tr,
+                          iconData: controller.isShowPassword == true
+                              ? Icons.lock_outline
+                              : Icons.lock_open_outlined,
                           //myController: myController
                         ),
-                        GetBuilder<LoginControllerImp>(
-                          builder: (controller) => CustomTextForm(
-                            obscureText: controller.isShowPassword,
-                            isNumber: false,
-                            onTapIcon: () {
-                              controller.showPassword();
-                            },
-                            valid: (val) {
-                              return validInput(val!, 5, 40, 'password');
-                            },
-                            myController: controller.password,
-                            hintText: "ادخل كلمة المرور",
-                            labelText: "كلمة المرور",
-                            iconData: controller.isShowPassword == true
-                                ? Icons.lock_outline
-                                : Icons.lock_open_outlined,
-                            //myController: myController
-                          ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          //controller.goToForgetPassword();
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.refresh,
+                              color: AppColor.primaryColor,
+                            ),
+                            Text(
+                              '7'.tr,
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                  color: AppColor.primaryColor, fontSize: 20),
+                            ),
+                          ],
                         ),
-                        InkWell(
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      CustomButtonAuth(
+                          text: '1'.tr,
+                          onPressed: () {
+                            controller.login();
+                          }),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      CustomTextSignUpOrSignIn(
+                          textOne: '8'.tr,
+                          textTwo: '9'.tr,
                           onTap: () {
-                            //controller.goToForgetPassword();
-                          },
-                          child: const Row(
-                            children: [
-                              Icon(
-                                Icons.refresh,
-                                color: AppColor.primaryColor,
-                              ),
-                              Text(
-                                'نسيت كلمة المرور؟',
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                    color: AppColor.primaryColor, fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        CustomButtonAuth(
-                            text: 'تسجيل دخول',
-                            onPressed: () {
-                              controller.login();
-                            }),
-                        const SizedBox(
-                          height: 60,
-                        ),
-                        // CustomButtonAuth(
-                        //     text: 'انشاء حساب جديد',
-                        //     onPressed: () {
-                        //       controller.login();
-                        //     }),
-                        CustomTextSignUpOrSignIn(
-                            textOne: 'ليس لديك حساب؟ ',
-                            textTwo: 'انشاء حساب',
-                            onTap: () {
-                              controller.goToSignUp();
-                            }),
-                      ],
-                    ),
+                            controller.goToSignUp();
+                          }),
+                    ],
                   ),
                 ),
+              )),
         ),
       ),
     );

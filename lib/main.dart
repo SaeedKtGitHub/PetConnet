@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/bindings/initial_bindings.dart';
+import 'package:pet_connect/core/localization/translation.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/routes.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       locale: const Locale('ar'),
