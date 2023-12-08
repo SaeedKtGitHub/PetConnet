@@ -13,5 +13,6 @@ class MyMiddleWare extends GetMiddleware {
     if (myServices.sharedPreferences.getString("isLogin") == "true") {
       return const RouteSettings(name: AppRoute.homeScreen);
     }
+    return null;
   }
 }

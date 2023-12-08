@@ -16,3 +16,62 @@
 //   //     image: AppImageAsset.onBoardingImageFour),
 // ];
 //My comment
+//محمحححمحمح
+
+//some temp data for the home screen:
+
+import 'package:flutter/material.dart';
+import 'package:pet_connect/data/model/slide_show.dart';
+import 'package:pet_connect/data/model/user.dart';
+import 'package:pet_connect/view/widgets/home/post_widget.dart';
+
+// final tempTexts= [
+//   'قطك يحتاج إلى النوم عشر ساعات يوميا!',
+//   'أمراض القطط في الشتاء',
+//       'هل مرض صراع الكلب منتشر في الأردن؟',
+//   ];
+// final tempImages= [
+//   'assets/images/pets1.jpeg',
+//   'assets/images/pets2.jpeg',
+//   'assets/images/pets3.webp'  ];
+
+//bottom appbar icons list :
+final bottomNavBarIems=[
+  const Icon(Icons.home_outlined),
+];
+
+//temp data slides  for test purposes :
+List<SlideShow> slides=[
+  SlideShow('assets/images/pets1.jpeg', 'قطك يحتاج إلى النوم عشر ساعات يوميا!'),
+  SlideShow('assets/images/pets2.jpeg', 'أمراض القطط في الشتاء'),
+  SlideShow('assets/images/pets3.webp', 'هل مرض صراع الكلب منتشر في الأردن؟'),
+
+];
+
+//temp posts for test purposes :
+List<PostWidget> testPosts = [
+  PostWidget(
+    date: "2023-12-06",
+    image: "assets/images/pets1.jpeg",
+    title: "سندس",
+    animalIcon: "assets/images/catIcon.png",
+    user:  users[0],
+    content: "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
+    tags: const ["tag1", "tag2"],
+  ),
+  PostWidget(
+    date: "2023-12-07",
+    image: "assets/images/pets2.jpeg",
+    title: "جوجو ",
+    animalIcon: "assets/images/catIcon.png",
+    user: users[1],
+    content: "مطلوب عروس لقطي جوجو الرائع تكون كيوت وحلوة للاستفسار على الخاص",
+    tags: const ["tag3", "tag4"],
+  ),
+  // Add more posts as needed
+];
+// Temp user data for test purposes
+List<User> users = [
+  User(name: "سوسو الأمورة", icon: "👩‍💼"),
+  User(name: "لولو المغرورة", icon: "👨‍💻"),
+];
