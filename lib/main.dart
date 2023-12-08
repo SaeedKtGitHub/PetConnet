@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/bindings/initial_bindings.dart';
+import 'package:pet_connect/core/localization/translation.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/view/screens/home_screen.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
         return GetMaterialApp(
+          translations:MyTranslation(),
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           locale: const Locale('ar'),
