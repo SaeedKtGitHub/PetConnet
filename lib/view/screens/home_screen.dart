@@ -18,20 +18,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
 
     return Scaffold(
-
       //FAB:
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CustomFloatingActionButton(
-          onPressed: (){
-
-          }
-      ),
+      floatingActionButton: CustomFloatingActionButton(onPressed: () {}),
       //bottomNavigationBar:
       bottomNavigationBar: GetBuilder<HomeController>(
         builder: (controller) => CustomBottomNavigationBar(
@@ -39,111 +33,104 @@ class _HomeScreenState extends State<HomeScreen> {
           onItemTapped: controller.onItemTapped,
         ),
       ),
-     body: SafeArea(
-
-                 child: SingleChildScrollView(
-                   child: Column(
-                     children: [
-                        SizedBox(height: 10.h,),
-                               //The welcome message :
-                        Padding(
-                         padding: EdgeInsets.only(right: 15.0.w),
-                         child: Row(
-                         children: [
-                           //The Icon:
-                           CircleAvatar(
-                          //   backgroundColor:Colors.white,
-                             radius: 16.h, // Adjust the radius as needed
-                             child: Icon(
-                               Icons.person,
-                               color: AppColor.primaryColor,
-                               size: 24.h, // Adjust the icon size as needed
-                             ),
-                           ),
-                           SizedBox(width: 8.w,),
-                           //The text:
-                           Text(
-                             "مرحبا, محمد ناجي!",
-                             //textDirection: TextDirection.rtl,
-                             style: TextStyle(
-                               color: AppColor.primaryColor,
-                               fontSize: 20.sp,
-                               fontWeight: FontWeight.bold
-                             ),
-                           ),
-                   
-                         ],
-                   
-                         ),
-                       ),
-                         SizedBox(height: 14.h,),
-                   
-                       //All articles line:
-                       Padding(
-                         padding:  EdgeInsets.only(right: 10.0.w),
-                         child: Row(
-                           children: [
-                              Text(
-                               "آخر مقالات وأخبار الحيوانات الأليفة!",
-                               //textDirection: TextDirection.rtl,
-                               style: TextStyle(
-                                 color: AppColor.black,
-                                 fontWeight: FontWeight.bold,
-                                 fontSize: 16.sp,
-                   
-                               ),
-                             ),
-                              SizedBox(width: 22.w,),
-
-                             CustomButton(
-                                 onPressed: (){
-
-                                 },
-                                 buttonText: 'جميع المقالات'),
-
-                           ],
-                         ),
-                       ),
-                   
-                       //The image slider
-                      GetBuilder<HomeController>(
-                        builder:(controller) => MyImageSlider(
-                            articles:controller.slider_articles_widgets(slides) ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              //The welcome message :
+              Padding(
+                padding: EdgeInsets.only(right: 15.0.w),
+                child: Row(
+                  children: [
+                    //The Icon:
+                    CircleAvatar(
+                      //   backgroundColor:Colors.white,
+                      radius: 16.h, // Adjust the radius as needed
+                      child: Icon(
+                        Icons.person,
+                        color: AppColor.primaryColor,
+                        size: 24.h, // Adjust the icon size as needed
                       ),
+                    ),
+                    SizedBox(
+                      width: 8.w,
+                    ),
+                    //The text:
+                    Text(
+                      "مرحبا, محمد ناجي!",
+                      //textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                          color: AppColor.primaryColor,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 14.h,
+              ),
 
-                       //Favorite animals row
-                       Padding(
-                         padding:  EdgeInsets.only(right: 13.0.w),
-                         child: Row(
-                           children: [
-                              Text(
-                               "الحيوانات المفضلة اليوم!",
-                               //textDirection: TextDirection.rtl,
-                               style: TextStyle(
-                                 color: AppColor.black,
-                                 fontWeight: FontWeight.bold,
-                                 fontSize: 16.sp,
-                   
-                               ),
-                             ),
-                              SizedBox(width: 88.w,),
-                             CustomButton(
-                                 onPressed: (){
+              //All articles line:
+              Padding(
+                padding: EdgeInsets.only(right: 10.0.w),
+                child: Row(
+                  children: [
+                    Text(
+                      "آخر مقالات وأخبار الحيوانات الأليفة!",
+                      //textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                        color: AppColor.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 22.w,
+                    ),
+                    CustomButton(onPressed: () {}, buttonText: 'جميع المقالات'),
+                  ],
+                ),
+              ),
 
-                                 },
-                                 buttonText: 'جميع المنشورات'),
-                           ],
-                         ),
-                       ),
-                   
-                       //List of posts:
-                       PostsList(posts: testPosts),
+              //The image slider
+              GetBuilder<HomeController>(
+                builder: (controller) => MyImageSlider(
+                    articles: controller.slider_articles_widgets(slides)),
+              ),
 
-                     ],
+              //Favorite animals row
+              Padding(
+                padding: EdgeInsets.only(right: 13.0.w),
+                child: Row(
+                  children: [
+                    Text(
+                      "الحيوانات المفضلة اليوم!",
+                      //textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                        color: AppColor.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 88.w,
+                    ),
+                    CustomButton(
+                        onPressed: () {}, buttonText: 'جميع المنشورات'),
+                  ],
+                ),
+              ),
 
-                   ),
-                 ),
-               ),
+              //List of posts:
+              PostsList(posts: testPosts),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

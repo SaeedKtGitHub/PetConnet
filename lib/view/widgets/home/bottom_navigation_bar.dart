@@ -6,7 +6,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onItemTapped;
 
-  const CustomBottomNavigationBar({super.key, 
+  const CustomBottomNavigationBar({
+    super.key,
     required this.currentIndex,
     required this.onItemTapped,
   });
@@ -14,87 +15,80 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      //height: 74.h,
-      notchMargin: 10.0.h,
+      height: 70.h,
+      notchMargin: 8.0.h,
       shape: const CircularNotchedRectangle(),
       color: AppColor.primaryColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
         children: [
-
           //اhome item
-           Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.home_outlined,
-                  color: Colors.white,
-                  size: 30 .h,
-
-                ),
-                const Text(
-                  "الرئيسية",
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
-            ),
-
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.home_outlined,
+                color: Colors.white,
+                size: 30.h,
+              ),
+              Text(
+                "الرئيسية",
+                style: TextStyle(color: Colors.white, fontSize: 12.sp),
+              )
+            ],
+          ),
 
           //gallery  item
-            Padding(
-              padding: EdgeInsets.only(left:100.0.w),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.image_outlined,
-                    color: Colors.white,
-                    size: 30.h,
-                  ),
-                  const Text(
-                    "المعرض",
-                    style: TextStyle(color: AppColor.white),
-                  )
-                ],
-              ),
-            ),
-
-          //اshop item
-           Column(
+          Padding(
+            padding: EdgeInsets.only(left: 100.0.w),
+            child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
-                  Icons.shopping_bag_outlined,
-                  color: AppColor.white,
-                  size: 30.h,
-
-                ),
-                const Text(
-                  "المتجر",
-                  style: TextStyle(color:AppColor.white),
-                )
-              ],
-            ),
-
-          //settings item
-             Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.settings_outlined,
+                  Icons.image_outlined,
                   color: Colors.white,
                   size: 30.h,
-
-
                 ),
-                const Text(
-                  "إعدادات",
-                  style: TextStyle(color: Colors.white),
+                Text(
+                  "المعرض",
+                  style: TextStyle(color: AppColor.white, fontSize: 12.sp),
                 )
               ],
             ),
+          ),
 
+          //اshop item
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.shopping_bag_outlined,
+                color: AppColor.white,
+                size: 30.h,
+              ),
+              Text(
+                "المتجر",
+                style: TextStyle(color: AppColor.white, fontSize: 12.sp),
+              )
+            ],
+          ),
+
+          //settings item
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.settings_outlined,
+                color: Colors.white,
+                size: 30.h,
+              ),
+              Text(
+                "إعدادات",
+                style: TextStyle(color: Colors.white, fontSize: 12.sp),
+              )
+            ],
+          ),
         ],
       ),
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/core/constant/color.dart';
 
-
 class CustomFloatingActionButton extends StatelessWidget {
   final VoidCallback onPressed;
 
@@ -21,7 +20,7 @@ class CustomFloatingActionButton extends StatelessWidget {
       shape: const CircleBorder(),
       child: Icon(
         Icons.add,
-        size: 32.0.sp,
+        size: 32.0.h,
       ),
     );
   }
