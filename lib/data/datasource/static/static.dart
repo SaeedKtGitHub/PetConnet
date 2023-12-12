@@ -24,6 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/data/model/slide_show.dart';
 import 'package:pet_connect/data/model/user.dart';
+import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_item.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
 import 'package:pet_connect/view/widgets/home/post_widget.dart';
 
@@ -38,15 +39,16 @@ import 'package:pet_connect/view/widgets/home/post_widget.dart';
 //   'assets/images/pets3.webp'  ];
 
 //bottom appbar icons list :
-final bottomNavBarIems = [
+final bottomNavBarIems=[
   const Icon(Icons.home_outlined),
 ];
 
 //temp data slides  for test purposes :
-List<SlideShow> slides = [
+List<SlideShow> slides=[
   SlideShow('assets/images/pets1.jpeg', 'قطك يحتاج إلى النوم عشر ساعات يوميا!'),
   SlideShow('assets/images/pets2.jpeg', 'أمراض القطط في الشتاء'),
   SlideShow('assets/images/pets3.webp', 'هل مرض صراع الكلب منتشر في الأردن؟'),
+
 ];
 
 //temp posts for test purposes :
@@ -56,9 +58,8 @@ List<PostWidget> testPosts = [
     image: "assets/images/pets1.jpeg",
     title: "سندس",
     animalIcon: "assets/images/catIcon.png",
-    user: users[0],
-    content:
-        "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
+    user:  users[0],
+    content: "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
     tags: const ["tag1", "tag2"],
   ),
   PostWidget(
@@ -105,3 +106,23 @@ List<CustomPetWidget> testPetList = [
       onPressed: () {},
       onLongPress: () {}),
 ];
+
+//List of traffic users tags :
+List<TagItem> trafficTagsItems=
+[
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/adoptAnimalTagIcon.png', text: 'التبرع بحيوان'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/mating.png', text: 'البحث عن تزاوج'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_for_sale.png', text: 'عرض للبيع'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/lost_animal.png', text: 'ابلاغ عن حيوان ضائع'),
+];
+
+//List of other users(vets,shops,writer) tags :
+List<TagItem> businessTagsItems=
+[
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_service.png', text: 'عرض خدمة'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_product.png', text: 'عرض منتج للبيع'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_medical_service.png', text: 'عرض خدمة طبية'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/write_article.png', text: 'كتابة مقالة'),
+
+];
+
