@@ -7,6 +7,4 @@ class AppColor {
   static const Color backgroundColorWhite = Colors.white;
   static const Color primaryColor = Color(0xffFB8500);
   static const Color white = Colors.white;
-
-
 }
