@@ -25,7 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       //FAB:
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CustomFloatingActionButton(onPressed: () {}),
+      floatingActionButton:
+      GetBuilder<HomeController>(
+        builder: (controller) => CustomFloatingActionButton(onPressed: controller.showChoosePostTypePopUp),
+      ),
+
       //bottomNavigationBar:
       bottomNavigationBar: GetBuilder<HomeController>(
         builder: (controller) => CustomBottomNavigationBar(

@@ -23,6 +23,7 @@
 import 'package:flutter/material.dart';
 import 'package:pet_connect/data/model/slide_show.dart';
 import 'package:pet_connect/data/model/user.dart';
+import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_item.dart';
 import 'package:pet_connect/view/widgets/home/post_widget.dart';
 
 // final tempTexts= [
@@ -75,3 +76,23 @@ List<User> users = [
   User(name: "سوسو الأمورة", icon: "👩‍💼"),
   User(name: "لولو المغرورة", icon: "👨‍💻"),
 ];
+
+//List of traffic users tags :
+List<TagItem> trafficTagsItems=
+[
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/adoptAnimalTagIcon.png', text: 'التبرع بحيوان'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/mating.png', text: 'البحث عن تزاوج'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_for_sale.png', text: 'عرض للبيع'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/lost_animal.png', text: 'ابلاغ عن حيوان ضائع'),
+];
+
+//List of other users(vets,shops,writer) tags :
+List<TagItem> businessTagsItems=
+[
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_service.png', text: 'عرض خدمة'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_product.png', text: 'عرض منتج للبيع'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_medical_service.png', text: 'عرض خدمة طبية'),
+  TagItem(iconPath: 'assets/images/tags_items_popup_icons/write_article.png', text: 'كتابة مقالة'),
+
+];
+
