@@ -7,5 +7,4 @@ class AppImageAsset {
   static const String testDog = "$rootImages/test_dog.png";
   static const String cancelImageIcon = "$rootImages/cancel_img_icon.png";
   static const String cancel = "$rootImages/cancell_popUp.jpg";
-
 }
