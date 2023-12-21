@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 
 class CustomPetWidget extends StatelessWidget {
@@ -9,10 +11,12 @@ class CustomPetWidget extends StatelessWidget {
     required this.petIcon,
     required this.petImage,
     required this.petName,
+    required this.index,
     //required this.petModel,
     required this.onPressed,
     required this.onLongPress,
   });
+  final int index;
   final String petIcon;
   final String petImage;
   final String petName;
@@ -23,6 +27,7 @@ class CustomPetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(CreatePostControllerImp());
     return Padding(
       padding: EdgeInsets.only(left: 5.w, right: 5.w),
       child: Column(
@@ -51,12 +56,16 @@ class CustomPetWidget extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            petName,
-            style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w500,
-                color: AppColor.black),
+          GetBuilder<CreatePostControllerImp>(
+            builder: (controller) => Text(
+              petName,
+              style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w500,
+                  color: controller.selectedIndex == index
+                      ? Colors.red
+                      : AppColor.black),
+            ),
           ),
         ],
       ),

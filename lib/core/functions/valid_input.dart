@@ -9,6 +9,11 @@ validInput(String val, int min, int max, String type) {
       return "اسم المستخدم غير صحيح";
     }
   }
+  if (type == "text") {
+    if (!GetUtils.isAlphabetOnly(val)) {
+      return "العنوان غير صحيح";
+    }
+  }
   if (type == "email") {
     if (!GetUtils.isEmail(val)) {
       return "البريد الالكتروني غير صحيح";

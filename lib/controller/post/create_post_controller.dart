@@ -3,7 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:pet_connect/core/class/status_request.dart';
+import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/routes.dart';
+import 'package:pet_connect/core/functions/handling_data_controller.dart';
+import 'package:pet_connect/core/functions/show_snack_bar.dart';
+import 'package:pet_connect/core/services/services.dart';
+import 'package:pet_connect/data/datasource/remote/auth/post/create_post_data.dart';
 
 abstract class CreatePostController extends GetxController {
   backToHomeScreen();
@@ -11,9 +18,9 @@ abstract class CreatePostController extends GetxController {
   chooseImageFromGallery();
   replaceWidgetsWithImage();
   removeImage();
-  goToAddPetScreen();
+  goToAddPetScreen(); //TODO: wait this screen to finish.
   openPopUpPetInfo(); // CreatePostData
-  onLongPressOnItem();
+  onLongPressOnItem({required int index});
   getPets(); // CreatePostData
   addPost(); // CreatePostData
 }
@@ -23,8 +30,14 @@ class CreatePostControllerImp extends CreatePostController {
   File? myFile;
   late TextEditingController address;
   bool isShowImage = false;
+  int selectedIndex = -1;
+  String petName = "";
+  StatusRequest? statusRequest = StatusRequest.none;
+
   // bool isLoading = false;
 
+  CreatePostData createPostData = CreatePostData(Get.find());
+  MyServices myServices = Get.find();
   @override
   backToHomeScreen() {
     Get.offNamed(AppRoute.homeScreen);
@@ -43,7 +56,7 @@ class CreatePostControllerImp extends CreatePostController {
 
   @override
   chooseImageFromGallery() async {
-    // TODO: implement chooseImageFromGallery
+    // TODO: Ask permission
     XFile? xFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     myFile = File(xFile!.path);
     replaceWidgetsWithImage();
@@ -93,8 +106,12 @@ class CreatePostControllerImp extends CreatePostController {
   }
 
   @override
-  onLongPressOnItem() {
+  onLongPressOnItem({required int index}) {
     // TODO: implement onLongPressOnItem
+
+    selectedIndex = index;
+    print(selectedIndex);
+    update();
   }
 
   @override
@@ -103,8 +120,33 @@ class CreatePostControllerImp extends CreatePostController {
   }
 
   @override
-  addPost() {
+  addPost() async {
     // TODO: implement addPost
+    if (myFile == null) {
+      showSnackBar(numOfText1: '23', numOfText2: '24');
+    }
+
+    if (formState.currentState!.validate()) {
+      statusRequest = StatusRequest.loading;
+      update();
+      var response = await createPostData.postDataFile(
+        myServices.sharedPreferences.getString("id")!,
+        address.text,
+        myFile!,
+      );
+      statusRequest = handlingData(response);
+      //print("=======================Con" + response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          Get.offNamed(AppRoute.homeScreen);
+        } else {
+          Get.defaultDialog(
+              title: "Warning", middleText: "Email Or Password Not Correct");
+          statusRequest = StatusRequest.failure;
+        }
+      }
+      update();
+    } else {}
   }
 
   @override

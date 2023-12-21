@@ -22,7 +22,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
-import 'package:pet_connect/data/model/post.dart';
 import 'package:pet_connect/data/model/slide_show.dart';
 import 'package:pet_connect/data/model/user.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_item.dart';
@@ -86,24 +85,28 @@ List<CustomPetWidget> testPetList = [
       petName: 'Dog 1',
       petImage: AppImageAsset.testDog,
       petIcon: AppImageAsset.dogIcon,
+      index: 0,
       onPressed: () {},
       onLongPress: () {}),
   CustomPetWidget(
       petName: 'Dog 2',
       petImage: AppImageAsset.testDog,
       petIcon: AppImageAsset.dogIcon,
+      index: 0,
       onPressed: () {},
       onLongPress: () {}),
   CustomPetWidget(
       petName: 'Dog 3',
       petImage: AppImageAsset.testDog,
       petIcon: AppImageAsset.dogIcon,
+      index: 0,
       onPressed: () {},
       onLongPress: () {}),
   CustomPetWidget(
       petName: 'Dog 4',
       petImage: AppImageAsset.testDog,
       petIcon: AppImageAsset.dogIcon,
+      index: 0,
       onPressed: () {},
       onLongPress: () {}),
 ];

@@ -31,7 +31,7 @@ class CustomShowImage extends StatelessWidget {
                 backgroundColor: AppColor.primaryColor,
                 radius: 14.h, // Adjust the radius as needed
                 child: Image.asset(
-                  AppImageAsset.dogIcon,
+                  AppImageAsset.cancelImageIcon,
                   width: 20.w,
                   height: 20.h,
                   color: AppColor.white,

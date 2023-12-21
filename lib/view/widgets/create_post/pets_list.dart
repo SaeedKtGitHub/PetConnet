@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
+import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
 
 class PetsList extends StatelessWidget {
-  const PetsList(
-      {super.key,
-      required this.listOfPetWidget,
-      required this.onPressed,
-      required this.onLongPress});
+  const PetsList({
+    super.key,
+    required this.listOfPetWidget,
+  });
   final List<CustomPetWidget> listOfPetWidget;
-  final void Function()? onPressed;
-  final void Function()? onLongPress;
-  @override
   Widget build(BuildContext context) {
+    Get.put(CreatePostControllerImp());
     return ListView.builder(
       //primary: false,
       shrinkWrap: true,
@@ -22,12 +23,16 @@ class PetsList extends StatelessWidget {
         //   padding:  EdgeInsets.only(top: 10.0.h),
         //   child: CustomPetWidget(petIcon: AppImageAsset.dogIcon, onPressed: (){}, onLongPress: (){}),
         // );
-        return CustomPetWidget(
-            petName: listOfPetWidget[index].petName,
-            petImage: listOfPetWidget[index].petImage,
-            petIcon: listOfPetWidget[index].petIcon,
-            onPressed: () {},
-            onLongPress: () {});
+        return GetBuilder<CreatePostControllerImp>(
+            builder: (controller) => CustomPetWidget(
+                petName: listOfPetWidget[index].petName,
+                petImage: listOfPetWidget[index].petImage,
+                petIcon: listOfPetWidget[index].petIcon,
+                index: index,
+                onPressed: () {},
+                onLongPress: () {
+                  controller.onLongPressOnItem(index: index);
+                }));
       },
     );
   }
