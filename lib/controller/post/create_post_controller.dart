@@ -28,7 +28,7 @@ abstract class CreatePostController extends GetxController {
 class CreatePostControllerImp extends CreatePostController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   File? myFile;
-  late TextEditingController address;
+  late TextEditingController title;
   bool isShowImage = false;
   int selectedIndex = -1;
   String petName = "";
@@ -131,7 +131,7 @@ class CreatePostControllerImp extends CreatePostController {
       update();
       var response = await createPostData.postDataFile(
         myServices.sharedPreferences.getString("id")!,
-        address.text,
+        title.text,
         myFile!,
       );
       statusRequest = handlingData(response);
@@ -151,13 +151,13 @@ class CreatePostControllerImp extends CreatePostController {
 
   @override
   void onInit() {
-    address = TextEditingController();
+    title = TextEditingController();
     super.onInit();
   }
 
   @override
   void dispose() {
-    address.dispose();
+    title.dispose();
     super.dispose();
   }
 }

@@ -30,35 +30,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // Back button :
               Row(
                 children: [
-                  SizedBox(width: 12.w,),
+                  SizedBox(
+                    width: 12.w,
+                  ),
 
                   //The back button
                   InkWell(
                     onTap: controller.backToHomeScreen,
-                      child: Image.asset(
-                        AppImageAsset.backIcon,
-                        height: 35.h,
-                        width: 35.w,
-                      ),
+                    child: Image.asset(
+                      AppImageAsset.backIcon,
+                      height: 35.h,
+                      width: 35.w,
                     ),
+                  ),
                 ],
               ),
               SizedBox(height: 10.h),
               //The profil image
-              ProfileImage(onPressed:
-              controller.getImageSourceOption
-              ),
+              ProfileImage(onPressed: controller.getImageSourceOption),
               SizedBox(height: 10.h),
               //The username:
               Center(
                 child: Text(
                   'محمد ناجي',
                   style: TextStyle(
-                    color: AppColor.primaryColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30.sp
-                  ),
-
+                      color: AppColor.primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.sp),
                 ),
               ),
               //The user location:
@@ -68,19 +66,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(
                       color: AppColor.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16.sp
-                  ),
-
+                      fontSize: 16.sp),
                 ),
               ),
               //Email Row
-              const UserDataRow(icon:Icon(Icons.email),
-                  text:'saeed@gmail.com',
-
+              const UserDataRow(
+                icon: Icon(Icons.email),
+                text: 'saeed@gmail.com',
               ),
               //Phone Row
-              const UserDataRow(icon:Icon(Icons.phone),
-                  text:'0779777777'),
+              const UserDataRow(icon: Icon(Icons.phone), text: '0779777777'),
               SizedBox(height: 10.h),
               //The pets list:
               SizedBox(
@@ -98,14 +93,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       child: PetsList(
                         listOfPetWidget: testPetList,
-                        onPressed: () {},
-                        onLongPress: () {},
                       ),
                     ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),

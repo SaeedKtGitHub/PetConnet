@@ -112,10 +112,10 @@ class CreatePostScreen extends StatelessWidget {
                       valid: (val) {
                         return validInput(val!, 3, 50, 'text');
                       },
-                      myController: controller.address,
+                      myController: controller.title,
                       hintText: '20'.tr,
                       labelText: '21'.tr,
-                      iconData: Icons.location_pin,
+                      iconData: Icons.title,
                     ),
                   ),
                   Center(
