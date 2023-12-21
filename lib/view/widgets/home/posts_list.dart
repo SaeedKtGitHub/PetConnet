@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_connect/data/model/post.dart';
 import 'package:pet_connect/view/widgets/home/post_widget.dart';
 class PostsList extends StatelessWidget {
-  final List<PostWidget> posts;
+  final List<Post> posts;
 
   const PostsList({required this.posts,super.key});
 
@@ -20,13 +21,7 @@ class PostsList extends StatelessWidget {
                 return Padding(
                   padding:  EdgeInsets.only(top: 10.0.h),
                   child: PostWidget(
-                    date: posts[index].date,
-                    image: posts[index].image,
-                    title: posts[index].title,
-                    animalIcon: posts[index].animalIcon,
-                    user: posts[index].user,
-                    content: posts[index].content,
-                    tags: posts[index].tags,
+                    post:posts[index],
                   ),
                 );
               },

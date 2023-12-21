@@ -5,7 +5,7 @@ import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_item.dart';
 class TagItemList extends StatelessWidget {
   final List<TagItem> tagItems;
 
-  TagItemList({required this.tagItems});
+  const TagItemList({super.key, required this.tagItems});
 
   @override
   Widget build(BuildContext context) {

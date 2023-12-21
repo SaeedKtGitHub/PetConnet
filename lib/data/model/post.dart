@@ -1,44 +1,40 @@
-
-
-import 'package:pet_connect/data/model/user.dart';
-
 class Post {
-  String date;
-  String image;
-  String title;
-  String animalIcon;
-  User user;
-  String content;
-  List<String> tags;
+  String? author;
+  String? username;
+  String? profileImg;
+  String? title;
+  String? content;
+  String? image;
+  List<String>? pets;
 
-  Post({
-    required this.date,
-    required this.image,
-    required this.title,
-    required this.animalIcon,
-    required this.user,
-    required this.content,
-    required this.tags,
-  });
+  Post(
+      {this.author,
+        this.username,
+        this.profileImg,
+        this.title,
+        this.content,
+        this.image,
+        this.pets});
+
+  Post.fromJson(Map<String, dynamic> json) {
+    author = json['author'];
+    username = json['username'];
+    profileImg = json['profileImg'];
+    title = json['title'];
+    content = json['content'];
+    image = json['image'];
+    pets = json['pets'].cast<String>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['author'] = this.author;
+    data['username'] = this.username;
+    data['profileImg'] = this.profileImg;
+    data['title'] = this.title;
+    data['content'] = this.content;
+    data['image'] = this.image;
+    data['pets'] = this.pets;
+    return data;
+  }
 }
-
-// void main() {
-//   // Example usage:
-//   User author = User(/* Initialize user properties */);
-//
-//   Post myPost = Post(
-//     date: "2023-12-06",
-//     image: "path/to/image.jpg",
-//     title: "My Awesome Post",
-//     animalIcon: "🐾",
-//     user: author,
-//     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-//     tags: ["tag1", "tag2", "tag3"],
-//   );
-
-//   // Accessing post attributes
-//   print("Post Title: ${myPost.title}");
-//   print("Author: ${myPost.user.name}"); // Assuming User class has a 'name' property
-//   print("Tags: ${myPost.tags.join(', ')}");
-// }
-

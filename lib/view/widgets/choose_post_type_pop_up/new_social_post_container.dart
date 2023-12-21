@@ -6,7 +6,7 @@ class NewSocialPostContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100.h,
       width: 260.w,
       child: Stack(

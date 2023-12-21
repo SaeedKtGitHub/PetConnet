@@ -15,8 +15,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      height: 70.h,
-      notchMargin: 8.0.h,
+      height: 60.h,
+      notchMargin: 7.0.h,
       shape: const CircularNotchedRectangle(),
       color: AppColor.primaryColor,
       child: Row(
@@ -30,11 +30,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
               Icon(
                 Icons.home_outlined,
                 color: Colors.white,
-                size: 30.h,
+                size: 25.h,
+
               ),
               Text(
                 "الرئيسية",
-                style: TextStyle(color: Colors.white, fontSize: 12.sp),
+                style: TextStyle(color: Colors.white, fontSize: 10.sp,
+                fontWeight: FontWeight.bold
+                ),
               )
             ],
           ),
@@ -48,11 +51,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 Icon(
                   Icons.image_outlined,
                   color: Colors.white,
-                  size: 30.h,
+                  size: 25.h,
                 ),
                 Text(
                   "المعرض",
-                  style: TextStyle(color: AppColor.white, fontSize: 12.sp),
+                  style: TextStyle(color: AppColor.white, fontSize: 10.sp,
+                      fontWeight: FontWeight.bold
+                  ),
                 )
               ],
             ),
@@ -65,11 +70,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
               Icon(
                 Icons.shopping_bag_outlined,
                 color: AppColor.white,
-                size: 30.h,
+                size: 25.h,
               ),
               Text(
                 "المتجر",
-                style: TextStyle(color: AppColor.white, fontSize: 12.sp),
+                style: TextStyle(color: AppColor.white, fontSize: 10.sp,
+                    fontWeight: FontWeight.bold
+                ),
               )
             ],
           ),
@@ -81,11 +88,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
               Icon(
                 Icons.settings_outlined,
                 color: Colors.white,
-                size: 30.h,
+                size: 25.h,
               ),
               Text(
                 "إعدادات",
-                style: TextStyle(color: Colors.white, fontSize: 12.sp),
+                style: TextStyle(color: Colors.white, fontSize: 10.sp,
+                    fontWeight: FontWeight.bold
+                ),
               )
             ],
           ),

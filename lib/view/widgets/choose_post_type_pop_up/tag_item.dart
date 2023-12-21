@@ -8,7 +8,7 @@ class TagItem extends StatelessWidget {
   final VoidCallback? onPressed;
 
  // TagItem({ this.iconPath, required this.text, this.onPressed},this.onPressed);
-  TagItem({required this.iconPath, required this.text, this.onPressed});
+  const TagItem({super.key, required this.iconPath, required this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

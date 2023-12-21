@@ -1,7 +1,6 @@
 import 'package:pet_connect/controller/auth/login_controller.dart';
 import 'package:pet_connect/controller/auth/signup_controller.dart';
 import 'package:pet_connect/core/class/handling_data_view.dart';
-import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/functions/alert_exit_app.dart';
 import 'package:pet_connect/core/functions/valid_input.dart';

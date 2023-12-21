@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/core/constant/color.dart';
+import 'package:pet_connect/data/model/post.dart';
 import 'package:pet_connect/data/model/user.dart';
 
 class PostWidget extends StatefulWidget {
-  final String date;
-  final String image;
-  final String title;
-  final String animalIcon;
-  final User user;
-  final String content;
-  final List<String> tags;
+  final Post post;
 
-  const PostWidget({super.key, 
-    required this.date,
-    required this.image,
-    required this.title,
-    required this.animalIcon,
-    required this.user,
-    required this.content,
-    required this.tags,
+
+  const PostWidget({super.key,
+    required this.post,
+
   });
 
   @override
@@ -34,20 +25,20 @@ class _PostWidgetState extends State<PostWidget> {
       child: Column(
         children: [
           // The date:
-          Row(
-            children: [
-              Padding(
-                padding:  EdgeInsets.only(right: 5.0.w),
-                child: Text(
-                  widget.date,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     Padding(
+          //       padding:  EdgeInsets.only(right: 5.0.w),
+          //       child: Text(
+          //         widget.post.date!,
+          //         textAlign: TextAlign.right,
+          //         style: TextStyle(
+          //           color: Colors.grey[700],
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           SizedBox(height: 2.h,),
 
           //The image
@@ -55,65 +46,67 @@ class _PostWidgetState extends State<PostWidget> {
           ClipRRect(
             borderRadius: BorderRadius.circular(5.0.h),
             child: Image.asset(
-              widget.image,
+              widget.post.image!,
               width: 340.w,
-              height: 230.h,
+              height:230.h,
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(height: 4.h,),
+          SizedBox(height: 10.h,),
 
           //Row of username,image user ,animal icon ,post title
-          Row(
-            children: [
-              //The user image
-              const CircleAvatar(
-                //   backgroundColor:Colors.white,
-                radius: 16, // Adjust the radius as needed
-                child: Icon(
-                  Icons.person,
-                  color: AppColor.primaryColor,
-                  size: 22, // Adjust the icon size as needed
-                ),
-              ),
-              SizedBox(width: 3.w,),
-              //The user name
-              Text(
-                widget.user.name,
-                //textDirection: TextDirection.rtl,
-                style:  TextStyle(
+          Padding(
+            padding:  EdgeInsets.only(right: 6.0.w,left: 6.w),
+            child: Row(
+              children: [
+                //The user image
+                 CircleAvatar(
+                  //   backgroundColor:Colors.white,
+                  radius: 16.h, // Adjust the radius as needed
+                  child: Icon(
+                    Icons.person,
                     color: AppColor.primaryColor,
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold
+                    size: 21.h, // Adjust the icon size as needed
+                  ),
                 ),
-              ),
-              const Spacer(),
-              //  The title
-              Text(
-                widget.title,
-                //textDirection: TextDirection.rtl,
-                style: TextStyle(
-                    color: AppColor.black,
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold
+                SizedBox(width: 3.w,),
+                //The user name
+                Text(
+                  widget.post.author!,
+                  //textDirection: TextDirection.rtl,
+                  style:  TextStyle(
+                      color: AppColor.primaryColor,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
-              ),
-              SizedBox(width: 3.w,),
-              //The animal icon
-               Image.asset(
-                widget.animalIcon,
-                width: 18.w,
-              ),
+                const Spacer(),
+                //  The title
+                Text(
+                  widget.post.title!,
+                  //textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      color: AppColor.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                SizedBox(width: 3.w,),
+                //The animal icon
+                //  Image.asset(
+                //   widget.post.animalIcon!,
+                //   width: 17 .w,
+                // ),
 
-            ],
+              ],
+            ),
           ),
           //The post content:
           Text(
-            widget.content,
-            //textDirection: TextDirection.rtl,
+            widget.post.content!,
             style: TextStyle(
                 color: AppColor.black,
-                fontSize: 14.sp,
+                fontSize: 13.sp,
 
             ),
           ),

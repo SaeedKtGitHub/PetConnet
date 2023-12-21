@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
+import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/data/datasource/static/static.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/new_social_post_container.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_items_list.dart';
@@ -29,7 +30,7 @@ class ChoosePostTypePopUp extends StatelessWidget {
                 GestureDetector(
                   onTap: controller.backToHome,
                   child: Image.asset(
-                    'assets/images/cancell_popUp.jpg',
+                    AppImageAsset.cancel,
                     width: 43.0.w,
                     height: 43.0.h,
                   ),
@@ -46,7 +47,7 @@ class ChoosePostTypePopUp extends StatelessWidget {
 
               ],
             ),
-            NewSocialPostContainer(),
+            const NewSocialPostContainer(),
             SizedBox(height: 8.h,),
             //Pets text
             Padding(
@@ -102,7 +103,7 @@ class ChoosePostTypePopUp extends StatelessWidget {
               ),
             ),
             //go to login to register as a vet or shop or writer
-               Row(
+               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/data/datasource/static/static.dart';
 import 'package:pet_connect/view/widgets/home/build_image_with_text.dart';
 import 'package:pet_connect/view/widgets/pop_up_chose_post_type.dart';
@@ -34,7 +33,7 @@ class HomeController extends GetxController {
 
   void showChoosePostTypePopUp() {
     Get.dialog(
-      Dialog(
+      const Dialog(
         child: ChoosePostTypePopUp(),
       ),
     );

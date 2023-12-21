@@ -10,7 +10,6 @@ import 'package:pet_connect/view/widgets/auth/custom_button_auth.dart';
 import 'package:pet_connect/view/widgets/auth/custom_text_form.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_add_pet_button.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_choose_image_button.dart';
-import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_show_image.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_text_body.dart';
 import 'package:pet_connect/view/widgets/create_post/pets_list.dart';
@@ -86,7 +85,7 @@ class CreatePostScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 16.h),
-                  Container(
+                  SizedBox(
                     height: 160.h, // Adjust the height as needed
                     child: Row(
                       children: [
@@ -108,7 +107,7 @@ class CreatePostScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 100, // Adjust the height as needed
                     child: CustomTextForm(
                       isNumber: false,

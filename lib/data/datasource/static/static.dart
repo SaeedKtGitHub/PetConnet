@@ -22,6 +22,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
+import 'package:pet_connect/data/model/post.dart';
 import 'package:pet_connect/data/model/slide_show.dart';
 import 'package:pet_connect/data/model/user.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_item.dart';
@@ -52,31 +53,31 @@ List<SlideShow> slides=[
 ];
 
 //temp posts for test purposes :
-List<PostWidget> testPosts = [
-  PostWidget(
-    date: "2023-12-06",
+List<Post> testPosts = [
+  Post(
+    username: "Ahmad",
+    profileImg: "ahmad.png",
+    pets:["cat1","dog2"] ,
     image: "assets/images/pets1.jpeg",
     title: "سندس",
-    animalIcon: "assets/images/catIcon.png",
-    user:  users[0],
     content: "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
-    tags: const ["tag1", "tag2"],
+    author: 'abcd'
   ),
-  PostWidget(
-    date: "2023-12-07",
-    image: "assets/images/pets2.jpeg",
-    title: "جوجو ",
-    animalIcon: "assets/images/catIcon.png",
-    user: users[1],
-    content: "مطلوب عروس لقطي جوجو الرائع تكون كيوت وحلوة للاستفسار على الخاص",
-    tags: const ["tag3", "tag4"],
+  Post(
+      username: "Ahmad",
+      profileImg: "ahmad.png",
+      pets:["cat1","dog2"] ,
+      image: "assets/images/pets1.jpeg",
+      title: "سندس",
+      content: "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
+      author: 'abcd'
   ),
   // Add more posts as needed
 ];
 // Temp user data for test purposes
 List<User> users = [
-  User(name: "سوسو الأمورة", icon: "👩‍💼"),
-  User(name: "لولو المغرورة", icon: "👨‍💻"),
+  User(name: "سوسو الأمورة", email: 'soso@gmail.com',photo: 'assets/images/pets1.jpeg',role: 'user'),
+  User(name: "لولو المغرورة",  email: 'lolo@gmail.com',photo: 'assets/images/pets1.jpeg',role: 'user'),
 ];
 
 //temp posts for test purposes :
@@ -110,19 +111,19 @@ List<CustomPetWidget> testPetList = [
 //List of traffic users tags :
 List<TagItem> trafficTagsItems=
 [
-  TagItem(iconPath: 'assets/images/tags_items_popup_icons/adoptAnimalTagIcon.png', text: 'التبرع بحيوان'),
-  TagItem(iconPath: 'assets/images/tags_items_popup_icons/mating.png', text: 'البحث عن تزاوج'),
-  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_for_sale.png', text: 'عرض للبيع'),
-  TagItem(iconPath: 'assets/images/tags_items_popup_icons/lost_animal.png', text: 'ابلاغ عن حيوان ضائع'),
+  const TagItem(iconPath: 'assets/images/tags_items_popup_icons/adoptAnimalTagIcon.png', text: 'التبرع بحيوان'),
+  const TagItem(iconPath: 'assets/images/tags_items_popup_icons/mating.png', text: 'البحث عن تزاوج'),
+  const TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_for_sale.png', text: 'عرض للبيع'),
+  const TagItem(iconPath: 'assets/images/tags_items_popup_icons/lost_animal.png', text: 'ابلاغ عن حيوان ضائع'),
 ];
 
 //List of other users(vets,shops,writer) tags :
 List<TagItem> businessTagsItems=
 [
-  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_service.png', text: 'عرض خدمة'),
-  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_product.png', text: 'عرض منتج للبيع'),
-  TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_medical_service.png', text: 'عرض خدمة طبية'),
-  TagItem(iconPath: 'assets/images/tags_items_popup_icons/write_article.png', text: 'كتابة مقالة'),
+  const TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_service.png', text: 'عرض خدمة'),
+  const TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_product.png', text: 'عرض منتج للبيع'),
+  const TagItem(iconPath: 'assets/images/tags_items_popup_icons/offer_medical_service.png', text: 'عرض خدمة طبية'),
+  const TagItem(iconPath: 'assets/images/tags_items_popup_icons/write_article.png', text: 'كتابة مقالة'),
 
 ];
 

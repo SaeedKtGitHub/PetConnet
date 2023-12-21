@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/core/constant/color.dart';
-import 'package:pet_connect/core/constant/imageasset.dart';
-import 'package:pet_connect/data/model/pet_model.dart';
 
 class CustomPetWidget extends StatelessWidget {
   //TODO: USE PetModel

@@ -36,7 +36,7 @@ class _MyImageSliderState extends State<MyImageSlider> {
                     autoPlayInterval: const Duration(milliseconds: 3500),
                     enlargeCenterPage: true,
                     aspectRatio: 2.0.h,
-                    height: 200.h,
+                    height: 180.h,
                     onPageChanged: (index, reason) {
                       setState(() {
                         controller.setCurrentSliderIndex(index);

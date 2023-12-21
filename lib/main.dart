@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:pet_connect/bindings/initial_bindings.dart';
 import 'package:pet_connect/core/localization/translation.dart';
 import 'package:pet_connect/core/services/services.dart';
-import 'package:pet_connect/routes.dart';
 import 'package:pet_connect/view/screens/home_screen.dart';
 import 'package:pet_connect/view/screens/profile_screen.dart';
 
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
           initialBinding: InitialBindings(),
           // routes: routes,
           //getPages: routes,
-          home: ProfileScreen(),
+          home: const HomeScreen(),
         );
       },
     );

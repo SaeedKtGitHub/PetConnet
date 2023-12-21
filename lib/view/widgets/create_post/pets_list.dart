@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
 
 class PetsList extends StatelessWidget {
