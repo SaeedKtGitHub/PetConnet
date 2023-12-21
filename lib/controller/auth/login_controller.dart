@@ -41,8 +41,16 @@ class LoginControllerImp extends LoginController {
       //print("=======================Con" + response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          // data.addAll(response['data']);
           myServices.sharedPreferences.setString("isLogin", "true");
+          // TODO: Use data from ahmad
+          myServices.sharedPreferences
+              .setString("id", response['data']['users_id']);
+          myServices.sharedPreferences
+              .setString("username", response['data']['users_name']);
+          myServices.sharedPreferences
+              .setString("email", response['data']['users_email']);
+          myServices.sharedPreferences
+              .setString("phone", response['data']['users_phone']);
           Get.offNamed(AppRoute.homeScreen);
         } else {
           Get.defaultDialog(

@@ -5,4 +5,5 @@ class AppImageAsset {
   static const String backIcon = "$rootImages/back_icon.png";
   static const String dogIcon = "$rootImages/dog_icon.png";
   static const String testDog = "$rootImages/test_dog.png";
+  static const String cancelImageIcon = "$rootImages/cancel_img_icon.png";
 }

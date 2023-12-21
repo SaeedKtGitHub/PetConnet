@@ -101,8 +101,6 @@ class CreatePostScreen extends StatelessWidget {
                         Expanded(
                           child: PetsList(
                             listOfPetWidget: testPetList,
-                            onPressed: () {},
-                            onLongPress: () {},
                           ),
                         ),
                       ],
@@ -113,7 +111,7 @@ class CreatePostScreen extends StatelessWidget {
                     child: CustomTextForm(
                       isNumber: false,
                       valid: (val) {
-                        return validInput(val!, 5, 100, 'email');
+                        return validInput(val!, 3, 50, 'text');
                       },
                       myController: controller.address,
                       hintText: '20'.tr,
