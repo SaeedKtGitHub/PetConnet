@@ -10,7 +10,8 @@ import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
 import 'package:pet_connect/core/functions/show_snack_bar.dart';
 import 'package:pet_connect/core/services/services.dart';
-import 'package:pet_connect/data/datasource/remote/auth/post/create_post_data.dart';
+import 'package:pet_connect/data/datasource/remote/post/create_post_data.dart';
+import 'package:pet_connect/data/model/pet_model.dart';
 
 abstract class CreatePostController extends GetxController {
   backToHomeScreen();
@@ -19,23 +20,22 @@ abstract class CreatePostController extends GetxController {
   replaceWidgetsWithImage();
   removeImage();
   goToAddPetScreen(); //TODO: wait this screen to finish.
-  openPopUpPetInfo(); // CreatePostData
+  openPopUpPetInfo({required int index}); // CreatePostData
   onLongPressOnItem({required int index});
-  getPets(); // CreatePostData
+  getUserPets(); // CreatePostData
   addPost(); // CreatePostData
 }
 
 class CreatePostControllerImp extends CreatePostController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   File? myFile;
-  late TextEditingController title;
+  late TextEditingController content;
   bool isShowImage = false;
   int selectedIndex = -1;
   String petName = "";
   StatusRequest? statusRequest = StatusRequest.none;
-
+  List<PetModel> userPetsList = [];
   // bool isLoading = false;
-
   CreatePostData createPostData = CreatePostData(Get.find());
   MyServices myServices = Get.find();
   @override
@@ -101,8 +101,10 @@ class CreatePostControllerImp extends CreatePostController {
   }
 
   @override
-  openPopUpPetInfo() {
+  openPopUpPetInfo({required int index}) {
     // TODO: implement openPopUpPetInfo
+    //                    one model of pet
+    //CustomPopUpPetInfo(userPetsList[index])//
   }
 
   @override
@@ -115,33 +117,68 @@ class CreatePostControllerImp extends CreatePostController {
   }
 
   @override
-  getPets() {
+  getUserPets() async {
     // TODO: implement getPets
+    statusRequest = StatusRequest.loading;
+    update();
+    print(
+        'SHRED ---> ID -->  ${myServices.sharedPreferences.getString("userID")!}');
+    var response = await createPostData
+        .getData(myServices.sharedPreferences.getString("userID")!);
+    print("===========HASSAN==================== Controller $response ");
+    statusRequest = handlingData(response);
+
+    print("===========HASSAN2==================== Controller $response ");
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response[0]['status'] == "success") {
+        List dataResponse = response[0]['data'];
+        userPetsList.clear();
+        userPetsList.addAll(dataResponse.map((e) => PetModel.fromJson(e)));
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+      // End
+    }
+    update();
   }
 
   @override
   addPost() async {
-    // TODO: implement addPost
+    //if no image of post
     if (myFile == null) {
-      showSnackBar(numOfText1: '23', numOfText2: '24');
+      return showSnackBar(numOfText1: '23', numOfText2: '24');
     }
-
+    // if no pet addedd
+    if (userPetsList.isEmpty) {
+      return showSnackBar(numOfText1: '23', numOfText2: '26');
+    }
+    //if no selected pet by (onLongPress)
+    if (selectedIndex == -1) {
+      return showSnackBar(numOfText1: '23', numOfText2: '27');
+    }
+    print('UUUUUUUUUUUUUUU -->  ${userPetsList[selectedIndex].petID}');
     if (formState.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
+      //start
       var response = await createPostData.postDataFile(
-        myServices.sharedPreferences.getString("id")!,
-        title.text,
+        //TODO: Update Shared pref  In login Controller then update here.
+        myServices.sharedPreferences.getString("userID")!,
+        content.text,
+        //TODO: Change owner to petId but you need to update pet model.
+        userPetsList[selectedIndex].petID!,
         myFile!,
       );
+      print("=============================== Controller $response ");
       statusRequest = handlingData(response);
       //print("=======================Con" + response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
+          print('ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
           Get.offNamed(AppRoute.homeScreen);
         } else {
-          Get.defaultDialog(
-              title: "Warning", middleText: "Email Or Password Not Correct");
+          showSnackBar(numOfText1: '23', numOfText2: '25');
           statusRequest = StatusRequest.failure;
         }
       }
@@ -151,13 +188,14 @@ class CreatePostControllerImp extends CreatePostController {
 
   @override
   void onInit() {
-    title = TextEditingController();
+    content = TextEditingController();
+    getUserPets();
     super.onInit();
   }
 
   @override
   void dispose() {
-    title.dispose();
+    content.dispose();
     super.dispose();
   }
 }

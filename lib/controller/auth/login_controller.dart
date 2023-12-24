@@ -21,7 +21,7 @@ class LoginControllerImp extends LoginController {
 
   bool isShowPassword = true;
 
-  StatusRequest? statusRequest = StatusRequest.none;
+  StatusRequest statusRequest = StatusRequest.none;
 
   showPassword() {
     isShowPassword = isShowPassword == true ? false : true;
@@ -38,20 +38,15 @@ class LoginControllerImp extends LoginController {
         password.text,
       );
       statusRequest = handlingData(response);
+      print('SSSSSSSSSSSSSSSSSSSSSSS--->  $statusRequest');
       //print("=======================Con" + response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           myServices.sharedPreferences.setString("isLogin", "true");
           // TODO: Use data from ahmad
           myServices.sharedPreferences
-              .setString("id", response['data']['users_id']);
-          myServices.sharedPreferences
-              .setString("username", response['data']['users_name']);
-          myServices.sharedPreferences
-              .setString("email", response['data']['users_email']);
-          myServices.sharedPreferences
-              .setString("phone", response['data']['users_phone']);
-          Get.offNamed(AppRoute.homeScreen);
+              .setString("userID", response['data']['userID']);
+          Get.offNamed(AppRoute.createPostScreen);
         } else {
           Get.defaultDialog(
               title: "Warning", middleText: "Email Or Password Not Correct");

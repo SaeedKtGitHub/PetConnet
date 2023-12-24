@@ -8,23 +8,23 @@ class CreatePostData {
 
   CreatePostData(this.crud);
 
-  postDataFile(String userId, String address, File file) async {
+  postDataFile(String userId, String content, String petId, File file) async {
     //TODO: Change link
     var response = await crud.postDataWithFile(
-        AppLink.login,
+        AppLink.addPost,
         {
-          "userId": userId,
-          "address": address,
+          "userID": userId,
+          "content": content,
+          "petID": petId,
         },
         file);
     return response.fold((l) => l, (r) => r);
   }
 
-  getData(String usersId, String petId) async {
+  getData(String userId) async {
     //TODO: ASK Ahmad about param. and Change link.
-    var response = await crud.postData(AppLink.login, {
-      "usersId": usersId,
-      "petId": petId,
+    var response = await crud.postDataList(AppLink.getUserPets, {
+      "userID": userId,
     });
     return response.fold((l) => l, (r) => r);
   }

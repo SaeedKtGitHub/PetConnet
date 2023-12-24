@@ -1,5 +1,6 @@
-class Pet {
-  String? owner;
+class PetModel {
+  String? userID;
+  String? petID;
   String? name;
   String? type;
   String? breed;
@@ -7,17 +8,19 @@ class Pet {
   String? birthDate;
   String? image;
 
-  Pet(
-      {this.owner,
-        this.name,
-        this.type,
-        this.breed,
-        this.gender,
-        this.birthDate,
-        this.image});
+  PetModel(
+      {this.userID,
+      this.petID,
+      this.name,
+      this.type,
+      this.breed,
+      this.gender,
+      this.birthDate,
+      this.image});
 
-  Pet.fromJson(Map<String, dynamic> json) {
-    owner = json['owner'];
+  PetModel.fromJson(Map<String, dynamic> json) {
+    userID = json['userID'];
+    petID = json['_id'];
     name = json['name'];
     type = json['type'];
     breed = json['breed'];
@@ -28,7 +31,8 @@ class Pet {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['owner'] = this.owner;
+    data['userID'] = this.userID;
+    data['petID'] = this.petID;
     data['name'] = this.name;
     data['type'] = this.type;
     data['breed'] = this.breed;

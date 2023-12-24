@@ -33,7 +33,7 @@ class SignupScreen extends StatelessWidget {
         onWillPop: alertExitApp,
         child: GetBuilder<SignUpControllerImp>(
           builder: (controller) => HandlingDataRequest(
-            statusRequest: controller.statusRequest!,
+            statusRequest: controller.statusRequest,
             widget: Container(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               child: Form(

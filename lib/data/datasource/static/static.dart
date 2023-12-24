@@ -22,9 +22,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
-import 'package:pet_connect/data/model/post.dart';
+import 'package:pet_connect/data/model/pet_model.dart';
+import 'package:pet_connect/data/model/post_model.dart';
 import 'package:pet_connect/data/model/slide_show.dart';
-import 'package:pet_connect/data/model/user.dart';
+import 'package:pet_connect/data/model/user_model.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_item.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
 import 'package:pet_connect/view/widgets/home/post_widget.dart';
@@ -52,71 +53,75 @@ List<SlideShow> slides = [
 ];
 
 //temp posts for test purposes :
-List<Post> testPosts = [
-  Post(
-      username: "Ahmad",
-      profileImg: "ahmad.png",
-      pets: ["cat1", "dog2"],
-      image: "assets/images/pets1.jpeg",
-      title: "سندس",
-      content:
-          "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
-      author: 'abcd'),
-  Post(
-      username: "Ahmad",
-      profileImg: "ahmad.png",
-      pets: ["cat1", "dog2"],
-      image: "assets/images/pets1.jpeg",
-      title: "سندس",
-      content:
-          "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
-      author: 'abcd'),
+List<PostModel> testPosts = [
+  PostModel(
+    name: "Ahmad",
+    profilePic: "ahmad.png",
+    petID: "pet Id 1",
+    image: "assets/images/pets1.jpeg",
+    title: "سندس",
+    content:
+        "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
+  ),
+  PostModel(
+    name: "Ahmad",
+    profilePic: "ahmad.png",
+    petID: "pet Id 2",
+    image: "assets/images/pets1.jpeg",
+    title: "سندس",
+    content:
+        "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
+  ),
   // Add more posts as needed
 ];
 // Temp user data for test purposes
-List<User> users = [
-  User(
+List<UserModel> users = [
+  UserModel(
+      userID: "1",
       name: "سوسو الأمورة",
       email: 'soso@gmail.com',
-      photo: 'assets/images/pets1.jpeg',
+      profilePic: 'assets/images/pets1.jpeg',
       role: 'user'),
-  User(
+  UserModel(
+      userID: "2",
       name: "لولو المغرورة",
       email: 'lolo@gmail.com',
-      photo: 'assets/images/pets1.jpeg',
+      profilePic: 'assets/images/pets1.jpeg',
       role: 'user'),
 ];
 
 //temp posts for test purposes :
-List<CustomPetWidget> testPetList = [
-  CustomPetWidget(
-      petName: 'Dog 1',
-      petImage: AppImageAsset.testDog,
-      petIcon: AppImageAsset.dogIcon,
-      index: 0,
-      onPressed: () {},
-      onLongPress: () {}),
-  CustomPetWidget(
-      petName: 'Dog 2',
-      petImage: AppImageAsset.testDog,
-      petIcon: AppImageAsset.dogIcon,
-      index: 0,
-      onPressed: () {},
-      onLongPress: () {}),
-  CustomPetWidget(
-      petName: 'Dog 3',
-      petImage: AppImageAsset.testDog,
-      petIcon: AppImageAsset.dogIcon,
-      index: 0,
-      onPressed: () {},
-      onLongPress: () {}),
-  CustomPetWidget(
-      petName: 'Dog 4',
-      petImage: AppImageAsset.testDog,
-      petIcon: AppImageAsset.dogIcon,
-      index: 0,
-      onPressed: () {},
-      onLongPress: () {}),
+List<PetModel> testPetList = [
+  PetModel(
+    petID: '1',
+    userID: "hassan",
+    name: "zuzu",
+    type: "cat",
+    breed: "Turkish",
+    gender: "f",
+    birthDate: "2022-03-10T00:00:00.000Z",
+    image: AppImageAsset.testDog,
+  ),
+  PetModel(
+    petID: '2',
+    userID: "hassan",
+    name: "momo",
+    type: "cat",
+    breed: "Turkish",
+    gender: "f",
+    birthDate: "2022-03-10T00:00:00.000Z",
+    image: AppImageAsset.testDog,
+  ),
+  PetModel(
+    petID: '3',
+    userID: "hassan",
+    name: "hoho",
+    type: "cat",
+    breed: "Turkish",
+    gender: "f",
+    birthDate: "2022-03-10T00:00:00.000Z",
+    image: AppImageAsset.testDog,
+  ),
 ];
 
 //List of traffic users tags :

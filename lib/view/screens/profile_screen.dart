@@ -90,11 +90,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     SizedBox(width: 10.w),
                     //TODO: Make this list dynamic.
-                    Expanded(
-                      child: PetsList(
-                        listOfPetWidget: testPetList,
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: PetsList(
+                    //     listOfPetWidget: testPetList,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

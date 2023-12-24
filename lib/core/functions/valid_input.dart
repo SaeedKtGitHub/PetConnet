@@ -10,9 +10,9 @@ validInput(String val, int min, int max, String type) {
     }
   }
   if (type == "text") {
-    if (!GetUtils.isAlphabetOnly(val)) {
-      return "العنوان غير صحيح";
-    }
+    // if (!GetUtils.isAlphabetOnly(val)) {
+    //   return "العنوان غير صحيح";
+    // }
   }
   if (type == "email") {
     if (!GetUtils.isEmail(val)) {

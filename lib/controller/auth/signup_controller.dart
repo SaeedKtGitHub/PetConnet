@@ -26,7 +26,7 @@ class SignUpControllerImp extends SignUpController {
     update();
   }
 
-  StatusRequest? statusRequest = StatusRequest.none;
+  StatusRequest statusRequest = StatusRequest.none;
   @override
   signUp() async {
     if (formState.currentState!.validate()) {

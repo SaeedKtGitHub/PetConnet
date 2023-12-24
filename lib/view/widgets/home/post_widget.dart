@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/core/constant/color.dart';
-import 'package:pet_connect/data/model/post.dart';
-import 'package:pet_connect/data/model/user.dart';
+import 'package:pet_connect/data/model/post_model.dart';
+import 'package:pet_connect/data/model/user_model.dart';
 
 class PostWidget extends StatefulWidget {
-  final Post post;
+  final PostModel post;
 
-
-  const PostWidget({super.key,
+  const PostWidget({
+    super.key,
     required this.post,
-
   });
 
   @override
@@ -21,7 +20,7 @@ class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.all(8.0.h),
+      padding: EdgeInsets.all(8.0.h),
       child: Column(
         children: [
           // The date:
@@ -39,7 +38,9 @@ class _PostWidgetState extends State<PostWidget> {
           //     ),
           //   ],
           // ),
-          SizedBox(height: 2.h,),
+          SizedBox(
+            height: 2.h,
+          ),
 
           //The image
 
@@ -48,19 +49,21 @@ class _PostWidgetState extends State<PostWidget> {
             child: Image.asset(
               widget.post.image!,
               width: 340.w,
-              height:230.h,
+              height: 230.h,
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(height: 10.h,),
+          SizedBox(
+            height: 10.h,
+          ),
 
           //Row of username,image user ,animal icon ,post title
           Padding(
-            padding:  EdgeInsets.only(right: 6.0.w,left: 6.w),
+            padding: EdgeInsets.only(right: 6.0.w, left: 6.w),
             child: Row(
               children: [
                 //The user image
-                 CircleAvatar(
+                CircleAvatar(
                   //   backgroundColor:Colors.white,
                   radius: 16.h, // Adjust the radius as needed
                   child: Icon(
@@ -69,16 +72,17 @@ class _PostWidgetState extends State<PostWidget> {
                     size: 21.h, // Adjust the icon size as needed
                   ),
                 ),
-                SizedBox(width: 3.w,),
+                SizedBox(
+                  width: 3.w,
+                ),
                 //The user name
                 Text(
-                  widget.post.author!,
+                  widget.post.name!,
                   //textDirection: TextDirection.rtl,
-                  style:  TextStyle(
+                  style: TextStyle(
                       color: AppColor.primaryColor,
                       fontSize: 15.sp,
-                      fontWeight: FontWeight.bold
-                  ),
+                      fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
                 //  The title
@@ -88,16 +92,16 @@ class _PostWidgetState extends State<PostWidget> {
                   style: TextStyle(
                       color: AppColor.black,
                       fontSize: 13.sp,
-                      fontWeight: FontWeight.bold
-                  ),
+                      fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 3.w,),
+                SizedBox(
+                  width: 3.w,
+                ),
                 //The animal icon
                 //  Image.asset(
                 //   widget.post.animalIcon!,
                 //   width: 17 .w,
                 // ),
-
               ],
             ),
           ),
@@ -105,12 +109,13 @@ class _PostWidgetState extends State<PostWidget> {
           Text(
             widget.post.content!,
             style: TextStyle(
-                color: AppColor.black,
-                fontSize: 13.sp,
-
+              color: AppColor.black,
+              fontSize: 13.sp,
             ),
           ),
-          SizedBox(height: 18.h,),
+          SizedBox(
+            height: 18.h,
+          ),
 
           //The divider:
           Divider(
@@ -119,9 +124,7 @@ class _PostWidgetState extends State<PostWidget> {
             height: 0,
             endIndent: 50.w,
             indent: 50.w,
-
           ),
-
         ],
       ),
     );

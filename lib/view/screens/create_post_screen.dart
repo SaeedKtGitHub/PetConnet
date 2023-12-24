@@ -6,10 +6,12 @@ import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/core/functions/valid_input.dart';
 import 'package:pet_connect/data/datasource/static/static.dart';
+import 'package:pet_connect/data/model/pet_model.dart';
 import 'package:pet_connect/view/widgets/auth/custom_button_auth.dart';
 import 'package:pet_connect/view/widgets/auth/custom_text_form.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_add_pet_button.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_choose_image_button.dart';
+import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_show_image.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_text_body.dart';
 import 'package:pet_connect/view/widgets/create_post/pets_list.dart';
@@ -98,28 +100,61 @@ class CreatePostScreen extends StatelessWidget {
                         SizedBox(width: 10.w),
                         //TODO: Make this list dynamic.
                         Expanded(
-                          child: PetsList(
-                            listOfPetWidget: testPetList,
-                          ),
+                          // child: PetsList(
+                          //   listOfPetWidget: testPetList,
+                          // ),
+                          // child: ListView.builder(
+                          //   //primary: false,
+                          //   shrinkWrap: true,
+                          //   scrollDirection: Axis.horizontal,
+                          //   itemCount: controller.dataList.length,
+                          //   itemBuilder: (context, index) {
+                          //     // return Padding(
+                          //     //   padding:  EdgeInsets.only(top: 10.0.h),
+                          //     //   child: CustomPetWidget(petIcon: AppImageAsset.dogIcon, onPressed: (){}, onLongPress: (){}),
+                          //     // );
+                          //     return GetBuilder<CreatePostControllerImp>(
+                          //         builder: (controller) => CustomPetWidget(
+                          //             petName:
+                          //                 '${controller.dataList[index].name}',
+                          //             petImage:
+                          //                 '${controller.dataList[index].image}',
+                          //             onPressed: () {},
+                          //             onLongPress: () {
+                          //               controller.onLongPressOnItem(
+                          //                   index: index);
+                          //             }));
+                          //   },
+                          // ),
+                          child:
+                              PetsList(listPetsModel: controller.userPetsList),
+                          //test PetsList(listPetsModel: testPetList),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: 100, // Adjust the height as needed
-                    child: CustomTextForm(
-                      isNumber: false,
-                      valid: (val) {
-                        return validInput(val!, 3, 50, 'text');
-                      },
-                      myController: controller.title,
-                      hintText: '20'.tr,
-                      labelText: '21'.tr,
-                      iconData: Icons.title,
+                    child: Form(
+                      key: controller.formState,
+                      child: CustomTextForm(
+                        isNumber: false,
+                        valid: (val) {
+                          return validInput(val!, 3, 50, 'text');
+                        },
+                        myController: controller.content,
+                        hintText: '20'.tr,
+                        labelText: '21'.tr,
+                        iconData: Icons.text_fields,
+                      ),
                     ),
                   ),
                   Center(
-                    child: CustomButtonAuth(text: '22'.tr, onPressed: () {}),
+                    child: CustomButtonAuth(
+                        text: '22'.tr,
+                        onPressed: () {
+                          controller.addPost();
+                        }),
                   )
                 ],
               ),

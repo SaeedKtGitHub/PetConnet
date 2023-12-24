@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
         onWillPop: alertExitApp,
         child: GetBuilder<LoginControllerImp>(
           builder: (controller) => HandlingDataRequest(
-              statusRequest: controller.statusRequest!,
+              statusRequest: controller.statusRequest,
               widget: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                       CustomTextForm(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 5, 100, 'email');
+                          return validInput(val!, 4, 100, 'email');
                         },
                         myController: controller.email,
                         hintText: "3".tr,
@@ -61,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                             controller.showPassword();
                           },
                           valid: (val) {
-                            return validInput(val!, 5, 40, 'password');
+                            return validInput(val!, 4, 40, 'password');
                           },
                           myController: controller.password,
                           hintText: "5".tr,
