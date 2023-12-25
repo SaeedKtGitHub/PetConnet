@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pet_connect/core/constant/routes.dart';
+import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/view/widgets/profile/choose_image_source_bottom_modal.dart';
 
 abstract class ProfileController extends GetxController {
@@ -13,45 +15,77 @@ abstract class ProfileController extends GetxController {
   chooseImageFromGallery();
   copyText(String text);
   openPopUpPetInfo();
-  getPets();
+  saveProfileImgToSharedPref();
+  uploadProfileIMageToServer();
 }
 
 class ProfileControllerImp extends ProfileController {
-
   File? myFile;
+  MyServices myServices = Get.find();
 
   @override
   backToHomeScreen() {
-    Get.back();
+    Get.offNamed(AppRoute.homeScreen);
   }
-
 
   @override
   chooseImageFromCamera() async {
     // TODO: implement chooseImageFromCamera
     XFile? xFile = await ImagePicker().pickImage(source: ImageSource.camera);
     myFile = File(xFile!.path);
+    saveProfileImgToSharedPref();
     update();
   }
 
   @override
-  chooseImageFromGallery() {
-    // TODO: implement chooseImageFromGallery
-    throw UnimplementedError();
+  chooseImageFromGallery() async {
+    XFile? xFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    myFile = File(xFile!.path);
+    saveProfileImgToSharedPref();
+    update();
   }
 
   @override
-  getPets() {
-    // TODO: implement getPets
-    throw UnimplementedError();
+  saveProfileImgToSharedPref() {
+    if (myFile != null) {
+      myServices.sharedPreferences.setString("myFile", myFile!.path);
+      //TODO: upload image tp server
+    }
   }
 
   @override
-  openPopUpPetInfo() {
-    // TODO: implement openPopUpPetInfo
-    throw UnimplementedError();
+  uploadProfileIMageToServer() {
+    // statusRequest = StatusRequest.loading;
+    // update();
+    // var response = await loginData.postData(
+    //   email.text,
+    //   password.text,
+    // );
+    // print(
+    //     "===========response LOGIN==================== Controller $response ");
+    // statusRequest = handlingData(response);
+    // print('SSSSSSSSSSSSSSSSSSSSSSS--->  $statusRequest');
+    // //print("=======================Con" + response);
+    // if (StatusRequest.success == statusRequest) {
+    //   if (response['status'] == "success") {
+    //     myServices.sharedPreferences.setString("isLogin", "true");
+    //     // TODO: Use data from ahmad
+    //     myServices.sharedPreferences
+    //         .setString("userID", response['data']['userID']);
+    //     myServices.sharedPreferences
+    //         .setString("username", response['data']['name']);
+    //     myServices.sharedPreferences
+    //         .setString("email", response['data']['email']);
+    //
+    //     Get.offNamed(AppRoute.profileScreen);
+    //   } else {
+    //     Get.defaultDialog(
+    //         title: "Warning", middleText: "Email Or Password Not Correct");
+    //     statusRequest = StatusRequest.failure;
+    //   }
+    // }
+    // update();
   }
-
 
   @override
   void copyText(String text) {
@@ -59,7 +93,7 @@ class ProfileControllerImp extends ProfileController {
     Get.snackbar(
       "تم النسخ بنجاح",
       '',
-      duration:const  Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       snackPosition: SnackPosition.BOTTOM,
       titleText: Text(
         "تم النسخ بنجاح",
@@ -94,6 +128,9 @@ class ProfileControllerImp extends ProfileController {
     return selectedOption;
   }
 
-
-
+  @override
+  openPopUpPetInfo() {
+    // TODO: implement openPopUpPetInfo
+    throw UnimplementedError();
+  }
 }

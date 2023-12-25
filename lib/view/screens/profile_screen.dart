@@ -6,6 +6,7 @@ import 'package:pet_connect/controller/profile_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_add_pet_button.dart';
+import 'package:pet_connect/view/widgets/create_post/pets_list.dart';
 import 'package:pet_connect/view/widgets/profile/data_row.dart';
 import 'package:pet_connect/view/widgets/profile/image_profile.dart';
 
