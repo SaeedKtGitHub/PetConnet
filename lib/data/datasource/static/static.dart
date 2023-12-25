@@ -27,8 +27,6 @@ import 'package:pet_connect/data/model/post_model.dart';
 import 'package:pet_connect/data/model/slide_show.dart';
 import 'package:pet_connect/data/model/user_model.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_item.dart';
-import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
-import 'package:pet_connect/view/widgets/home/post_widget.dart';
 
 // final tempTexts= [
 //   'قطك يحتاج إلى النوم عشر ساعات يوميا!',
@@ -53,27 +51,27 @@ List<SlideShow> slides = [
 ];
 
 //temp posts for test purposes :
-List<PostModel> testPosts = [
-  PostModel(
-    name: "Ahmad",
-    profilePic: "ahmad.png",
-    petID: "pet Id 1",
-    image: "assets/images/pets1.jpeg",
-    title: "سندس",
-    content:
-        "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
-  ),
-  PostModel(
-    name: "Ahmad",
-    profilePic: "ahmad.png",
-    petID: "pet Id 2",
-    image: "assets/images/pets1.jpeg",
-    title: "سندس",
-    content:
-        "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
-  ),
-  // Add more posts as needed
-];
+// List<PostModel> testPosts = [
+//   PostModel(
+//     name: "Ahmad",
+//     profilePic: "ahmad.png",
+//     petID: "pet Id 1",
+//     image: "assets/images/pets1.jpeg",
+//     title: "سندس",
+//     content:
+//         "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
+//   ),
+//   PostModel(
+//     name: "Ahmad",
+//     profilePic: "ahmad.png",
+//     petID: "pet Id 2",
+//     image: "assets/images/pets1.jpeg",
+//     title: "سندس",
+//     content:
+//         "قطتي الجميلة أحبها كثيرا,ألعب معها كل يوم هي لطيفة جدا ولا تؤذي أحدا ,اللعنة على الكفااااار  ",
+//   ),
+//   // Add more posts as needed
+// ];
 // Temp user data for test purposes
 List<UserModel> users = [
   UserModel(

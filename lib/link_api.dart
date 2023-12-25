@@ -8,4 +8,7 @@ class AppLink {
   //POST
   static String addPost = "$server/posts/addPost";
   static String getUserPets = "$server/users/getPets";
+  static String getAllPosts = "$server/posts/getAll";
+  static String getUser = "$server/users/getUser";
+
 }

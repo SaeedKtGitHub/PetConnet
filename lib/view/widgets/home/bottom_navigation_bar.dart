@@ -30,12 +30,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
               Icon(
                 Icons.home_outlined,
                 color: Colors.white,
-                size: 25.h,
+                size: 24.h,
 
               ),
               Text(
                 "الرئيسية",
-                style: TextStyle(color: Colors.white, fontSize: 10.sp,
+                style: TextStyle(color: Colors.white, fontSize: 9.sp,
                 fontWeight: FontWeight.bold
                 ),
               )
@@ -51,11 +51,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 Icon(
                   Icons.image_outlined,
                   color: Colors.white,
-                  size: 25.h,
+                  size: 24.h,
                 ),
                 Text(
                   "المعرض",
-                  style: TextStyle(color: AppColor.white, fontSize: 10.sp,
+                  style: TextStyle(color: AppColor.white, fontSize: 9.sp,
                       fontWeight: FontWeight.bold
                   ),
                 )
@@ -70,11 +70,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
               Icon(
                 Icons.shopping_bag_outlined,
                 color: AppColor.white,
-                size: 25.h,
+                size: 24.h,
               ),
               Text(
                 "المتجر",
-                style: TextStyle(color: AppColor.white, fontSize: 10.sp,
+                style: TextStyle(color: AppColor.white, fontSize: 9.sp,
                     fontWeight: FontWeight.bold
                 ),
               )
@@ -88,11 +88,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
               Icon(
                 Icons.settings_outlined,
                 color: Colors.white,
-                size: 25.h,
+                size: 24.h,
               ),
               Text(
                 "إعدادات",
-                style: TextStyle(color: Colors.white, fontSize: 10.sp,
+                style: TextStyle(color: Colors.white, fontSize: 9.sp,
                     fontWeight: FontWeight.bold
                 ),
               )

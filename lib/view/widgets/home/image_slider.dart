@@ -19,7 +19,7 @@ class _MyImageSliderState extends State<MyImageSlider> {
   @override
 
   Widget build(BuildContext context) {
-    Get.put(HomeController());
+    Get.put(HomeControllerImp());
 
     return SizedBox(
       width: double.infinity,
@@ -27,7 +27,7 @@ class _MyImageSliderState extends State<MyImageSlider> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              GetBuilder<HomeController>(
+              GetBuilder<HomeControllerImp>(
                 builder:(controller)=> CarouselSlider(
                   options: CarouselOptions(
                     autoPlay: true,

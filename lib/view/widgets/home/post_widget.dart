@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/core/constant/color.dart';
+import 'package:pet_connect/core/functions/helper_methods.dart';
 import 'package:pet_connect/data/model/post_model.dart';
-import 'package:pet_connect/data/model/user_model.dart';
+import 'package:pet_connect/link_api.dart';
 
 class PostWidget extends StatefulWidget {
   final PostModel post;
@@ -24,35 +25,47 @@ class _PostWidgetState extends State<PostWidget> {
       child: Column(
         children: [
           // The date:
-          // Row(
-          //   children: [
-          //     Padding(
-          //       padding:  EdgeInsets.only(right: 5.0.w),
-          //       child: Text(
-          //         widget.post.date!,
-          //         textAlign: TextAlign.right,
-          //         style: TextStyle(
-          //           color: Colors.grey[700],
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          Row(
+            children: [
+              Padding(
+                padding:  EdgeInsets.only(right: 5.0.w),
+                child: Text(
+                  formattedDate(widget.post.date!),
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                  ),
+                ),
+              ),
+            ],
+          ),
           SizedBox(
             height: 2.h,
           ),
 
           //The image
 
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(5.0.h),
+          //   child: NetworkImage(
+          //    // 'linkImageRoot/widget.post.image!',
+          //     "${AppLink.linkImageRoot}/${controller.post.profilePic}"
+          //     width: 340.w,
+          //     height: 230.h,
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
           ClipRRect(
             borderRadius: BorderRadius.circular(5.0.h),
-            child: Image.asset(
-              widget.post.image!,
+            child: Image.network(
+              // 'linkImageRoot/widget.post.image!',
+              "${AppLink.linkImageRoot}/${widget.post.image}",
               width: 340.w,
               height: 230.h,
               fit: BoxFit.cover,
             ),
           ),
+
           SizedBox(
             height: 10.h,
           ),
@@ -63,21 +76,34 @@ class _PostWidgetState extends State<PostWidget> {
             child: Row(
               children: [
                 //The user image
+                // CircleAvatar(
+                //   //   backgroundColor:Colors.white,
+                //   radius: 16.h, // Adjust the radius as needed
+                //   child: Icon(
+                //     Icons.person,
+                //     color: AppColor.primaryColor,
+                //     size: 21.h, // Adjust the icon size as needed
+                //   ),
+                // ),
                 CircleAvatar(
-                  //   backgroundColor:Colors.white,
+                  backgroundImage: widget.post.profilePic == null
+                      ? null
+                      : NetworkImage("${AppLink.linkImageRoot}/${widget.post.profilePic}"),
                   radius: 16.h, // Adjust the radius as needed
-                  child: Icon(
+                  child: widget.post.profilePic == null
+                      ? Icon(
                     Icons.person,
                     color: AppColor.primaryColor,
-                    size: 21.h, // Adjust the icon size as needed
-                  ),
+                    size: 24.h, // Adjust the icon size as needed
+                  )
+                      : null,  // No child for non-null profilePic
                 ),
                 SizedBox(
                   width: 3.w,
                 ),
                 //The user name
                 Text(
-                  widget.post.name!,
+                  widget.post.username!,
                   //textDirection: TextDirection.rtl,
                   style: TextStyle(
                       color: AppColor.primaryColor,
@@ -85,9 +111,9 @@ class _PostWidgetState extends State<PostWidget> {
                       fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
-                //  The title
+                //  Animal name
                 Text(
-                  widget.post.title!,
+                  widget.post.petName!,
                   //textDirection: TextDirection.rtl,
                   style: TextStyle(
                       color: AppColor.black,

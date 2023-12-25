@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
-import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/data/model/pet_model.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
 
@@ -34,7 +32,8 @@ class PetsList extends GetView<CreatePostControllerImp> {
                 : AppColor.black,
             paddingNum: controller.selectedIndex == index ? 3.0 : 0.0,
             onPressed: () {
-              controller.openPopUpPetInfo(index: index);
+              controller.selectedIndex=index;
+              controller.openPopUpPetInfo(petModel: listPetsModel[index]);
             },
             onLongPress: () {
               controller.onLongPressOnItem(index: index);

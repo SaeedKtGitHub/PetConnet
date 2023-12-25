@@ -20,7 +20,7 @@ class ChoosePostTypePopUp extends StatelessWidget {
         color: AppColor.white,
         borderRadius: BorderRadius.circular(10.h),
       ),
-      child: GetBuilder<HomeController>(
+      child: GetBuilder<HomeControllerImp>(
         builder:(controller) => Column(
           children: [
             //choose post type:
