@@ -14,6 +14,8 @@ class Crud {
         if (response.statusCode == 200 || response.statusCode == 201) {
           Map responseBody = jsonDecode(response.body);
           return Right({'status': "success", 'data': responseBody});
+        } else if (response.statusCode == 401 || response.statusCode == 404) {
+          return const Right({'status': "failure", 'data': []});
         } else {
           return const Left(StatusRequest.serverFailure);
         }

@@ -100,34 +100,9 @@ class CreatePostScreen extends StatelessWidget {
                         SizedBox(width: 10.w),
                         //TODO: Make this list dynamic.
                         Expanded(
-                          // child: PetsList(
-                          //   listOfPetWidget: testPetList,
-                          // ),
-                          // child: ListView.builder(
-                          //   //primary: false,
-                          //   shrinkWrap: true,
-                          //   scrollDirection: Axis.horizontal,
-                          //   itemCount: controller.dataList.length,
-                          //   itemBuilder: (context, index) {
-                          //     // return Padding(
-                          //     //   padding:  EdgeInsets.only(top: 10.0.h),
-                          //     //   child: CustomPetWidget(petIcon: AppImageAsset.dogIcon, onPressed: (){}, onLongPress: (){}),
-                          //     // );
-                          //     return GetBuilder<CreatePostControllerImp>(
-                          //         builder: (controller) => CustomPetWidget(
-                          //             petName:
-                          //                 '${controller.dataList[index].name}',
-                          //             petImage:
-                          //                 '${controller.dataList[index].image}',
-                          //             onPressed: () {},
-                          //             onLongPress: () {
-                          //               controller.onLongPressOnItem(
-                          //                   index: index);
-                          //             }));
-                          //   },
-                          // ),
-                          child:
-                              PetsList(listPetsModel: controller.userPetsList),
+                          child: PetsList(
+                              screenName: "createPost",
+                              listPetsModel: controller.userPetsList),
                           //test PetsList(listPetsModel: testPetList),
                         ),
                       ],

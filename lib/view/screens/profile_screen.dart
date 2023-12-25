@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/controller/profile_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
@@ -21,6 +22,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileControllerImp());
+    Get.put(CreatePostControllerImp());
+    CreatePostControllerImp createController =
+        Get.find<CreatePostControllerImp>();
     return Scaffold(
       body: SafeArea(
         child: GetBuilder<ProfileControllerImp>(
@@ -90,11 +94,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     SizedBox(width: 10.w),
                     //TODO: Make this list dynamic.
-                    // Expanded(
-                    //   child: PetsList(
-                    //     listOfPetWidget: testPetList,
-                    //   ),
-                    // ),
+                    Expanded(
+                      child: GetBuilder<CreatePostControllerImp>(
+                        builder: (controller) => PetsList(
+                          screenName: "profile",
+                          listPetsModel: controller.userPetsList,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

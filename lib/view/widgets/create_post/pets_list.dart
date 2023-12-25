@@ -10,9 +10,11 @@ import 'package:pet_connect/view/widgets/create_post/custom_pet_widget.dart';
 class PetsList extends GetView<CreatePostControllerImp> {
   const PetsList({
     super.key,
+    required this.screenName,
     required this.listPetsModel,
   });
   final List<PetModel> listPetsModel;
+  final String screenName;
   @override
   Widget build(BuildContext context) {
     Get.put(CreatePostControllerImp());
@@ -37,7 +39,9 @@ class PetsList extends GetView<CreatePostControllerImp> {
               controller.openPopUpPetInfo(index: index);
             },
             onLongPress: () {
-              controller.onLongPressOnItem(index: index);
+              if (screenName == "createPost") {
+                controller.onLongPressOnItem(index: index);
+              }
             });
       },
     );
