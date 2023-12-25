@@ -37,6 +37,8 @@ class LoginControllerImp extends LoginController {
         email.text,
         password.text,
       );
+      print(
+          "===========response LOGIN==================== Controller $response ");
       statusRequest = handlingData(response);
       print('SSSSSSSSSSSSSSSSSSSSSSS--->  $statusRequest');
       //print("=======================Con" + response);
@@ -46,7 +48,12 @@ class LoginControllerImp extends LoginController {
           // TODO: Use data from ahmad
           myServices.sharedPreferences
               .setString("userID", response['data']['userID']);
-          Get.offNamed(AppRoute.createPostScreen);
+          myServices.sharedPreferences
+              .setString("username", response['data']['name']);
+          myServices.sharedPreferences
+              .setString("email", response['data']['email']);
+
+          Get.offNamed(AppRoute.profileScreen);
         } else {
           Get.defaultDialog(
               title: "Warning", middleText: "Email Or Password Not Correct");
