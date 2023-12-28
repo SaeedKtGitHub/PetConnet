@@ -92,6 +92,7 @@ class CreatePostScreen extends StatelessWidget {
                           onPressed: () {
                             // TODO: Call function to allow the user to choose a pet.
                             // TODO: Go to the Add Pet screen.
+                            controller.goToAddPetScreen();
                           },
                         ),
                         SizedBox(width: 10.w),

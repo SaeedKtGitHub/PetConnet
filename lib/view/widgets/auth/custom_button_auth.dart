@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class CustomButtonAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+     // margin: const EdgeInsets.only(top: 10),
       child: MaterialButton(
         onPressed: onPressed,
         padding: const EdgeInsets.symmetric(vertical: 3),
@@ -18,7 +19,7 @@ class CustomButtonAuth extends StatelessWidget {
         textColor: AppColor.backgroundColorWhite,
         child: Text(
           text,
-          style: const TextStyle(fontSize: 27),
+          style:  TextStyle(fontSize: 20.sp),
         ),
       ),
     );

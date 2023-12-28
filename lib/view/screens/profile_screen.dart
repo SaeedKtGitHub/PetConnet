@@ -84,6 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: () {
                         // TODO: Call function to allow the user to choose a pet.
                         // TODO: Go to the Add Pet screen.
+
                       },
                     ),
                     SizedBox(width: 10.w),
