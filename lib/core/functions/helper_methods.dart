@@ -1,7 +1,9 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
+import 'package:intl/intl.dart';
 
 String formattedDate(String isoDateString) {
   DateTime dateTime = DateTime.parse(isoDateString);
@@ -22,7 +24,7 @@ String calculateAge(String birthDate) {
   }
 
   // Format the age as desired
-  String ageString = '$age  سنوات';
+  String ageString = '$age سنوات';
 
   return ageString;
 }
@@ -46,6 +48,14 @@ Image getIconPetType(String type) {
 
   // Return a default image if the type is not found
   return selectedImage ?? Image.asset(AppImageAsset.dog);
+}
+//taks DateTime object and convert it to  yyyy-MM-dd format
+String formatDateTimeToString(DateTime? dateTime) {
+  if (dateTime != null) {
+    return DateFormat('yyyy-MM-dd').format(dateTime);
+  } else {
+    return '39'.tr;
+  }
 }
 
 

@@ -98,6 +98,7 @@ class CreatePostControllerImp extends CreatePostController {
   @override
   goToAddPetScreen() {
     // TODO: implement goToAddPetScreen
+    Get.toNamed(AppRoute.addNewPetScreen);
   }
 
   // @override
