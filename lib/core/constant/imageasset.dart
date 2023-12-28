@@ -10,4 +10,7 @@ class AppImageAsset {
   static const String cat = "$rootImages/animal_icons/cat.png";
   static const String dog = "$rootImages/animal_icons/dog.png";
   static const String bird = "$rootImages/animal_icons/bird.png";
+  static const String noInternet = "$rootImages/no_internet.png";
+  static const String serverFailure = "$rootImages/server_failure.png";
+  static const String noData = "$rootImages/no_data.png";
 }
