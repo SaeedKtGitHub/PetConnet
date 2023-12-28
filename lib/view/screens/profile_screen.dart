@@ -5,6 +5,7 @@ import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/controller/profile_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
+import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_add_pet_button.dart';
 import 'package:pet_connect/view/widgets/create_post/pets_list.dart';
 import 'package:pet_connect/view/widgets/profile/data_row.dart';
@@ -24,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Get.put(CreatePostControllerImp());
     CreatePostControllerImp createController =
         Get.find<CreatePostControllerImp>();
+    MyServices myServices = Get.find();
     return Scaffold(
       body: SafeArea(
         child: GetBuilder<ProfileControllerImp>(
@@ -73,13 +75,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               //Email Row
-              const UserDataRow(
-                icon: Icon(Icons.email),
-                text: 'saeed@gmail.com',
+              UserDataRow(
+                icon: const Icon(Icons.email),
+                text: myServices.sharedPreferences.getString("email")!,
               ),
               //Phone Row
-              const UserDataRow(icon: Icon(Icons.phone), text: '0779777777'),
-              SizedBox(height: 10.h),
+              SizedBox(height: 20.h),
               //The pets list:
               SizedBox(
                 height: 160.h, // Adjust the height as needed

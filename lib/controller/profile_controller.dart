@@ -5,8 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/constant/routes.dart';
+import 'package:pet_connect/core/functions/handling_data_controller.dart';
 import 'package:pet_connect/core/services/services.dart';
+import 'package:pet_connect/data/datasource/remote/profile_data.dart';
 import 'package:pet_connect/view/widgets/profile/choose_image_source_bottom_modal.dart';
 
 abstract class ProfileController extends GetxController {
@@ -14,14 +17,15 @@ abstract class ProfileController extends GetxController {
   chooseImageFromCamera();
   chooseImageFromGallery();
   copyText(String text);
-  openPopUpPetInfo();
   saveProfileImgToSharedPref();
-  uploadProfileIMageToServer();
+  uploadProfileImageToServer();
 }
 
 class ProfileControllerImp extends ProfileController {
   File? myFile;
   MyServices myServices = Get.find();
+  ProfileData profileData = ProfileData(Get.find());
+  StatusRequest statusRequest = StatusRequest.none;
 
   @override
   backToHomeScreen() {
@@ -50,41 +54,30 @@ class ProfileControllerImp extends ProfileController {
     if (myFile != null) {
       myServices.sharedPreferences.setString("myFile", myFile!.path);
       //TODO: upload image tp server
+      uploadProfileImageToServer();
     }
   }
 
   @override
-  uploadProfileIMageToServer() {
-    // statusRequest = StatusRequest.loading;
-    // update();
-    // var response = await loginData.postData(
-    //   email.text,
-    //   password.text,
-    // );
-    // print(
-    //     "===========response LOGIN==================== Controller $response ");
-    // statusRequest = handlingData(response);
-    // print('SSSSSSSSSSSSSSSSSSSSSSS--->  $statusRequest');
-    // //print("=======================Con" + response);
-    // if (StatusRequest.success == statusRequest) {
-    //   if (response['status'] == "success") {
-    //     myServices.sharedPreferences.setString("isLogin", "true");
-    //     // TODO: Use data from ahmad
-    //     myServices.sharedPreferences
-    //         .setString("userID", response['data']['userID']);
-    //     myServices.sharedPreferences
-    //         .setString("username", response['data']['name']);
-    //     myServices.sharedPreferences
-    //         .setString("email", response['data']['email']);
-    //
-    //     Get.offNamed(AppRoute.profileScreen);
-    //   } else {
-    //     Get.defaultDialog(
-    //         title: "Warning", middleText: "Email Or Password Not Correct");
-    //     statusRequest = StatusRequest.failure;
-    //   }
-    // }
-    // update();
+  uploadProfileImageToServer() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await profileData.postDataFile(
+      myServices.sharedPreferences.getString("userID")!,
+      myFile!,
+    );
+    print(
+        "===========response PROFILE==================== Controller $response ");
+    statusRequest = handlingData(response);
+    print('Status Req--->  $statusRequest');
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        //TODO: SomeThing to do
+      } else {
+        //TODO: SomeThing to do
+      }
+    }
+    update();
   }
 
   @override
@@ -126,11 +119,5 @@ class ProfileControllerImp extends ProfileController {
       }
     }
     return selectedOption;
-  }
-
-  @override
-  openPopUpPetInfo() {
-    // TODO: implement openPopUpPetInfo
-    throw UnimplementedError();
   }
 }

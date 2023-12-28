@@ -11,7 +11,7 @@ class ProfileData {
   postDataFile(String userId, File file) async {
     //TODO: Change link
     var response = await crud.postDataWithFile(
-        AppLink.addPost,
+        AppLink.addProfilePic,
         {
           "userID": userId,
         },
