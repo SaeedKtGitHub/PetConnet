@@ -12,4 +12,5 @@ class AppLink {
   static String getUser = "$server/users/getUser";
   static String addPet = "$server/pets/addPet";
 
+  static String addProfilePic = "$server/users/addProfilePic";
 }
