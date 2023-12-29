@@ -57,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //The username:
               Center(
                 child: Text(
-                  'محمد ناجي',
+                    myServices.sharedPreferences.getString("username")!,
                   style: TextStyle(
                       color: AppColor.primaryColor,
                       fontWeight: FontWeight.bold,

@@ -205,7 +205,7 @@ class AddNewPetControllerImp extends AddNewPetController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           print('sucessss${response['data']}');
-          Get.back();
+          Get.offAndToNamed(AppRoute.createPostScreen);
         } else {
           showSnackBar(numOfText1: '23', numOfText2: '25');
           statusRequest = StatusRequest.failure;
@@ -219,5 +219,10 @@ class AddNewPetControllerImp extends AddNewPetController {
   back() {
     Get.back();
     }
+  @override
+  void dispose() {
+    breed.dispose();
+    favName.dispose();
+  }
 
 }

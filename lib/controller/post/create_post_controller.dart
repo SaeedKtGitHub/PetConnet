@@ -61,22 +61,7 @@ class CreatePostControllerImp extends CreatePostController {
     myFile = File(xFile!.path);
     replaceWidgetsWithImage();
     update();
-    // try {
-    //   XFile? xFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-    //   myFile = File(xFile!.path);
-    //   replaceWidgetsWithImage();
-    //   update();
-    // } catch (e) {
-    //   var status = await Permission.photos.status;
-    //   if (status.isDenied) {
-    //     print('access denied');
-    //     Get.showSnackbar(const GetSnackBar(
-    //       title: 'Permission',
-    //       message: 'Access Permission Denied',
-    //       duration: Duration(seconds: 2),
-    //     ));
-    //   }
-    // }
+
   }
 
   @override
@@ -127,6 +112,7 @@ class CreatePostControllerImp extends CreatePostController {
 
   @override
   getUserPets() async {
+    print('hiiiiiiiiiiiiii');
     // TODO: implement getPets
     statusRequest = StatusRequest.loading;
     update();

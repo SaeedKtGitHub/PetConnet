@@ -25,6 +25,7 @@ class CreatePostScreen extends StatelessWidget {
       //resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.backgroundColorWhite,
       body: GetBuilder<CreatePostControllerImp>(
+
         builder: (controller) => SafeArea(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -99,8 +100,11 @@ class CreatePostScreen extends StatelessWidget {
                         //TODO: Make this list dynamic.
                         Expanded(
                           child: PetsList(
+
                               screenName: "createPost",
-                              listPetsModel: controller.userPetsList),
+                              listPetsModel: controller.userPetsList,
+
+                          ),
                           //test PetsList(listPetsModel: testPetList),
                         ),
                       ],
