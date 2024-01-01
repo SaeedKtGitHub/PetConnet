@@ -24,6 +24,11 @@ validInput(String val, int min, int max, String type) {
     if (!GetUtils.isPhoneNumber(val)) {
       return "رقم الهاتف غير صحيح";
     }
+    if (val.substring(0, 3) != '077' ||
+        val.substring(0, 3) != '078' ||
+        val.substring(0, 3) != '079') {
+      return "يجب ان يبدأ ب 077 او 078 او 079";
+    }
   }
 
   if (val.length < min) {

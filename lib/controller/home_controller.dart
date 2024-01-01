@@ -15,42 +15,35 @@ abstract class HomeController extends GetxController {
   getAllPosts();
   goToAllPostScreen();
   goToAllArticlesScreen();
-
 }
 
 class HomeControllerImp extends HomeController {
-
-
   StatusRequest? statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
   HomeScreenData homeScreenData = HomeScreenData(Get.find());
-  UserModel currentUser= UserModel();
-  List<PostModel> allPosts=[];
-
+  UserModel currentUser = UserModel();
+  List<PostModel> allPosts = [];
 
   List<Widget> slider_articles_widgets(List images) {
-    List<Widget> list=[];
+    List<Widget> list = [];
 
-    for(int i=0;i<images.length;i++){
-      list.add(
-          BuildImageWithText(
-              imagePath: slides[i].imagepath,
-              text:slides[i].slideText));
+    for (int i = 0; i < images.length; i++) {
+      list.add(BuildImageWithText(
+          imagePath: slides[i].imagepath, text: slides[i].slideText));
     }
     return list;
   }
+
   int currentSliderIndex = 0;
-  setCurrentSliderIndex(index){
-    currentSliderIndex=index;
+  setCurrentSliderIndex(index) {
+    currentSliderIndex = index;
   }
 
   int currentNavIndex = 0;
 
-
   void onItemTapped(int index) {
-       update();
-       currentNavIndex = index;
-
+    update();
+    currentNavIndex = index;
   }
 
   void showChoosePostTypePopUp() {
@@ -62,8 +55,8 @@ class HomeControllerImp extends HomeController {
   }
 
   //Back to home when cancelling Add post pop up (from FAB)
-  void backToHome(){
-     Get.back();
+  void backToHome() {
+    Get.back();
   }
 
   @override
@@ -79,6 +72,7 @@ class HomeControllerImp extends HomeController {
     if (StatusRequest.success == statusRequest) {
       if (response[0]['status'] == "success") {
         List dataResponse = response[0]['data'];
+        // allPosts.clear();
         allPosts.addAll(dataResponse.map((e) => PostModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.failure;
@@ -102,8 +96,7 @@ class HomeControllerImp extends HomeController {
       if (response['status'] == "success") {
         Map<String, dynamic> dataResponse = response['data'];
         currentUser = UserModel.fromJson(dataResponse);
-      }
-      else {
+      } else {
         statusRequest = StatusRequest.failure;
       }
       // End
@@ -130,7 +123,4 @@ class HomeControllerImp extends HomeController {
     getAllPosts();
     super.onInit();
   }
-
-
 }
-

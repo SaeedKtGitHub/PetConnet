@@ -18,4 +18,21 @@ class ProfileData {
         file);
     return response.fold((l) => l, (r) => r);
   }
+
+  getData(String userId) async {
+    //TODO: ASK Ahmad about param. and Change link.
+    var response = await crud.postDataList(AppLink.getUserPets, {
+      "userID": userId,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
+  removePet(String userId, String petId) async {
+    //TODO: ASK Ahmad about param. and Change link.
+    var response = await crud.postData(AppLink.removePet, {
+      "userID": userId,
+      "petID": petId,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

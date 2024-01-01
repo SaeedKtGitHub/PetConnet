@@ -1,18 +1,16 @@
-
 import 'package:pet_connect/core/class/crud.dart';
 import 'package:pet_connect/link_api.dart';
 
-class HomeScreenData{
-
+class HomeScreenData {
   Crud crud;
 
   HomeScreenData(this.crud);
-
 
   getAllPosts(String userId) async {
     //TODO:Edit the method
     var response = await crud.postDataList(AppLink.getAllPosts, {
       "userID": userId,
+      // "tag": tag,
     });
     return response.fold((l) => l, (r) => r);
   }
@@ -31,6 +29,4 @@ class HomeScreenData{
 
     return response.fold((error) => error, (data) => data);
   }
-
-
 }

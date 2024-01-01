@@ -1,9 +1,9 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
@@ -12,7 +12,7 @@ import 'package:pet_connect/core/functions/show_snack_bar.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/data/datasource/remote/add_pet_screen_data.dart';
 
-abstract class AddNewPetController extends GetxController{
+abstract class AddNewPetController extends GetxController {
   backToHomeScreen();
   chooseImageFromCamera();
   chooseImageFromGallery();
@@ -21,16 +21,21 @@ abstract class AddNewPetController extends GetxController{
   presentDatePicker(BuildContext context);
   addPet();
   back();
-
 }
 
 class AddNewPetControllerImp extends AddNewPetController {
+  //TEST
+
+  CreatePostControllerImp createPostControllerImp =
+      Get.put(CreatePostControllerImp());
+
+  //Test
   File? myFile;
   bool isShowImage = false;
   //toggles of animal types
-  List<bool> isSelectedPetType = [false, true, false,false];
+  List<bool> isSelectedPetType = [false, true, false, false];
   List<bool> isSelectedPetGender = [true, false];
-  String _selectedGender='f';
+  String _selectedGender = 'f';
 
   String get selectedGender => _selectedGender;
 
@@ -38,7 +43,7 @@ class AddNewPetControllerImp extends AddNewPetController {
     _selectedGender = value;
   } //default value
 
-  String _selectedPet='cat';//default value
+  String _selectedPet = 'cat'; //default value
 
   String get selectedPet => _selectedPet;
 
@@ -46,14 +51,14 @@ class AddNewPetControllerImp extends AddNewPetController {
     _selectedPet = value;
   }
 
-  Map<int,String>  petsToggles = {
+  Map<int, String> petsToggles = {
     0: "dog",
     1: "cat",
     2: "bird",
     3: "other",
   };
   //determine the pet type  depending on the index
-  String getAnimalType(int index){
+  String getAnimalType(int index) {
     return petsToggles[index]!;
   }
 
@@ -61,27 +66,27 @@ class AddNewPetControllerImp extends AddNewPetController {
     _selectedGender = value;
   }
 
-  Map<int,String>  genderToggles = {
+  Map<int, String> genderToggles = {
     0: "f",
     1: "m",
   };
   //determine the pet gender depending on the index
-  String getAnimalGender(int index){
+  String getAnimalGender(int index) {
     return genderToggles[index]!;
   }
 
   DateTime? _selectedDate;
   //That is the wanted date as String
-  String  getSelectedDate (){
+  String getSelectedDate() {
     return formatDateTimeToString(_selectedDate);
   }
+
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   late TextEditingController breed;
   late TextEditingController favName;
   StatusRequest? statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
   AddNewPetData addNewPetDataData = AddNewPetData(Get.find());
-
 
   @override
   backToHomeScreen() {
@@ -97,6 +102,7 @@ class AddNewPetControllerImp extends AddNewPetController {
     replaceWidgetsWithImage();
     update();
   }
+
   @override
   chooseImageFromGallery() async {
     // TODO: Ask permission
@@ -105,6 +111,7 @@ class AddNewPetControllerImp extends AddNewPetController {
     replaceWidgetsWithImage();
     update();
   }
+
   @override
   removeImage() {
     myFile = null;
@@ -120,9 +127,9 @@ class AddNewPetControllerImp extends AddNewPetController {
       isShowImage = false;
     }
   }
-  //set the toggle buttons values,the index(which is the selected toggle) will be true and the other will be false
-  List<bool> setValues(List<bool> isSelected,int index){
 
+  //set the toggle buttons values,the index(which is the selected toggle) will be true and the other will be false
+  List<bool> setValues(List<bool> isSelected, int index) {
     for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
       if (buttonIndex == index) {
         isSelected[buttonIndex] = true;
@@ -134,13 +141,14 @@ class AddNewPetControllerImp extends AddNewPetController {
     return isSelected;
   }
 
-  onPetTypeTogglePress(int index){
-    isSelectedPetType=setValues(isSelectedPetType, index);
+  onPetTypeTogglePress(int index) {
+    isSelectedPetType = setValues(isSelectedPetType, index);
     setSelectedPet(getAnimalType(index));
     update();
   }
-  onPetGenderTogglePress(int index){
-    isSelectedPetGender=setValues(isSelectedPetGender, index);
+
+  onPetGenderTogglePress(int index) {
+    isSelectedPetGender = setValues(isSelectedPetGender, index);
     setSelectedGenderPet(getAnimalGender(index));
     update();
   }
@@ -158,10 +166,11 @@ class AddNewPetControllerImp extends AddNewPetController {
     );
 
     if (pickedDate != null) {
-        _selectedDate = pickedDate;
-        update();
+      _selectedDate = pickedDate;
+      update();
     }
   }
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -172,7 +181,6 @@ class AddNewPetControllerImp extends AddNewPetController {
 
   @override
   addPet() async {
-
     print('hooooo');
     //Check if there is image
     if (myFile == null) {
@@ -183,29 +191,29 @@ class AddNewPetControllerImp extends AddNewPetController {
       return showSnackBar(numOfText1: '23', numOfText2: '46');
     }
 
-
-
     if (formState.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
 
       var response = await addNewPetDataData.postPetData(
-        //TODO : CHANGE
-         myServices.sharedPreferences.getString("userID")!,
+          //TODO : CHANGE
+          myServices.sharedPreferences.getString("userID")!,
           favName.text,
-        _selectedPet,
-        breed.text,
-        _selectedGender,
-        getSelectedDate(),
-        myFile!
-
-      );
-     // print('dont knowwwww${response}');
+          _selectedPet,
+          breed.text,
+          _selectedGender,
+          getSelectedDate(),
+          myFile!);
+      // print('dont knowwwww${response}');
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           print('sucessss${response['data']}');
+          //TEST
+          createPostControllerImp.refreshPage();
+          //TEST
           Get.offAndToNamed(AppRoute.createPostScreen);
+          //Get.back();
         } else {
           showSnackBar(numOfText1: '23', numOfText2: '25');
           statusRequest = StatusRequest.failure;
@@ -218,11 +226,11 @@ class AddNewPetControllerImp extends AddNewPetController {
   @override
   back() {
     Get.back();
-    }
+  }
+
   @override
   void dispose() {
     breed.dispose();
     favName.dispose();
   }
-
 }

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
+import 'package:pet_connect/core/functions/helper_methods.dart';
 import 'package:pet_connect/core/functions/show_snack_bar.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/data/datasource/remote/post/create_post_data.dart';
@@ -24,17 +25,22 @@ abstract class CreatePostController extends GetxController {
   onLongPressOnItem({required int index});
   getUserPets(); // CreatePostData
   addPost(); // CreatePostData
+  getTagFromPopUp({required int index});
+  refreshPage();
 }
 
 class CreatePostControllerImp extends CreatePostController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   File? myFile;
   late TextEditingController content;
+  late TextEditingController price;
+  late TextEditingController phone;
   bool isShowImage = false;
   int selectedIndex = -1;
-  String petName = "";
-  StatusRequest? statusRequest = StatusRequest.none;
-  List<PetModel> userPetsList = [];
+  int indexTag = -1;
+  String myTag = "";
+  StatusRequest statusRequest = StatusRequest.none;
+  List<PetModel> userPetsListCreate = [];
   // bool isLoading = false;
   CreatePostData createPostData = CreatePostData(Get.find());
   MyServices myServices = Get.find();
@@ -61,7 +67,6 @@ class CreatePostControllerImp extends CreatePostController {
     myFile = File(xFile!.path);
     replaceWidgetsWithImage();
     update();
-
   }
 
   @override
@@ -95,8 +100,8 @@ class CreatePostControllerImp extends CreatePostController {
   @override
   void openPopUpPetInfo({required PetModel petModel}) {
     Get.dialog(
-       Dialog(
-        child: AnimalDataPopup(petModel:userPetsList[selectedIndex]),
+      Dialog(
+        child: AnimalDataPopup(petModel: userPetsListCreate[selectedIndex]),
       ),
     );
   }
@@ -106,7 +111,7 @@ class CreatePostControllerImp extends CreatePostController {
     // TODO: implement onLongPressOnItem
 
     selectedIndex = index;
-    //print(selectedIndex);
+    print(selectedIndex);
     update();
   }
 
@@ -128,8 +133,9 @@ class CreatePostControllerImp extends CreatePostController {
       // Start backend
       if (response[0]['status'] == "success") {
         List dataResponse = response[0]['data'];
-        userPetsList.clear();
-        userPetsList.addAll(dataResponse.map((e) => PetModel.fromJson(e)));
+        userPetsListCreate.clear();
+        userPetsListCreate
+            .addAll(dataResponse.map((e) => PetModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -145,7 +151,7 @@ class CreatePostControllerImp extends CreatePostController {
       return showSnackBar(numOfText1: '23', numOfText2: '24');
     }
     // if no pet addedd
-    if (userPetsList.isEmpty) {
+    if (userPetsListCreate.isEmpty) {
       return showSnackBar(numOfText1: '23', numOfText2: '26');
     }
     //if no selected pet by (onLongPress)
@@ -156,15 +162,27 @@ class CreatePostControllerImp extends CreatePostController {
     if (formState.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
+      var response;
       //start
-      var response = await createPostData.postDataFile(
-        //TODO: Update Shared pref  In login Controller then update here.
-        myServices.sharedPreferences.getString("userID")!,
-        content.text,
-        //TODO: Change owner to petId but you need to update pet model.
-        userPetsList[selectedIndex].petID!,
-        myFile!,
-      );
+      if (myTag == "trading") {
+        response = await createPostData.postDataFile(
+          myServices.sharedPreferences.getString("userID")!,
+          content.text,
+          userPetsListCreate[selectedIndex].petID!,
+          myTag,
+          price: price.text,
+          myFile!,
+        );
+      } else {
+        response = await createPostData.postDataFile(
+          myServices.sharedPreferences.getString("userID")!,
+          content.text,
+          userPetsListCreate[selectedIndex].petID!,
+          myTag,
+          myFile!,
+        );
+      }
+
       // print("=============================== Controller $response ");
       statusRequest = handlingData(response);
       //print("=======================Con" + response);
@@ -182,8 +200,23 @@ class CreatePostControllerImp extends CreatePostController {
   }
 
   @override
+  getTagFromPopUp({required int index}) {
+    indexTag = index;
+    myTag = getValueAtIndex(indexTag);
+  }
+
+  //TEST
+  @override
+  refreshPage() {
+    getUserPets();
+  }
+
+  //TEST
+  @override
   void onInit() {
     content = TextEditingController();
+    price = TextEditingController();
+    phone = TextEditingController();
     getUserPets();
     super.onInit();
   }
@@ -191,6 +224,8 @@ class CreatePostControllerImp extends CreatePostController {
   @override
   void dispose() {
     content.dispose();
+    price.dispose();
+    phone.dispose();
     super.dispose();
   }
 }

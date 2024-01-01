@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/controller/auth/login_controller.dart';
 import 'package:pet_connect/core/class/handling_data_view.dart';
 import 'package:pet_connect/core/constant/color.dart';
@@ -108,6 +109,59 @@ class LoginScreen extends StatelessWidget {
                           onTap: () {
                             controller.goToSignUp();
                           }),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      Text(
+                        textAlign: TextAlign.center,
+                        '57'.tr,
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[700]),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            //TODO: Web view
+                            onTap: () {},
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              '48'.tr,
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColor.primaryColor,
+                                  color: AppColor.primaryColor),
+                            ),
+                          ),
+                          Text(
+                            textAlign: TextAlign.center,
+                            //and
+                            '55'.tr,
+                            style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[700]),
+                          ),
+                          InkWell(
+                            //TODO: Web view
+                            onTap: () {},
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              '56'.tr,
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColor.primaryColor,
+                                  color: AppColor.primaryColor),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
