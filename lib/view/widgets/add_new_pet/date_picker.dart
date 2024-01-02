@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/core/constant/color.dart';
 
 class DatePickerButton extends StatelessWidget {
-   DatePickerButton({Key? key,
+   const DatePickerButton({Key? key,
     required this.onPressed,
     required this.text
   }) : super(key: key);

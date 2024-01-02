@@ -8,7 +8,7 @@ class PetsTypesToggleButtons extends StatelessWidget {
   final List<bool> isSelected;
   final Function(int) onPressed;
 
-  PetsTypesToggleButtons({required this.isSelected, required this.onPressed});
+  const PetsTypesToggleButtons({super.key, required this.isSelected, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

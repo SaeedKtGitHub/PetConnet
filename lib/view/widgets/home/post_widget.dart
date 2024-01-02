@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/functions/helper_methods.dart';
 import 'package:pet_connect/data/model/post_model.dart';
 import 'package:pet_connect/link_api.dart';
+import 'package:pet_connect/view/widgets/home/custom_button.dart';
 
 class PostWidget extends StatefulWidget {
   final PostModel post;
+  final void Function()? onImageTap;
 
   const PostWidget({
     super.key,
     required this.post,
+    required this.onImageTap
   });
 
   @override
@@ -55,14 +59,17 @@ class _PostWidgetState extends State<PostWidget> {
           //     fit: BoxFit.cover,
           //   ),
           // ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(5.0.h),
-            child: Image.network(
-              // 'linkImageRoot/widget.post.image!',
-              "${AppLink.linkImageRoot}/${widget.post.image}",
-              width: 340.w,
-              height: 230.h,
-              fit: BoxFit.cover,
+          GestureDetector(
+            onTap: widget.onImageTap,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5.0.h),
+              child: Image.network(
+                // 'linkImageRoot/widget.post.image!',
+                "${AppLink.linkImageRoot}/${widget.post.image}",
+                width: 340.w,
+                height: 230.h,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
 
@@ -113,7 +120,7 @@ class _PostWidgetState extends State<PostWidget> {
                 const Spacer(),
                 //  Animal name
                 Text(
-                  widget.post.petName!,
+                  widget.post.tag!,
                   //textDirection: TextDirection.rtl,
                   style: TextStyle(
                       color: AppColor.black,
@@ -140,7 +147,52 @@ class _PostWidgetState extends State<PostWidget> {
             ),
           ),
           SizedBox(
-            height: 18.h,
+            height: 10.h,
+          ),
+          widget.post.tag != 'social' ?
+          Row(
+            children: [
+              if(widget.post.tag =='trading')
+
+                //Price text
+              Padding(
+                padding: EdgeInsets.only(right: 13.0.w),
+                child: Row(
+                  children: [
+                    Text(
+                      'السعر: ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    Text(
+                      ' ${widget.post.price.toString()} دأ ',
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        color: AppColor.primaryColor,
+                      ),
+                    )
+                  ],
+                )
+              ),
+              const Spacer(),
+              Padding(
+                padding:  EdgeInsets.only(left: 13.0.w),
+                child: CustomButton(
+                    onPressed: () {
+
+                    }, buttonText: '60'.tr),
+              ),
+            ],
+          )
+
+              ://not social
+              Container(),
+
+
+          SizedBox(
+            height: 12.h,
           ),
 
           //The divider:

@@ -2,21 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/controller/add_new_pet_controller.dart';
-import 'package:pet_connect/controller/home_controller.dart';
-import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/core/functions/valid_input.dart';
-import 'package:pet_connect/view/widgets/add_new_pet/build_toggle_button_with_gender_icon.dart';
 import 'package:pet_connect/view/widgets/add_new_pet/custom_text.dart';
 import 'package:pet_connect/view/widgets/add_new_pet/date_picker.dart';
 import 'package:pet_connect/view/widgets/add_new_pet/gender_toggles.dart';
-import 'package:pet_connect/view/widgets/add_new_pet/pet_toggle.dart';
 import 'package:pet_connect/view/widgets/add_new_pet/pets_types_toggles.dart';
 import 'package:pet_connect/view/widgets/auth/custom_button_auth.dart';
 import 'package:pet_connect/view/widgets/auth/custom_text_form.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_choose_image_button.dart';
 import 'package:pet_connect/view/widgets/create_post/custom_show_image.dart';
-import 'package:pet_connect/view/widgets/create_post/custom_text_body.dart';
 import 'package:pet_connect/view/widgets/custom_title_with_icon.dart';
 
 class AddNewPet extends StatefulWidget {
@@ -87,7 +82,7 @@ class _AddNewPetState extends State<AddNewPet> {
                     //asking about the animal type (text and buttons)
                     Padding(
                       padding:  EdgeInsets.only(right: 75.0.w,left: 75.w),
-                      child: CustomText(numOfText: '30'),
+                      child: const CustomText(numOfText: '30'),
                     ),
                     SizedBox(height: 8.h,),
                     PetsTypesToggleButtons(
@@ -100,8 +95,8 @@ class _AddNewPetState extends State<AddNewPet> {
                     //Gender text :
                     Row(
                       children: [
-                        CustomText(numOfText: '35'),
-                        Spacer(),
+                        const CustomText(numOfText: '35'),
+                        const Spacer(),
                         Padding(
                           padding:EdgeInsets.only(left: 40.0.w),
                            child:
@@ -121,8 +116,8 @@ class _AddNewPetState extends State<AddNewPet> {
                     Row(
                       children: [
                         //Birth date text
-                        CustomText(numOfText: '38'),
-                        Spacer(),
+                        const CustomText(numOfText: '38'),
+                        const Spacer(),
                         //Birth date button picker
                         Padding(
                           padding:  EdgeInsets.only(left: 40.w),
@@ -130,13 +125,13 @@ class _AddNewPetState extends State<AddNewPet> {
                               onPressed:(){
                                 controller.presentDatePicker(context);
                               },
-                              text: controller.getSelectedDate()!)
+                              text: controller.getSelectedDate())
                         ),
                       ],
                     ),
                     SizedBox(height: 14.h,),
                     //breed :
-                    CustomText(numOfText: '40'),
+                    const CustomText(numOfText: '40'),
                     SizedBox(height: 5.h,),
                     SizedBox(
                       //height: 100.h, // Adjust the height as needed
@@ -154,7 +149,7 @@ class _AddNewPetState extends State<AddNewPet> {
                             ),
                            // pet favorite name :
                             //SizedBox(height: 7.h,),
-                            CustomText(numOfText: '42'),
+                            const CustomText(numOfText: '42'),
                             SizedBox(height: 5.h,),
                             CustomTextForm(
                               isNumber: false,
@@ -171,7 +166,6 @@ class _AddNewPetState extends State<AddNewPet> {
                                 }),
                           ],
                         ),
-
 
                       ),
                     ),

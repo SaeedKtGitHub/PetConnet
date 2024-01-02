@@ -1,5 +1,5 @@
 class AppLink {
-  static String server = "http://92.253.29.14:23311";
+  static String server = "http://149.200.255.255:47055";
   static String linkImageRoot = "$server/uploads/images";
 
   //Auth
@@ -11,6 +11,8 @@ class AppLink {
   static String getAllPosts = "$server/posts/getAll";
   static String getUser = "$server/users/getUser";
   static String addPet = "$server/pets/addPet";
+  static String getPostsByTag = "$server/posts/getByTag";
+  static String getAllArticles = "$server/articles/getAll";
 
   static String addProfilePic = "$server/users/addProfilePic";
 }

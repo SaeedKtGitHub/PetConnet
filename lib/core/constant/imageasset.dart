@@ -13,4 +13,5 @@ class AppImageAsset {
   static const String noInternet = "$rootImages/no_internet.png";
   static const String serverFailure = "$rootImages/server_failure.png";
   static const String noData = "$rootImages/no_data.png";
+  static const String articleIcon = "$rootImages/Layer 2.png";
 }

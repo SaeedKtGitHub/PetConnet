@@ -161,6 +161,7 @@ class AddNewPetControllerImp extends AddNewPetController {
         _selectedDate = pickedDate;
         update();
     }
+    return null;
   }
   @override
   void onInit() {

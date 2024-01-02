@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pet_connect/core/constant/color.dart';
 
 class CustomTextForm extends StatelessWidget {
-   CustomTextForm(
+   const CustomTextForm(
       {super.key,
       this.obscureText,
       this.onTapIcon,

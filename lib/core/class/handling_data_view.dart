@@ -18,11 +18,12 @@ class HandlingDataView extends StatelessWidget {
             ? Center(
                 child: Column(
                   children: [
+                    SizedBox(height: 190.h,),
                     Text(
                       'No Internet!!',
                       style: TextStyle(fontSize: 20.sp),
                     ),
-                    Image.asset(AppImageAsset.noInternet),
+                    Image.asset(AppImageAsset.noInternet,height:100.h,width: 100.w,),
                   ],
                 ),
               )
@@ -30,26 +31,30 @@ class HandlingDataView extends StatelessWidget {
                 ? Center(
                     child: Column(
                       children: [
+                        SizedBox(height: 190.h,),
                         Text(
                           'Something Went Wrong! try later.',
                           style: TextStyle(fontSize: 20.sp),
                         ),
-                        Image.asset(AppImageAsset.serverFailure),
+                        Image.asset(AppImageAsset.serverFailure,width: 100.w,height: 100.h,),
                       ],
                     ),
                   )
                 : statusRequest == StatusRequest.failure
-                    ? Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              'No Data!',
-                              style: TextStyle(fontSize: 20.sp),
-                            ),
-                            Image.asset(AppImageAsset.noData),
-                          ],
+                    ? SafeArea(
+                      child: Center(
+                          child: Column(
+                            children: [
+                              SizedBox(height: 190.h,),
+                              Text(
+                                'No Data!',
+                                style: TextStyle(fontSize: 20.sp),
+                              ),
+                              Image.asset(AppImageAsset.noData,width: 100.w,height: 100.h,),
+                            ],
+                          ),
                         ),
-                      )
+                    )
                     : widget;
   }
 }
@@ -66,29 +71,35 @@ class HandlingDataRequest extends StatelessWidget {
     return statusRequest == StatusRequest.loading
         ? const Center(child: CircularProgressIndicator())
         : statusRequest == StatusRequest.offlineFailure
-            ? Center(
-                child: Column(
-                  children: [
-                    Text(
-                      'No Internet!!',
-                      style: TextStyle(fontSize: 20.sp),
-                    ),
-                    Image.asset(AppImageAsset.noInternet),
-                  ],
+    
+            ? SafeArea(
+              child: Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 190.h,),
+                      Text(
+                        ' ! No Internet',
+                        style: TextStyle(fontSize: 20.sp),
+                      ),
+                      Image.asset(AppImageAsset.noInternet,height:100.h,width: 100.w,),                    ],
+                  ),
                 ),
-              )
+            )
             : statusRequest == StatusRequest.serverFailure
-                ? Center(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Something Went Wrong! try later.',
-                          style: TextStyle(fontSize: 20.sp),
-                        ),
-                        Image.asset(AppImageAsset.serverFailure),
-                      ],
+                ? SafeArea(
+                  child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 190.h,),
+                          Text(
+                            'Something Went Wrong! try later.',
+                            style: TextStyle(fontSize: 20.sp),
+                          ),
+                          Image.asset(AppImageAsset.serverFailure,width: 100.w,height: 100.h,),
+                        ],
+                      ),
                     ),
-                  )
+                )
                 : widget;
   }
 }

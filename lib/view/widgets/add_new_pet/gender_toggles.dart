@@ -7,7 +7,7 @@ class GenderToggleButtons extends StatelessWidget {
   final List<bool> isSelected;
   final Function(int) onPressed;
 
-  GenderToggleButtons({required this.isSelected, required this.onPressed});
+  const GenderToggleButtons({super.key, required this.isSelected, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

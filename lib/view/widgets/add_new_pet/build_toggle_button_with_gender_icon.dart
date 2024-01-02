@@ -16,7 +16,7 @@ class buildToggleButtonWithGender extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: TextStyle(
+                style: const TextStyle(
                   //color: isSelected ? AppColor.black : AppColor.primaryColor,
                     color: AppColor.black,
                     fontWeight: FontWeight.bold
