@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/controller/auth/login_controller.dart';
 import 'package:pet_connect/core/class/handling_data_view.dart';
 import 'package:pet_connect/core/constant/color.dart';
@@ -5,6 +6,8 @@ import 'package:pet_connect/core/functions/alert_exit_app.dart';
 import 'package:pet_connect/core/functions/valid_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_connect/link_api.dart';
+import 'package:pet_connect/view/screens/web_view_screen.dart';
 import 'package:pet_connect/view/widgets/auth/custom_button_auth.dart';
 import 'package:pet_connect/view/widgets/auth/custom_text_form.dart';
 import 'package:pet_connect/view/widgets/auth/custom_text_sign_up_in.dart';
@@ -108,6 +111,73 @@ class LoginScreen extends StatelessWidget {
                           onTap: () {
                             controller.goToSignUp();
                           }),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      Text(
+                        textAlign: TextAlign.center,
+                        '57'.tr,
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[700]),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            //TODO: Web view
+                            onTap: () {
+                              Get.to(
+                                WebViewScreen(
+                                  pageLink: AppLink.privacyPolicy,
+                                ),
+                              );
+                            },
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              '48'.tr,
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColor.primaryColor,
+                                  color: AppColor.primaryColor),
+                            ),
+                          ),
+                          Text(
+                            textAlign: TextAlign.center,
+                            //and
+                            '55'.tr,
+                            style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[700]),
+                          ),
+                          InkWell(
+                            //TODO: Web view
+                            onTap: () {
+                              Get.to(
+                                WebViewScreen(
+                                  pageLink: AppLink.termsCondition,
+                                  //   pageLink:
+                                  //       "https://www.just.edu.jo/ar/Admission/undergraduate/Pages/ProgramsOfStudy.aspx",
+                                ),
+                              );
+                            },
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              '56'.tr,
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColor.primaryColor,
+                                  color: AppColor.primaryColor),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

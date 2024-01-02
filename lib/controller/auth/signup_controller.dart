@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
@@ -35,17 +36,28 @@ class SignUpControllerImp extends SignUpController {
       var response =
           await signupData.postData(username.text, email.text, password.text);
       statusRequest = handlingData(response);
-      //print("=======================Con" + response);
+      print("SIGNUP RESPONSE --> $response");
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           //TODO: verifyCodeSignUp HERE...After process go to login.
           // data.addAll(response['data']);
           // Get.offNamed(AppRoute.verifyCodeSignUp,
           //     arguments: {"email": email.text});
+          Get.snackbar(
+            "تم اٍنشاء الحساب بنجاح, قم بتسجيل الدخول.",
+            '',
+            duration: const Duration(seconds: 2),
+            snackPosition: SnackPosition.BOTTOM,
+            titleText: Text(
+              "تم اٍنشاء الحساب بنجاح, قم بتسجيل الدخول.",
+              style: TextStyle(
+                  fontSize: 18.0.sp), // Adjust the font size as needed
+            ),
+          );
+          Get.offNamed(AppRoute.loginScreen);
         } else {
           Get.defaultDialog(
-              title: "Warning",
-              middleText: "Phone Number Or Email Already Exist ):");
+              title: "تحذير!!", middleText: "حدث خطأ ما, يرجى المحاولة لاحقا.");
           statusRequest = StatusRequest.failure;
         }
       }

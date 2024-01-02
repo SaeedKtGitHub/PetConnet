@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/bindings/initial_bindings.dart';
@@ -9,6 +10,7 @@ import 'package:pet_connect/routes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialServices();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 

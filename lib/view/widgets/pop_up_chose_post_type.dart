@@ -5,9 +5,11 @@ import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/data/datasource/static/static.dart';
+import 'package:pet_connect/link_api.dart';
+import 'package:pet_connect/view/screens/web_view_screen.dart';
+import 'package:pet_connect/view/widgets/auth/custom_text_sign_up_in.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/new_social_post_container.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_items_list.dart';
-
 
 class ChoosePostTypePopUp extends StatelessWidget {
   const ChoosePostTypePopUp({Key? key}) : super(key: key);
@@ -15,13 +17,13 @@ class ChoosePostTypePopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    height: 500.h,
+      height: 370.h,
       decoration: BoxDecoration(
         color: AppColor.white,
         borderRadius: BorderRadius.circular(10.h),
       ),
       child: GetBuilder<HomeControllerImp>(
-        builder:(controller) => Column(
+        builder: (controller) => Column(
           children: [
             //choose post type:
             Row(
@@ -35,44 +37,26 @@ class ChoosePostTypePopUp extends StatelessWidget {
                     height: 43.0.h,
                   ),
                 ),
-                SizedBox(width:50.w),
+                SizedBox(width: 50.w),
                 //The title:
-                   Text(
-                    'اختر نوع المنشور',
-                    style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
-
+                Text(
+                  'اختر نوع المنشور',
+                  style:
+                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                ),
               ],
             ),
             const NewSocialPostContainer(),
-            SizedBox(height: 8.h,),
+            SizedBox(
+              height: 8.h,
+            ),
             //Pets text
             Padding(
-              padding:  EdgeInsets.only(right: 10.0.w),
+              padding: EdgeInsets.only(right: 10.0.w),
               child: Row(
                 children: [
                   Text(
                     'الحيوانات الأليفة',
-                    style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            //List tags items for traffic users:
-            TagItemList(tagItems: trafficTagsItems),
-            //Services and products text
-            Padding(
-              padding:  EdgeInsets.only(right: 10.0.w),
-              child: Row(
-                children: [
-                  Text(
-                    'الخدمات والمنتجات',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -81,49 +65,120 @@ class ChoosePostTypePopUp extends StatelessWidget {
                 ],
               ),
             ),
-            //List tags items for other  users (shops,vets,writers):
-            TagItemList(tagItems: businessTagsItems),
-          //some information text to inform vets,shops,writers to
-            // register as their type to ofer products and services :
+            //List tags items for traffic users:
+            TagItemList(tagItems: trafficTagsItems),
+            //Services and products text
+
+            //   //List tags items for other  users (shops,vets,writers):
+            //   TagItemList(tagItems: businessTagsItems),
+            // //some information text to inform vets,shops,writers to
+            //   // register as their type to ofer products and services :
+            // Padding(
+            //   padding: EdgeInsets.all(10.0.h),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Text(
+            //         textAlign: TextAlign.center,
+            //         'يجب التسجيل كمتجر أو طبيب بيطري أولاً للحصول على صلاحية\nعرض منتجات وخدمات.',
+            //         style: TextStyle(
+            //             fontSize: 9.sp,
+            //             fontWeight: FontWeight.bold,
+            //             color: Colors.grey[700]),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            //go to login to register as a vet or shop or writer
+            // const Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       textAlign: TextAlign.center,
+            //       'الرجاء التوجه لصفحة المستخدم للتسجيل.',
+            //       style: TextStyle(
+            //           fontSize: 10,
+            //           fontWeight: FontWeight.bold,
+            //           color: AppColor.primaryColor),
+            //     ),
+            //   ],
+            // ),
+            SizedBox(
+              height: 10.h,
+            ),
             Padding(
-              padding: EdgeInsets.all(10.0.h),
-              child: Row(
+              padding: EdgeInsets.all(1.0.h),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     textAlign: TextAlign.center,
-                    'يجب التسجيل كمتجر أو طبيب بيطري أولاً للحصول على صلاحية\nعرض منتجات وخدمات.',
+                    '47'.tr,
                     style: TextStyle(
-                      fontSize: 9.sp,
-                      fontWeight: FontWeight.bold,
-                       color: Colors.grey[700]
-                    ),
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700]),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        //TODO: Web view
+                        onTap: () {
+                          Get.to(
+                            WebViewScreen(
+                              pageLink: AppLink.privacyPolicy,
+                            ),
+                          );
+                        },
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          '48'.tr,
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColor.primaryColor,
+                              color: AppColor.primaryColor),
+                        ),
+                      ),
+                      Text(
+                        textAlign: TextAlign.center,
+                        //and
+                        '55'.tr,
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[700]),
+                      ),
+                      InkWell(
+                        //TODO: Web view
+                        onTap: () {
+                          Get.to(
+                            WebViewScreen(
+                              pageLink: AppLink.termsCondition,
+                            ),
+                          );
+                        },
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          '56'.tr,
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColor.primaryColor,
+                              color: AppColor.primaryColor),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-            //go to login to register as a vet or shop or writer
-               const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    textAlign: TextAlign.center,
-                    'الرجاء التوجه لصفحة المستخدم للتسجيل.',
-                    style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: AppColor.primaryColor
-                    ),
-                  ),
-                ],
-              ),
-
-
           ],
         ),
       ),
-
-
     );
   }
 }

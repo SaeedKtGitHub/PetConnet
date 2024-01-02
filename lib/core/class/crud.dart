@@ -43,11 +43,12 @@ class Crud {
         });
         var myRequest = await request.send();
         var response = await http.Response.fromStream(myRequest);
-
+        print("==============IN CRUD 46 RES ==> ${response.statusCode}");
         if (response.statusCode == 200 || response.statusCode == 201) {
           Map responseBody = jsonDecode(response.body);
           return Right({'status': "success", 'data': responseBody});
         } else {
+          print('IN CRUD LINE 51');
           return const Left(StatusRequest.serverFailure);
         }
       } else {
