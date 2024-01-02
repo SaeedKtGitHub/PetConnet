@@ -13,7 +13,7 @@ class buildToggleButton extends StatelessWidget {
       padding:  EdgeInsets.symmetric(horizontal: 24.0.w),
       child: Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
           //color: isSelected ? AppColor.black : AppColor.primaryColor,
             color: AppColor.black,
           fontWeight: FontWeight.bold

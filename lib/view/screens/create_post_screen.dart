@@ -102,12 +102,10 @@ class CreatePostScreen extends StatelessWidget {
                           ),
                           SizedBox(width: 10.w),
                           //TODO: Make this list dynamic.
-                          Expanded(
-                            child: PetsListCreatePost(
-                              listPetsModel: controller.userPetsListCreate,
-                            ),
-                            //test PetsList(listPetsModel: testPetList),
+                          PetsListCreatePost(
+                            listPetsModel: controller.userPetsListCreate,
                           ),
+                          //test PetsList(listPetsModel: testPetList),
                         ],
                       ),
                     ),

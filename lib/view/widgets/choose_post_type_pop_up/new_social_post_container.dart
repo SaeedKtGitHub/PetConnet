@@ -17,7 +17,7 @@ class NewSocialPostContainer extends StatelessWidget {
       onTap: () {
         createController.getTagFromPopUp(index: 4);
         Get.back();
-        Get.offNamed(AppRoute.profileScreen);
+        Get.toNamed(AppRoute.createPostScreen);
       },
       child: SizedBox(
         height: 100.h,

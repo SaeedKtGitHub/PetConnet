@@ -23,7 +23,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/data/model/pet_model.dart';
-import 'package:pet_connect/data/model/post_model.dart';
 import 'package:pet_connect/data/model/slide_show.dart';
 import 'package:pet_connect/data/model/user_model.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_item.dart';
@@ -154,3 +153,10 @@ List<TagItem> businessTagsItems = [
       iconPath: 'assets/images/tags_items_popup_icons/write_article.png',
       text: 'كتابة مقالة'),
 ];
+enum postsTags {
+  adoption,
+  mating,
+  trading,
+  lost,
+  social,
+}

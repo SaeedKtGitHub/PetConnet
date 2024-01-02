@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_connect/core/constant/color.dart';
 
 class BuildImageWithText extends StatelessWidget {
   final String imagePath;
@@ -25,18 +26,40 @@ class BuildImageWithText extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        Container(
-          margin:  EdgeInsets.only(bottom: 16.h),
-          width: double.infinity,
-         // color: Colors.black.withOpacity(0.5), // Adjust the opacity as needed
-          child: Text(
-            text,
-            style:  TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 14.sp
-            ),
-            textAlign: TextAlign.center,
+
+
+
+        Padding(
+          padding: EdgeInsets.only(bottom: 8.0.h,right: 10.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start, // Align the first text to the center
+            children: [
+              // Article title
+              Text(
+                text,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.sp,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              // Article writer aligned to the right
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Dr,Ali Alktefani',
+                    style: TextStyle(
+                      color: AppColor.primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11.sp,
+                    ),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+
+            ],
           ),
         ),
       ],

@@ -95,10 +95,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(width: 10.w),
                       //TODO: Make this list dynamic.
-                      Expanded(
-                        child: PetsListProfile(
-                          listPetsModel: controller.userPetsListProfile,
-                        ),
+                      PetsListProfile(
+                        listPetsModel: controller.userPetsListProfile,
                       ),
                     ],
                   ),

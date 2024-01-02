@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AnimalDataRow extends StatelessWidget {
-  AnimalDataRow({
+  const AnimalDataRow({
     Key? key,
     required this.info,
     required this.category,
@@ -28,10 +28,10 @@ class AnimalDataRow extends StatelessWidget {
                   fontSize: 15.sp,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
 
               Text(
-                info!,
+                info,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.sp,

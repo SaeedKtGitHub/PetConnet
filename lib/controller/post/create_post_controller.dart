@@ -3,16 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
-import 'package:pet_connect/core/functions/helper_methods.dart';
 import 'package:pet_connect/core/functions/show_snack_bar.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/data/datasource/remote/post/create_post_data.dart';
 import 'package:pet_connect/data/model/pet_model.dart';
 import 'package:pet_connect/view/widgets/pet_data_popup.dart';
-import 'package:pet_connect/view/widgets/pop_up_chose_post_type.dart';
 
 abstract class CreatePostController extends GetxController {
   backToHomeScreen();
@@ -25,22 +24,17 @@ abstract class CreatePostController extends GetxController {
   onLongPressOnItem({required int index});
   getUserPets(); // CreatePostData
   addPost(); // CreatePostData
-  getTagFromPopUp({required int index});
-  refreshPage();
 }
 
 class CreatePostControllerImp extends CreatePostController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   File? myFile;
   late TextEditingController content;
-  late TextEditingController price;
-  late TextEditingController phone;
   bool isShowImage = false;
   int selectedIndex = -1;
-  int indexTag = -1;
-  String myTag = "";
-  StatusRequest statusRequest = StatusRequest.none;
-  List<PetModel> userPetsListCreate = [];
+  String petName = "";
+  StatusRequest? statusRequest = StatusRequest.none;
+  List<PetModel> userPetsList = [];
   // bool isLoading = false;
   CreatePostData createPostData = CreatePostData(Get.find());
   MyServices myServices = Get.find();
@@ -48,6 +42,7 @@ class CreatePostControllerImp extends CreatePostController {
   backToHomeScreen() {
     Get.offNamed(AppRoute.homeScreen);
   }
+  HomeControllerImp homeControllerImp=Get.put(HomeControllerImp());
 
   @override
   chooseImageFromCamera() async {
@@ -67,6 +62,7 @@ class CreatePostControllerImp extends CreatePostController {
     myFile = File(xFile!.path);
     replaceWidgetsWithImage();
     update();
+
   }
 
   @override
@@ -100,8 +96,8 @@ class CreatePostControllerImp extends CreatePostController {
   @override
   void openPopUpPetInfo({required PetModel petModel}) {
     Get.dialog(
-      Dialog(
-        child: AnimalDataPopup(petModel: userPetsListCreate[selectedIndex]),
+       Dialog(
+        child: AnimalDataPopup(petModel:userPetsList[selectedIndex]),
       ),
     );
   }
@@ -111,7 +107,7 @@ class CreatePostControllerImp extends CreatePostController {
     // TODO: implement onLongPressOnItem
 
     selectedIndex = index;
-    print(selectedIndex);
+    //print(selectedIndex);
     update();
   }
 
@@ -133,9 +129,8 @@ class CreatePostControllerImp extends CreatePostController {
       // Start backend
       if (response[0]['status'] == "success") {
         List dataResponse = response[0]['data'];
-        userPetsListCreate.clear();
-        userPetsListCreate
-            .addAll(dataResponse.map((e) => PetModel.fromJson(e)));
+        userPetsList.clear();
+        userPetsList.addAll(dataResponse.map((e) => PetModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -151,7 +146,7 @@ class CreatePostControllerImp extends CreatePostController {
       return showSnackBar(numOfText1: '23', numOfText2: '24');
     }
     // if no pet addedd
-    if (userPetsListCreate.isEmpty) {
+    if (userPetsList.isEmpty) {
       return showSnackBar(numOfText1: '23', numOfText2: '26');
     }
     //if no selected pet by (onLongPress)
@@ -162,61 +157,36 @@ class CreatePostControllerImp extends CreatePostController {
     if (formState.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response;
       //start
-      if (myTag == "trading") {
-        response = await createPostData.postDataFile(
-          myServices.sharedPreferences.getString("userID")!,
-          content.text,
-          userPetsListCreate[selectedIndex].petID!,
-          myTag,
-          price: price.text,
-          myFile!,
-        );
-      } else {
-        response = await createPostData.postDataFile(
-          myServices.sharedPreferences.getString("userID")!,
-          content.text,
-          userPetsListCreate[selectedIndex].petID!,
-          myTag,
-          myFile!,
-        );
-      }
-
+      var response = await createPostData.postDataFile(
+        //TODO: Update Shared pref  In login Controller then update here.
+        myServices.sharedPreferences.getString("userID")!,
+        content.text,
+        //TODO: Change owner to petId but you need to update pet model.
+        userPetsList[selectedIndex].petID!,
+        myFile!,
+      );
       // print("=============================== Controller $response ");
       statusRequest = handlingData(response);
       //print("=======================Con" + response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // print('ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
+          homeControllerImp.refreshPage();
           Get.offNamed(AppRoute.homeScreen);
         } else {
           showSnackBar(numOfText1: '23', numOfText2: '25');
           statusRequest = StatusRequest.failure;
         }
       }
+
       update();
     } else {}
   }
 
   @override
-  getTagFromPopUp({required int index}) {
-    indexTag = index;
-    myTag = getValueAtIndex(indexTag);
-  }
-
-  //TEST
-  @override
-  refreshPage() {
-    getUserPets();
-  }
-
-  //TEST
-  @override
   void onInit() {
     content = TextEditingController();
-    price = TextEditingController();
-    phone = TextEditingController();
     getUserPets();
     super.onInit();
   }
@@ -224,8 +194,6 @@ class CreatePostControllerImp extends CreatePostController {
   @override
   void dispose() {
     content.dispose();
-    price.dispose();
-    phone.dispose();
     super.dispose();
   }
 }

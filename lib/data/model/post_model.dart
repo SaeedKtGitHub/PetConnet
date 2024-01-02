@@ -1,3 +1,6 @@
+
+import 'package:pet_connect/data/model/pet_model.dart';
+
 class PostModel {
   String? userID;
   String? postID;
@@ -9,7 +12,9 @@ class PostModel {
   String? petID;
   String? petName;
   String? date;
-
+  String? tag;
+  PetModel? petModel;
+  int ? price;
   PostModel(
       {this.userID,
       this.postID,
@@ -21,7 +26,9 @@ class PostModel {
       this.petID,
         this.petName,
         this.date,
-
+       this.tag,
+        this.petModel,
+        this.price,
       });
 
   //After editing (according to json response) :
@@ -36,6 +43,10 @@ class PostModel {
     petID = json['petID']['_id'];
     petName = json['petID']['name'];
     date=json['date'];
+    tag=json['tag'];
+    petModel=PetModel.fromJson(json['petID']);
+    price=json['price'];
+
 
   }
   // PostModel.fromJson(Map<String, dynamic> json) {
@@ -60,6 +71,9 @@ class PostModel {
     data['image'] = image;
     data['petID'] = petID;
     data['date'] = date;
+    data['tag']=tag;
+    data['petID']=petModel;
+    data['price']=price;
 
     return data;
   }

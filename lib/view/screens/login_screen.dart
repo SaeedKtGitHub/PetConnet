@@ -6,6 +6,8 @@ import 'package:pet_connect/core/functions/alert_exit_app.dart';
 import 'package:pet_connect/core/functions/valid_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_connect/link_api.dart';
+import 'package:pet_connect/view/screens/web_view_screen.dart';
 import 'package:pet_connect/view/widgets/auth/custom_button_auth.dart';
 import 'package:pet_connect/view/widgets/auth/custom_text_form.dart';
 import 'package:pet_connect/view/widgets/auth/custom_text_sign_up_in.dart';
@@ -125,7 +127,13 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             //TODO: Web view
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(
+                                WebViewScreen(
+                                  pageLink: AppLink.privacyPolicy,
+                                ),
+                              );
+                            },
                             child: Text(
                               textAlign: TextAlign.center,
                               '48'.tr,
@@ -148,7 +156,15 @@ class LoginScreen extends StatelessWidget {
                           ),
                           InkWell(
                             //TODO: Web view
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(
+                                WebViewScreen(
+                                  pageLink: AppLink.termsCondition,
+                                  //   pageLink:
+                                  //       "https://www.just.edu.jo/ar/Admission/undergraduate/Pages/ProgramsOfStudy.aspx",
+                                ),
+                              );
+                            },
                             child: Text(
                               textAlign: TextAlign.center,
                               '56'.tr,

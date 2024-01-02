@@ -14,6 +14,14 @@ class HomeScreenData {
     });
     return response.fold((l) => l, (r) => r);
   }
+  getPostsByTag(String userId,{required String tag}) async {
+    //TODO:Edit the method
+    var response = await crud.postDataList(AppLink.getPostsByTag, {
+      "userID": userId,
+      "tag":tag
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 
   // getUser(String userId) async {
   //   //TODO:Edit the method

@@ -5,6 +5,8 @@ import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/data/datasource/static/static.dart';
+import 'package:pet_connect/link_api.dart';
+import 'package:pet_connect/view/screens/web_view_screen.dart';
 import 'package:pet_connect/view/widgets/auth/custom_text_sign_up_in.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/new_social_post_container.dart';
 import 'package:pet_connect/view/widgets/choose_post_type_pop_up/tag_items_list.dart';
@@ -122,7 +124,13 @@ class ChoosePostTypePopUp extends StatelessWidget {
                     children: [
                       InkWell(
                         //TODO: Web view
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(
+                            WebViewScreen(
+                              pageLink: AppLink.privacyPolicy,
+                            ),
+                          );
+                        },
                         child: Text(
                           textAlign: TextAlign.center,
                           '48'.tr,
@@ -145,7 +153,13 @@ class ChoosePostTypePopUp extends StatelessWidget {
                       ),
                       InkWell(
                         //TODO: Web view
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(
+                            WebViewScreen(
+                              pageLink: AppLink.termsCondition,
+                            ),
+                          );
+                        },
                         child: Text(
                           textAlign: TextAlign.center,
                           '56'.tr,
