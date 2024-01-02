@@ -49,7 +49,8 @@ class CreatePostControllerImp extends CreatePostController {
     Get.delete<CreatePostControllerImp>();
     Get.offNamed(AppRoute.homeScreen);
   }
-  HomeControllerImp homeControllerImp=Get.put(HomeControllerImp());
+
+  HomeControllerImp homeControllerImp = Get.put(HomeControllerImp());
 
   @override
   chooseImageFromCamera() async {

@@ -12,7 +12,7 @@ import 'package:pet_connect/view/screens/signup_screen.dart';
 List<GetPage<dynamic>>? routes = [
   GetPage(
     name: "/",
-    page: () => const  HomeScreen(),
+    page: () => const HomeScreen(),
     // middlewares: [
     //   MyMiddleWare(),
     // ],

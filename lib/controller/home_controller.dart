@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/core/class/status_request.dart';
@@ -19,9 +18,11 @@ abstract class HomeController extends GetxController {
   getUserData();
   getAllPosts();
   goToAllArticlesScreen();
-  goToDynamicScreen(String title,{required List<PostModel> posts});
+  goToDynamicScreen(String title, {required List<PostModel> posts});
   refreshPage();
-  getFilteredPosts({required String tag,});
+  getFilteredPosts({
+    required String tag,
+  });
   scrollToTop();
   // goToSettingsScreen();
   // goToHomeScreen();
@@ -29,14 +30,13 @@ abstract class HomeController extends GetxController {
 }
 
 class HomeControllerImp extends HomeController {
-  StatusRequest? statusRequest = StatusRequest.none;
+  StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
   HomeScreenData homeScreenData = HomeScreenData(Get.find());
   UserModel currentUser = UserModel();
   List<PostModel> allPosts = [];
   List<PostModel> filteredPosts = [];
   final ScrollController _scrollController = ScrollController();
-
 
   ScrollController get scrollController => _scrollController;
 
@@ -80,8 +80,9 @@ class HomeControllerImp extends HomeController {
     // TODO: implement getAllPosts
     statusRequest = StatusRequest.loading;
     update();
-    var response = await homeScreenData
-        .getAllPosts(myServices.sharedPreferences.getString("userID")!,);
+    var response = await homeScreenData.getAllPosts(
+      myServices.sharedPreferences.getString("userID")!,
+    );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response[0]['status'] == "success") {
@@ -100,10 +101,9 @@ class HomeControllerImp extends HomeController {
     // TODO: implement getAllPosts
     statusRequest = StatusRequest.loading;
     update();
-    var response = await homeScreenData
-        .getPostsByTag(myServices.sharedPreferences.getString("userID")!,
-      tag: tag
-    );
+    var response = await homeScreenData.getPostsByTag(
+        myServices.sharedPreferences.getString("userID")!,
+        tag: tag);
     statusRequest = handlingData(response);
 
     if (StatusRequest.success == statusRequest) {
@@ -119,9 +119,6 @@ class HomeControllerImp extends HomeController {
     print(filteredPosts.length);
     update();
   }
-
-
-
 
   @override
   getUserData() async {
@@ -152,48 +149,44 @@ class HomeControllerImp extends HomeController {
     Get.toNamed(AppRoute.articlesScreen);
   }
 
-
-
   @override
   void onInit() {
     // TODO: implement onInit
-     getUserData();
-     getAllPosts();
+    getUserData();
+    getAllPosts();
     super.onInit();
   }
 
   @override
-  goToDynamicScreen(String title,{required List<PostModel> posts}) {
+  goToDynamicScreen(String title, {required List<PostModel> posts}) {
     // TODO:
-    Get.to(()=>DynamicViewScreen(title:title , posts:posts));
+    Get.to(() => DynamicViewScreen(title: title, posts: posts));
   }
-
 
   @override
   refreshPage() {
     // TODO: implement refresgPage
     getAllPosts();
   }
+
   @override
-  void openPopUpPetInfo({required PetModel petModel,required int index}) {
+  void openPopUpPetInfo({required PetModel petModel, required int index}) {
     Get.dialog(
       Dialog(
-        child: AnimalDataPopup(petModel:allPosts[index].petModel!),
+        child: AnimalDataPopup(petModel: allPosts[index].petModel!),
       ),
     );
   }
 
   @override
   void scrollToTop() {
-    _scrollController.animateTo(0.0, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    _scrollController.animateTo(0.0,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
   }
+
   @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
   }
-
-
-
-
 }
