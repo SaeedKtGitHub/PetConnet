@@ -8,16 +8,21 @@ class CreatePostData {
 
   CreatePostData(this.crud);
 
-  postDataFile(String userId, String content, String petId, File file) async {
-    //TODO: Change link
+  Future postDataFile(
+      String userId, String content, String petId, String tag, File file,
+      {String? price}) async {
+    // TODO: Change link
     var response = await crud.postDataWithFile(
-        AppLink.addPost,
-        {
-          "userID": userId,
-          "content": content,
-          "petID": petId,
-        },
-        file);
+      AppLink.addPost,
+      {
+        "userID": userId,
+        "content": content,
+        "petID": petId,
+        "tag": tag,
+        if (price != null) "price": price, // Include price if provided
+      },
+      file,
+    );
     return response.fold((l) => l, (r) => r);
   }
 

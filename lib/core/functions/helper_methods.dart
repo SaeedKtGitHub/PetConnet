@@ -1,9 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:intl/intl.dart';
+import 'package:pet_connect/core/constant/routes.dart';
 
 String formattedDate(String isoDateString) {
   DateTime dateTime = DateTime.parse(isoDateString);
@@ -19,7 +19,8 @@ String calculateAge(String birthDate) {
 
   // Check if the birthday has occurred this year
   if (today.month < parsedBirthDate.month ||
-      (today.month == parsedBirthDate.month && today.day < parsedBirthDate.day)) {
+      (today.month == parsedBirthDate.month &&
+          today.day < parsedBirthDate.day)) {
     age--;
   }
 
@@ -29,9 +30,9 @@ String calculateAge(String birthDate) {
   return ageString;
 }
 
-IconData getIconGender({required String gender}){
-  gender=gender.toLowerCase();
-  if(gender=="m"){
+IconData getIconGender({required String gender}) {
+  gender = gender.toLowerCase();
+  if (gender == "m") {
     return Icons.male_outlined;
   }
   return Icons.female_outlined;
@@ -49,6 +50,7 @@ Image getIconPetType(String type) {
   // Return a default image if the type is not found
   return selectedImage ?? Image.asset(AppImageAsset.dog);
 }
+
 //taks DateTime object and convert it to  yyyy-MM-dd format
 String formatDateTimeToString(DateTime? dateTime) {
   if (dateTime != null) {
@@ -58,10 +60,13 @@ String formatDateTimeToString(DateTime? dateTime) {
   }
 }
 
+String getValueAtIndex(int index) {
+  List<String> options = ["adoption", "mating", "trading", "lost", "social"];
+  return (index >= 0 && index < options.length) ? options[index] : "social";
+}
 
-
-
-
-
-
-
+Future<bool> backToHomeScreen() {
+  Get.delete<CreatePostControllerImp>();
+  Get.offNamed(AppRoute.homeScreen);
+  return Future.value(true);
+}

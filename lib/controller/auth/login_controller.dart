@@ -53,7 +53,7 @@ class LoginControllerImp extends LoginController {
           myServices.sharedPreferences
               .setString("email", response['data']['email']);
 
-          Get.offNamed(AppRoute.profileScreen);
+          Get.offNamed(AppRoute.homeScreen);
         } else {
           Get.defaultDialog(
               title: "Warning", middleText: "Email Or Password Not Correct");

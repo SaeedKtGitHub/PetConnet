@@ -7,8 +7,8 @@ import 'package:pet_connect/core/functions/handling_data_controller.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/data/datasource/remote/home/home_screen_data.dart';
 import 'package:pet_connect/data/datasource/static/static.dart';
-import 'package:pet_connect/data/model/pet_model.dart';
 import 'package:pet_connect/data/model/post_model.dart';
+import 'package:pet_connect/data/model/pet_model.dart';
 import 'package:pet_connect/data/model/user_model.dart';
 import 'package:pet_connect/view/screens/dynamic_view_screen.dart';
 import 'package:pet_connect/view/widgets/home/build_image_with_text.dart';
@@ -18,7 +18,6 @@ import 'package:pet_connect/view/widgets/pop_up_chose_post_type.dart';
 abstract class HomeController extends GetxController {
   getUserData();
   getAllPosts();
-  //goToAllPostScreen();
   goToAllArticlesScreen();
   goToDynamicScreen(String title,{required List<PostModel> posts});
   refreshPage();
@@ -30,9 +29,7 @@ abstract class HomeController extends GetxController {
 }
 
 class HomeControllerImp extends HomeController {
-
-
-  StatusRequest statusRequest = StatusRequest.none;
+  StatusRequest? statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
   HomeScreenData homeScreenData = HomeScreenData(Get.find());
   UserModel currentUser = UserModel();
@@ -47,22 +44,18 @@ class HomeControllerImp extends HomeController {
     List<Widget> list = [];
 
     for (int i = 0; i < images.length; i++) {
-      list.add(
-          BuildImageWithText(
-              imagePath: slides[i].imagepath,
-              text: slides[i].slideText));
+      list.add(BuildImageWithText(
+          imagePath: slides[i].imagepath, text: slides[i].slideText));
     }
     return list;
   }
 
   int currentSliderIndex = 0;
-
   setCurrentSliderIndex(index) {
     currentSliderIndex = index;
   }
 
   int currentNavIndex = 0;
-
 
   void onItemTapped(int index) {
     update();
@@ -89,10 +82,7 @@ class HomeControllerImp extends HomeController {
     update();
     var response = await homeScreenData
         .getAllPosts(myServices.sharedPreferences.getString("userID")!,);
-    //print('iddddddddddidid${myServices.sharedPreferences.getString("userID")!}');
     statusRequest = handlingData(response);
-     //  print(response);
-   // print('[pOSTSSSSSSSSSSS::::: ${response[0]['data']}////////////////');
     if (StatusRequest.success == statusRequest) {
       if (response[0]['status'] == "success") {
         List dataResponse = response[0]['data'];
@@ -148,8 +138,7 @@ class HomeControllerImp extends HomeController {
       if (response['status'] == "success") {
         Map<String, dynamic> dataResponse = response['data'];
         currentUser = UserModel.fromJson(dataResponse);
-      }
-      else {
+      } else {
         statusRequest = StatusRequest.failure;
       }
       // End
@@ -208,4 +197,3 @@ class HomeControllerImp extends HomeController {
 
 
 }
-

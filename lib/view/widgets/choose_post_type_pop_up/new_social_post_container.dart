@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 
 class NewSocialPostContainer extends StatelessWidget {
@@ -8,10 +9,16 @@ class NewSocialPostContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap:(){
-        Get.offNamed(AppRoute.createPostScreen);
-      } ,
+    Get.put(CreatePostControllerImp());
+    CreatePostControllerImp createController =
+        Get.find<CreatePostControllerImp>();
+
+    return InkWell(
+      onTap: () {
+        createController.getTagFromPopUp(index: 4);
+        Get.back();
+        Get.toNamed(AppRoute.createPostScreen);
+      },
       child: SizedBox(
         height: 100.h,
         width: 260.w,
@@ -21,7 +28,8 @@ class NewSocialPostContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0.h),
               child: Image.asset(
                 'assets/images/popUp.jpg',
-                fit: BoxFit.cover, // Ensure the image fully covers the Container
+                fit:
+                    BoxFit.cover, // Ensure the image fully covers the Container
                 width: 260.w, // Set width to match the Container's width
                 height: 100.h, // Set height to match the Container's height
               ),
@@ -49,7 +57,6 @@ class NewSocialPostContainer extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   )
-
                 ],
               ),
             ),

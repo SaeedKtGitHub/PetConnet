@@ -21,8 +21,8 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.signupScreen, page: () => const SignupScreen()),
   GetPage(name: AppRoute.homeScreen, page: () => const HomeScreen()),
   GetPage(
-      name: AppRoute.createPostScreen, page: () => const CreatePostScreen(),
-
+    name: AppRoute.createPostScreen,
+    page: () => const CreatePostScreen(),
   ),
 
   GetPage(name: AppRoute.profileScreen, page: () => const ProfileScreen()),

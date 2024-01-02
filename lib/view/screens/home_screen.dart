@@ -27,7 +27,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-
   @override
   Widget build(BuildContext context) {
     HomeControllerImp controller=  Get.put(HomeControllerImp());
@@ -39,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: CustomFloatingActionButton(onPressed: controller.showChoosePostTypePopUp),
 
-      //bottomNavigationBar:
-      bottomNavigationBar:  CustomBottomNavigationBar(
+        //bottomNavigationBar:
+        bottomNavigationBar: CustomBottomNavigationBar(
           currentIndex: controller.currentNavIndex,
           onItemTapped: controller.onItemTapped,
           onGalleryTap:()async {
@@ -236,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           SizedBox(
-                            width: 88.w,
+                            width: 75.w,
                           ),
                           //all posts
                           CustomButton(

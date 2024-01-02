@@ -64,7 +64,7 @@ class SignupScreen extends StatelessWidget {
                       iconData: Icons.email_outlined,
                       //myController: myController
                     ),
-                    GetBuilder<LoginControllerImp>(
+                    GetBuilder<SignUpControllerImp>(
                       builder: (controller) => CustomTextForm(
                         obscureText: controller.isShowPassword,
                         isNumber: false,

@@ -2,24 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/controller/post/create_post_controller.dart';
+import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/link_api.dart';
 
-class CustomPetWidget extends StatelessWidget {
+class CustomPetWidgetCreate extends StatelessWidget {
   //TODO: USE PetModel
-  const CustomPetWidget({
+  const CustomPetWidgetCreate({
     Key? key,
     // required this.petIcon,
     required this.petImage,
     required this.petName,
     required this.color,
     required this.onPressed,
-    required this.onLongPress,
+    this.onLongPress,
     this.paddingNum,
+    this.removeIcon,
   }) : super(key: key);
 
   //final String petIcon;
   final String petImage;
   final String petName;
+  final String? removeIcon;
   final Color color;
   final double? paddingNum;
   final void Function()? onPressed;
@@ -27,7 +30,7 @@ class CustomPetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CreatePostControllerImp());
+    //Get.put(CreatePostControllerImp());
     return Padding(
       padding: EdgeInsets.only(left: 5.w, right: 5.w),
       child: Column(
@@ -55,7 +58,7 @@ class CustomPetWidget extends StatelessWidget {
               //   backgroundColor: AppColor.primaryColor,
               //   radius: 14.h, // Adjust the radius as needed
               //   child: Image.asset(
-              //     petIcon,
+              //     removeIcon!,
               //     width: 20.w,
               //     height: 20.h,
               //     color: AppColor.white,
