@@ -81,22 +81,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         children: [
                           //The Icon:
-                          CircleAvatar(
-                            backgroundImage: controller
-                                        .currentUser.profilePic ==
-                                    null
-                                ? null
-                                : NetworkImage(
-                                    "${AppLink.linkImageRoot}/${controller.currentUser.profilePic}"),
-                            radius: 16.h, // Adjust the radius as needed
-                            child: controller.currentUser.profilePic == null
-                                ? Icon(
-                                    Icons.person,
-                                    color: AppColor.primaryColor,
-                                    size:
-                                        24.h, // Adjust the icon size as needed
-                                  )
-                                : null, // No child for non-null profilePic
+                          GestureDetector(
+                            onTap: controller.goToProfilePage,
+                            child: CircleAvatar(
+                              backgroundImage: controller
+                                          .currentUser.profilePic ==
+                                      null
+                                  ? null
+                                  : NetworkImage(
+                                      "${AppLink.linkImageRoot}/${controller.currentUser.profilePic}"),
+                              radius: 16.h, // Adjust the radius as needed
+                              child: controller.currentUser.profilePic == null
+                                  ? Icon(
+                                      Icons.person,
+                                      color: AppColor.primaryColor,
+                                      size:
+                                          24.h, // Adjust the icon size as needed
+                                    )
+                                  : null, // No child for non-null profilePic
+                            ),
                           ),
 
                           SizedBox(
@@ -125,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         children: [
                           Text(
-                            '51'.tr,
+                            '58'.tr,
                             //textDirection: TextDirection.rtl,
                             style: TextStyle(
                               color: AppColor.black,
@@ -160,11 +163,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: EdgeInsets.only(right: 10.0.w),
                       child: TextAndButtonRow(
-                        text: '52'.tr,
+                        text: '59'.tr,
                         onPressed: () async {
                           await controller.getFilteredPosts(tag: 'trading');
                           controller.goToDynamicScreen(
-                            '56'.tr,
+                            '63'.tr,
                             posts: controller.filteredPosts,
                           );
                         },
@@ -182,11 +185,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: EdgeInsets.only(right: 10.0.w),
                       child: TextAndButtonRow(
-                          text: '53'.tr,
+                          text: '60'.tr,
                           onPressed: () async {
                             await controller.getFilteredPosts(tag: 'adoption');
                             controller.goToDynamicScreen(
-                              '53'.tr,
+                              '60'.tr,
                               posts: controller.filteredPosts,
                             );
                           }),
@@ -204,11 +207,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: EdgeInsets.only(right: 10.0.w),
                       child: TextAndButtonRow(
-                          text: '54'.tr,
+                          text: '61'.tr,
                           onPressed: () async {
                             await controller.getFilteredPosts(tag: 'mating');
                             controller.goToDynamicScreen(
-                              '59'.tr,
+                              '66'.tr,
                               posts: controller.filteredPosts,
                             );
                           }),
@@ -225,11 +228,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: EdgeInsets.only(right: 10.0.w),
                       child: TextAndButtonRow(
-                          text: '55'.tr,
+                          text: '62'.tr,
                           onPressed: () async {
                             await controller.getFilteredPosts(tag: 'lost');
                             controller.goToDynamicScreen(
-                              '57'.tr,
+                              '64'.tr,
                               posts: controller.filteredPosts,
                             );
                           }),
@@ -265,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () async {
                                 await controller.getAllPosts();
                                 controller.goToDynamicScreen(
-                                  '58'.tr,
+                                  '65'.tr,
                                   posts: controller.allPosts,
                                 );
                               },

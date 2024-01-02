@@ -10,6 +10,7 @@ import 'package:pet_connect/data/model/post_model.dart';
 import 'package:pet_connect/data/model/pet_model.dart';
 import 'package:pet_connect/data/model/user_model.dart';
 import 'package:pet_connect/view/screens/dynamic_view_screen.dart';
+import 'package:pet_connect/view/screens/profile_screen.dart';
 import 'package:pet_connect/view/widgets/home/build_image_with_text.dart';
 import 'package:pet_connect/view/widgets/pet_data_popup.dart';
 import 'package:pet_connect/view/widgets/pop_up_chose_post_type.dart';
@@ -27,6 +28,8 @@ abstract class HomeController extends GetxController {
   // goToSettingsScreen();
   // goToHomeScreen();
   // goToGallery();
+  goToProfilePage();
+
 }
 
 class HomeControllerImp extends HomeController {
@@ -188,5 +191,11 @@ class HomeControllerImp extends HomeController {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
+  }
+
+  @override
+  goToProfilePage() {
+    // TODO: implement goToProfilePage
+    Get.toNamed(AppRoute.profileScreen);
   }
 }

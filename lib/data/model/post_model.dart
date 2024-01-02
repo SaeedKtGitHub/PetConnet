@@ -14,7 +14,7 @@ class PostModel {
   String? date;
   String? tag;
   PetModel? petModel;
-  int ? price;
+  double ? price;
   PostModel(
       {this.userID,
       this.postID,
@@ -45,7 +45,7 @@ class PostModel {
     date=json['date'];
     tag=json['tag'];
     petModel=PetModel.fromJson(json['petID']);
-    price=json['price'];
+    price = json['price']?.toDouble();
 
 
   }

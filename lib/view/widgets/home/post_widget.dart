@@ -120,7 +120,7 @@ class _PostWidgetState extends State<PostWidget> {
                 const Spacer(),
                 //  Animal name
                 Text(
-                  widget.post.tag!,
+                  widget.post.petModel!.name!, // Replace "Default Name" with a suitable default value
                   //textDirection: TextDirection.rtl,
                   style: TextStyle(
                       color: AppColor.black,
@@ -177,12 +177,12 @@ class _PostWidgetState extends State<PostWidget> {
                 )
               ),
               const Spacer(),
+              //contact me button
               Padding(
                 padding:  EdgeInsets.only(left: 13.0.w),
                 child: CustomButton(
                     onPressed: () {
-
-                    }, buttonText: '60'.tr),
+                    }, buttonText: '67'.tr),
               ),
             ],
           )
