@@ -26,77 +26,77 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   @override
   Widget build(BuildContext context) {
-    HomeControllerImp controller=  Get.put(HomeControllerImp());
-    ArticlesControllerImp articlesController=  Get.put(ArticlesControllerImp());
+    HomeControllerImp controller = Get.put(HomeControllerImp());
+    ArticlesControllerImp articlesController = Get.put(ArticlesControllerImp());
     MyServices myServices = Get.find();
 
     return Scaffold(
-      //FAB:
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CustomFloatingActionButton(onPressed: controller.showChoosePostTypePopUp),
+        //FAB:
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: CustomFloatingActionButton(
+            onPressed: controller.showChoosePostTypePopUp),
 
-      //bottomNavigationBar:
-      bottomNavigationBar:  CustomBottomNavigationBar(
+        //bottomNavigationBar:
+        bottomNavigationBar: CustomBottomNavigationBar(
           currentIndex: controller.currentNavIndex,
           onItemTapped: controller.onItemTapped,
-          onGalleryTap:()async {
-           await  controller.getFilteredPosts(tag: 'social');
-            controller.goToDynamicScreen('58'.tr, posts:controller.filteredPosts,
+          onGalleryTap: () async {
+            await controller.getFilteredPosts(tag: 'social');
+            controller.goToDynamicScreen(
+              '58'.tr,
+              posts: controller.filteredPosts,
             );
           },
-        onHomeTap: () {
-          if (Get.currentRoute ==AppRoute.homeScreen) {
-           controller.scrollToTop();
-          } else {
-            Get.offNamed(AppRoute.homeScreen);
-          }
-        },
-        onSettingsTap: (){
-          if (Get.currentRoute ==AppRoute.homeScreen) {
-            Get.toNamed(AppRoute.settingsScreen);
-          }else{
-            Get.offNamed(AppRoute.settingsScreen);
-
-          }
-
-        },
+          onHomeTap: () {
+            if (Get.currentRoute == AppRoute.homeScreen) {
+              controller.scrollToTop();
+            } else {
+              Get.offNamed(AppRoute.homeScreen);
+            }
+          },
+          onSettingsTap: () {
+            if (Get.currentRoute == AppRoute.homeScreen) {
+              Get.toNamed(AppRoute.settingsScreen);
+            } else {
+              Get.offNamed(AppRoute.settingsScreen);
+            }
+          },
         ),
-
-      body: GetBuilder<HomeControllerImp>(
-          builder:(controller)=>
-              HandlingDataRequest(
-                statusRequest: controller.statusRequest,
-                widget: SafeArea(
-
-                  child: SingleChildScrollView(
-                    controller: controller.scrollController,
-                    child: Column(
+        body: GetBuilder<HomeControllerImp>(
+          builder: (controller) => HandlingDataRequest(
+            statusRequest: controller.statusRequest,
+            widget: SafeArea(
+              child: SingleChildScrollView(
+                controller: controller.scrollController,
+                child: Column(
                   children: [
                     SizedBox(
                       height: 10.h,
                     ),
                     //The welcome message :
-                     Padding(
+                    Padding(
                       padding: EdgeInsets.only(right: 15.0.w),
                       child: Row(
                         children: [
                           //The Icon:
                           CircleAvatar(
-                            backgroundImage: controller.currentUser.profilePic == null
+                            backgroundImage: controller
+                                        .currentUser.profilePic ==
+                                    null
                                 ? null
-                                : NetworkImage("${AppLink.linkImageRoot}/${controller.currentUser.profilePic}"),
+                                : NetworkImage(
+                                    "${AppLink.linkImageRoot}/${controller.currentUser.profilePic}"),
                             radius: 16.h, // Adjust the radius as needed
                             child: controller.currentUser.profilePic == null
                                 ? Icon(
-                              Icons.person,
-                              color: AppColor.primaryColor,
-                              size: 24.h, // Adjust the icon size as needed
-                            )
-                                : null,  // No child for non-null profilePic
+                                    Icons.person,
+                                    color: AppColor.primaryColor,
+                                    size:
+                                        24.h, // Adjust the icon size as needed
+                                  )
+                                : null, // No child for non-null profilePic
                           ),
 
                           SizedBox(
@@ -136,90 +136,112 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                             width: 22.w,
                           ),
-                          CustomButton(onPressed: controller.goToAllArticlesScreen, buttonText: 'جميع المقالات'),
+                          CustomButton(
+                              onPressed: controller.goToAllArticlesScreen,
+                              buttonText: 'جميع المقالات'),
                         ],
                       ),
                     ),
 
                     //The image slider
                     MyImageSlider(
-                      articles: articlesController.articles.map((article)
-                      => ArticleWidget(onTap:
-                      (){
-                        Get.to(ViewArticlesScreen(article:articlesController.articles[controller.currentSliderIndex]));
-                      }
-                          ,article: article)).toList(),
+                      articles: articlesController.articles
+                          .map((article) => ArticleWidget(
+                              onTap: () {
+                                Get.to(ViewArticlesScreen(
+                                    article: articlesController.articles[
+                                        controller.currentSliderIndex]));
+                              },
+                              article: article))
+                          .toList(),
                     ),
 
                     //pets for sale list
                     Padding(
                       padding: EdgeInsets.only(right: 10.0.w),
-                      child:TextAndButtonRow(
-                          text: '52'.tr,
-                          onPressed: ()async {
-                            await controller.getFilteredPosts(tag: 'trading');
-                            controller.goToDynamicScreen('56'.tr,
-                                posts:controller.filteredPosts,
-                            );
-                          },
+                      child: TextAndButtonRow(
+                        text: '52'.tr,
+                        onPressed: () async {
+                          await controller.getFilteredPosts(tag: 'trading');
+                          controller.goToDynamicScreen(
+                            '56'.tr,
+                            posts: controller.filteredPosts,
+                          );
+                        },
                       ),
                     ),
-                    SizedBox(height: 7.h,),
+                    SizedBox(
+                      height: 7.h,
+                    ),
                     const TwoImagesRow(),
-                    SizedBox(height: 7.h,),
+                    SizedBox(
+                      height: 7.h,
+                    ),
 
                     //pets for adoption list
                     Padding(
                       padding: EdgeInsets.only(right: 10.0.w),
-                      child:TextAndButtonRow(
+                      child: TextAndButtonRow(
                           text: '53'.tr,
-                          onPressed: ()async {
+                          onPressed: () async {
                             await controller.getFilteredPosts(tag: 'adoption');
-                            controller.goToDynamicScreen('53'.tr,
-                                posts:controller.filteredPosts,
+                            controller.goToDynamicScreen(
+                              '53'.tr,
+                              posts: controller.filteredPosts,
                             );
-
                           }),
                     ),
-                    SizedBox(height: 7.h,),
+                    SizedBox(
+                      height: 7.h,
+                    ),
 
                     const TwoImagesRow(),
 
-                    SizedBox(height: 7.h,),
+                    SizedBox(
+                      height: 7.h,
+                    ),
                     //pets for mating list
                     Padding(
                       padding: EdgeInsets.only(right: 10.0.w),
-                      child:TextAndButtonRow(
+                      child: TextAndButtonRow(
                           text: '54'.tr,
-                          onPressed: () async{
+                          onPressed: () async {
                             await controller.getFilteredPosts(tag: 'mating');
-                            controller.goToDynamicScreen('59'.tr,
-                                posts:controller.filteredPosts,
-                               );
-
+                            controller.goToDynamicScreen(
+                              '59'.tr,
+                              posts: controller.filteredPosts,
+                            );
                           }),
                     ),
-                    SizedBox(height: 7.h,),
+                    SizedBox(
+                      height: 7.h,
+                    ),
 
                     const TwoImagesRow(),
-                    SizedBox(height: 7.h,),
+                    SizedBox(
+                      height: 7.h,
+                    ),
                     // lost pets  list
                     Padding(
                       padding: EdgeInsets.only(right: 10.0.w),
-                      child:TextAndButtonRow(
+                      child: TextAndButtonRow(
                           text: '55'.tr,
-                          onPressed: ()async{
+                          onPressed: () async {
                             await controller.getFilteredPosts(tag: 'lost');
-                            controller.goToDynamicScreen('57'.tr,
-                                posts:controller.filteredPosts,
+                            controller.goToDynamicScreen(
+                              '57'.tr,
+                              posts: controller.filteredPosts,
                             );
-
                           }),
                     ),
-                    SizedBox(height: 7.h,),
+                    SizedBox(
+                      height: 7.h,
+                    ),
 
                     const TwoImagesRow(),
-                    SizedBox(height: 7.h,),
+                    SizedBox(
+                      height: 7.h,
+                    ),
 
                     //Favorite animals row
                     Padding(
@@ -236,45 +258,41 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           SizedBox(
-                            width: 88.w,
+                            width: 75.w,
                           ),
                           //all posts
                           CustomButton(
                               onPressed: () async {
                                 await controller.getAllPosts();
-                                controller.goToDynamicScreen('58'.tr,
-                                    posts:controller.allPosts,
-
+                                controller.goToDynamicScreen(
+                                  '58'.tr,
+                                  posts: controller.allPosts,
                                 );
-
-                              }, buttonText: 'جميع المنشورات'),
+                              },
+                              buttonText: 'جميع المنشورات'),
                         ],
                       ),
                     ),
 
                     //List of posts:
-                    controller.allPosts.isNotEmpty?
-                    PostsList(posts: controller.allPosts)
-                        :
-                        Padding(
-                          padding:  EdgeInsets.only(top:30.0.h),
-                          child: Center(
-                            child: Text("لا يوجد منشورات, حاول لاحقا!",
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold
-                            ),
+                    controller.allPosts.isNotEmpty
+                        ? PostsList(posts: controller.allPosts)
+                        : Padding(
+                            padding: EdgeInsets.only(top: 30.0.h),
+                            child: Center(
+                              child: Text(
+                                "لا يوجد منشورات, حاول لاحقا!",
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
-                        ),
-
-
                   ],
                 ),
-                            ),
-                          ),
               ),
-      )
-    );
+            ),
+          ),
+        ));
   }
 }
