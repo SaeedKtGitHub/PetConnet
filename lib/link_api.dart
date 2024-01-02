@@ -10,10 +10,11 @@ class AppLink {
   static String getUserPets = "$server/users/getPets";
   static String getAllPosts = "$server/posts/getAll";
   static String getUser = "$server/users/getUser";
-  static String addPet = "$server/pets/addPet";
-  static String removePet = "$server/pets/removePet";
+  static String addPet = "$server/pets/add";
+  static String removePet = "$server/pets/delete";
 
   static String addProfilePic = "$server/users/addProfilePic";
+  static String addPhone = "$server/users/addPhone";
   static String privacyPolicy = "$server/privacypolicy";
   static String termsCondition = "$server/termsofuse";
 }

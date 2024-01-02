@@ -31,7 +31,7 @@ class TagItemList extends StatelessWidget {
                 onPressed: () {
                   createController.getTagFromPopUp(index: index);
                   Get.back();
-                  Get.offNamed(AppRoute.createPostScreen);
+                  Get.toNamed(AppRoute.createPostScreen);
                   print('INDEX ----> $index');
                 },
                 iconPath: tagItems[index].iconPath,

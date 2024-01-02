@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:intl/intl.dart';
 import 'package:pet_connect/core/constant/routes.dart';
@@ -65,6 +66,7 @@ String getValueAtIndex(int index) {
 }
 
 Future<bool> backToHomeScreen() {
+  Get.delete<CreatePostControllerImp>();
   Get.offNamed(AppRoute.homeScreen);
   return Future.value(true);
 }

@@ -46,6 +46,7 @@ class CreatePostControllerImp extends CreatePostController {
   MyServices myServices = Get.find();
   @override
   backToHomeScreen() {
+    Get.delete<CreatePostControllerImp>();
     Get.offNamed(AppRoute.homeScreen);
   }
 
@@ -147,6 +148,7 @@ class CreatePostControllerImp extends CreatePostController {
   @override
   addPost() async {
     //if no image of post
+    print('addPOSTTSTTSTSTTS');
     if (myFile == null) {
       return showSnackBar(numOfText1: '23', numOfText2: '24');
     }
@@ -181,14 +183,17 @@ class CreatePostControllerImp extends CreatePostController {
           myTag,
           myFile!,
         );
+        print('in else block');
       }
 
       // print("=============================== Controller $response ");
       statusRequest = handlingData(response);
-      //print("=======================Con" + response);
+      print("==============ADDPOST RES ==> $response");
+      print("==============STATUS REQ ==> $statusRequest");
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // print('ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
+          Get.delete<CreatePostControllerImp>();
           Get.offNamed(AppRoute.homeScreen);
         } else {
           showSnackBar(numOfText1: '23', numOfText2: '25');
@@ -221,11 +226,11 @@ class CreatePostControllerImp extends CreatePostController {
     super.onInit();
   }
 
-  @override
-  void dispose() {
-    content.dispose();
-    price.dispose();
-    phone.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   content.dispose();
+  //   price.dispose();
+  //   phone.dispose();
+  //   super.dispose();
+  // }
 }
