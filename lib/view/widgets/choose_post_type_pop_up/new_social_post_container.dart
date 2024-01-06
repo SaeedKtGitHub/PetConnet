@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/controller/post/create_post_controller.dart';
+import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 
 class NewSocialPostContainer extends StatelessWidget {
@@ -24,19 +25,26 @@ class NewSocialPostContainer extends StatelessWidget {
         width: 260.w,
         child: Stack(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10.0.h),
-              child: Image.asset(
-                'assets/images/popUp.jpg',
-                fit:
-                    BoxFit.cover, // Ensure the image fully covers the Container
-                width: 260.w, // Set width to match the Container's width
-                height: 100.h, // Set height to match the Container's height
+            // ClipRRect(
+            //   borderRadius: BorderRadius.circular(10.0.h),
+            //   child: Image.asset(
+            //     'assets/images/popUp.jpg',
+            //     fit:
+            //         BoxFit.cover, // Ensure the image fully covers the Container
+            //     width: 260.w, // Set width to match the Container's width
+            //     height: 100.h, // Set height to match the Container's height
+            //   ),
+            // ),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColor.primaryColor,
+                borderRadius: BorderRadius.circular(
+                    10), // Adjust the value for the desired roundness
               ),
+              // Add any child widgets or content here if needed
             ),
-            Positioned(
-              left: 16.w,
-              top: 16.h,
+            Padding(
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -44,7 +52,7 @@ class NewSocialPostContainer extends StatelessWidget {
                     'منشور اجتماعي جديد',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -53,7 +61,7 @@ class NewSocialPostContainer extends StatelessWidget {
                     'ماذا يفعل حيوانك الأليف؟\nشارك معنا!',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 11.sp,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   )

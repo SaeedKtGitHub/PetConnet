@@ -9,4 +9,5 @@ class AppRoute {
   static const String dynamicViewScreen = "/dynamicViewScreen";
   static const String articlesScreen = "/articlesScreen";
   static const String settingsScreen = "/settingsScreen";
+  static const String addPhoneScreen = "/addPhoneScreen";
 }

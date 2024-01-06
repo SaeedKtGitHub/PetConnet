@@ -40,7 +40,7 @@ class LoginControllerImp extends LoginController {
       print(
           "===========response LOGIN==================== Controller $response ");
       statusRequest = handlingData(response);
-      print('SSSSSSSSSSSSSSSSSSSSSSS--->  $statusRequest');
+      print('SSSSSSSSSSSSSSSSSSSSSSS--->  $response');
       //print("=======================Con" + response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
@@ -52,7 +52,11 @@ class LoginControllerImp extends LoginController {
               .setString("username", response['data']['name']);
           myServices.sharedPreferences
               .setString("email", response['data']['email']);
-
+          myServices.sharedPreferences
+              .setString("profilePic", response['data']['profilePic']);
+          myServices.sharedPreferences
+              .setString("phone", response['data']['phone']);
+          print('LOGIN ---> ${response['data']['profilePic']}');
           Get.offNamed(AppRoute.homeScreen);
         } else {
           Get.defaultDialog(

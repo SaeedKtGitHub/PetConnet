@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:pet_connect/controller/profile_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/services/services.dart';
+import 'package:pet_connect/link_api.dart';
 import 'package:pet_connect/view/widgets/profile/custom_profile_image.dart';
 
 class ProfileImage extends StatelessWidget {
@@ -16,7 +17,8 @@ class ProfileImage extends StatelessWidget {
   Widget build(BuildContext context) {
     MyServices myServices = Get.find();
 
-    String filePath = myServices.sharedPreferences.getString('myFile') ?? '';
+    String filePath =
+        myServices.sharedPreferences.getString('profilePic') ?? '';
     Get.put(ProfileControllerImp);
     return GetBuilder<ProfileControllerImp>(
       builder: (controller) => Stack(
@@ -37,7 +39,8 @@ class ProfileImage extends StatelessWidget {
               child: filePath.isNotEmpty
                   //filePath.isNotEmpty
                   ? CustomProfileImage(
-                      imageFile: File(filePath),
+                      imageUrl:
+                          "${AppLink.linkImageRoot}/${myServices.sharedPreferences.getString('profilePic')!}",
                     )
                   : CircleAvatar(
                       radius: 80.0.h, // Adjust as needed

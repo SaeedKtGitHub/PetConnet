@@ -16,7 +16,10 @@ class AppLink {
   static String getAllArticles = "$server/articles/getAll";
 
   static String addProfilePic = "$server/users/addProfilePic";
+  static String getProfilePic = "$server/users/getProfilePic";
   static String addPhone = "$server/users/addPhone";
+  static String deletePhone = "$server/users/deletePhone";
+  static String deleteAccount = "$server/users/delete";
   static String privacyPolicy = "$server/privacypolicy";
   static String termsCondition = "$server/termsofuse";
 }

@@ -70,3 +70,16 @@ Future<bool> backToHomeScreen() {
   Get.offNamed(AppRoute.homeScreen);
   return Future.value(true);
 }
+
+String? validatePhoneNumber(String value) {
+  if (value.length != 10) {
+    return 'يجب ان يتكون رقم الهاتف من عشر ارقام';
+  }
+
+  final validPrefixes = ['078', '079', '077'];
+  if (!validPrefixes.any(value.startsWith)) {
+    return 'يجب ان يبدأ الرقم ب 077 أو 078 أو 079';
+  }
+
+  return null;
+}

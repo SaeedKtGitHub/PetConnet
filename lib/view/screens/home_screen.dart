@@ -31,6 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeControllerImp controller = Get.put(HomeControllerImp());
     ArticlesControllerImp articlesController = Get.put(ArticlesControllerImp());
     MyServices myServices = Get.find();
+    String filePath =
+        myServices.sharedPreferences.getString('profilePic') ?? '';
 
     return Scaffold(
         //FAB:
@@ -84,19 +86,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           GestureDetector(
                             onTap: controller.goToProfilePage,
                             child: CircleAvatar(
-                              backgroundImage: controller
-                                          .currentUser.profilePic ==
-                                      null
-                                  ? null
-                                  : NetworkImage(
-                                      "${AppLink.linkImageRoot}/${controller.currentUser.profilePic}"),
+                              backgroundImage:
+                                  controller.currentUser.profilePic == null
+                                      ? null
+                                      : NetworkImage(
+                                          "${AppLink.linkImageRoot}/$filePath"),
                               radius: 16.h, // Adjust the radius as needed
                               child: controller.currentUser.profilePic == null
                                   ? Icon(
                                       Icons.person,
                                       color: AppColor.primaryColor,
-                                      size:
-                                          24.h, // Adjust the icon size as needed
+                                      size: 24
+                                          .h, // Adjust the icon size as needed
                                     )
                                   : null, // No child for non-null profilePic
                             ),

@@ -29,7 +29,6 @@ abstract class HomeController extends GetxController {
   // goToHomeScreen();
   // goToGallery();
   goToProfilePage();
-
 }
 
 class HomeControllerImp extends HomeController {
@@ -196,6 +195,8 @@ class HomeControllerImp extends HomeController {
   @override
   goToProfilePage() {
     // TODO: implement goToProfilePage
-    Get.toNamed(AppRoute.profileScreen);
+    //TEST
+    Get.toNamed(AppRoute.profileScreen, arguments: {"screenName": "home"});
+    //TEST
   }
 }

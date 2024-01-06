@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomProfileImage extends StatelessWidget {
-  final File? imageFile;
+  final String imageUrl;
   final VoidCallback? onPressed;
 
-
-  const CustomProfileImage({super.key, 
-    required this.imageFile,
+  const CustomProfileImage({
+    super.key,
+    required this.imageUrl,
     this.onPressed,
-
   });
 
   @override
@@ -26,12 +25,11 @@ class CustomProfileImage extends StatelessWidget {
           child: CircleAvatar(
             radius: 80.0.h, // Adjust as needed
             backgroundColor: Colors.transparent,
-            backgroundImage: FileImage(imageFile!),
+            backgroundImage: NetworkImage(imageUrl),
           ),
         ),
 
         // The camera container
-
       ],
     );
   }

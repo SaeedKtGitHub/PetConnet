@@ -27,6 +27,14 @@ class ProfileData {
     return response.fold((l) => l, (r) => r);
   }
 
+  getProfilePic(String userId) async {
+    //TODO: ASK Ahmad about param. and Change link.
+    var response = await crud.postData(AppLink.getProfilePic, {
+      "userID": userId,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
   removePet(String userId, String petId) async {
     //TODO: ASK Ahmad about param. and Change link.
     var response = await crud.postData(AppLink.removePet, {
