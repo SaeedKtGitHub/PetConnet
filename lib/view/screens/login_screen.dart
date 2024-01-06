@@ -2,6 +2,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/controller/auth/login_controller.dart';
 import 'package:pet_connect/core/class/handling_data_view.dart';
 import 'package:pet_connect/core/constant/color.dart';
+import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/core/functions/alert_exit_app.dart';
 import 'package:pet_connect/core/functions/valid_input.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,18 @@ class LoginScreen extends StatelessWidget {
                   key: controller.formState,
                   child: ListView(
                     children: [
-                      const LogoAuth(),
+                      Container(
+                        width: 200,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          image: DecorationImage(
+                            image: AssetImage(AppImageAsset.logo),
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                      //const LogoAuth(),
                       const SizedBox(height: 40),
                       CustomTextForm(
                         isNumber: false,
