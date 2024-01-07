@@ -57,7 +57,7 @@ class SignupScreen extends StatelessWidget {
                     CustomTextForm(
                       isNumber: false,
                       valid: (val) {
-                        return validInput(val!, 3, 30, 'username');
+                        return validInput(val!, 3, 30, 'text');
                       },
                       myController: controller.username,
                       hintText: "10".tr,

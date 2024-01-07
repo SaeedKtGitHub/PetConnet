@@ -72,7 +72,21 @@ class MyTranslation extends Translations {
           "64": "الحيوانات الأليفة الضائعة", //
           "65": "تواصل مع محبي الحيوانات الأليفة!", //
           "66": "حيوانات أليفة للتزاوج", //
-          "67": "تواصل معي", //
+          "67": "تواصل معي",
+          "68": "نسيت كلمة المرور",
+          "69": "التحقق من البريد الالكتروني",
+          "70": "الرجاء ادخال البريد لتلقي رمز التحقق",
+          "71": "اٍعادة تعيين كلمة المرور",
+          "72": "كلمة المرور الجديدة",
+          "73": "أعد",
+          "74": "حفظ",
+          "75": "تمت بنجاح",
+          "76": "تهانينا",
+          "77": "تم اعادة تعيين كلمة المرور بنجاح",
+          "78": "الذهاب لتسجيل الدخول",
+          "79": "رمز التحقق",
+          "80": "التحقق من الرمز",
+          "81": "الرجاء إدخال الرمز الرقمي المرسل إلى "
         },
         "en": {
           //AUTH
@@ -144,6 +158,21 @@ class MyTranslation extends Translations {
           "65": "Connect with pet lovers!",
           "66": "Pets for mating",
           "67": "contact me",
+          "68": "Forget Password",
+          "69": "Check Email",
+          "70":
+              "Please Enter Your Email Address To Receive A verification code",
+          "71": "Reset Password",
+          "72": "New Password",
+          "73": "Re",
+          "74": "Save",
+          "75": "Done Successfully",
+          "76": "Congratulations",
+          "77": "Password has been reset successfully",
+          "78": "Go To Login",
+          "79": "Verification Code",
+          "80": "Check code",
+          "81": "Please Enter The Digit Code Sent To "
         }
       };
 }

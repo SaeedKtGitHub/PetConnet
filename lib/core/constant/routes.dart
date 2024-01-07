@@ -10,4 +10,10 @@ class AppRoute {
   static const String articlesScreen = "/articlesScreen";
   static const String settingsScreen = "/settingsScreen";
   static const String addPhoneScreen = "/addPhoneScreen";
+  static const String successSignUpScreen = "/successSignUp";
+  static const String verifyCodeForgetPassScreen = "/verifyCodeForgetPass";
+  static const String verifyCodeSignUpScreen = "/verifyCodeSignUp";
+  static const String successResetPasswordScreen = "/successResetPassword";
+  static const String resetPasswordScreen = "/resetPassword";
+  static const String forgetPasswordScreen = "/forgetPassword";
 }
