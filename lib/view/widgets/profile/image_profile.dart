@@ -3,15 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pet_connect/controller/profile_controller.dart';
+import 'package:pet_connect/controller/profile/profile_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/view/widgets/profile/custom_profile_image.dart';
 
 class ProfileImage extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const ProfileImage({super.key, required this.onPressed});
+  final VoidCallback? onPressed;
+  const ProfileImage({super.key, this.onPressed});
   @override
   Widget build(BuildContext context) {
     MyServices myServices = Get.find();

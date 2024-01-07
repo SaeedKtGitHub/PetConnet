@@ -11,6 +11,7 @@ import 'package:pet_connect/core/functions/handling_data_controller.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/data/datasource/remote/profile_data.dart';
 import 'package:pet_connect/data/model/pet_model.dart';
+import 'package:pet_connect/data/model/post_model.dart';
 import 'package:pet_connect/view/widgets/pet_data_popup.dart';
 import 'package:pet_connect/view/widgets/profile/choose_image_source_bottom_modal.dart';
 
@@ -26,6 +27,8 @@ abstract class ProfileController extends GetxController {
   openPopUpPetInfo({required PetModel petModel});
   refreshPage();
   removePet({required int index});
+  getUserPosts();
+
 }
 
 class ProfileControllerImp extends ProfileController {
@@ -35,6 +38,7 @@ class ProfileControllerImp extends ProfileController {
   StatusRequest statusRequest = StatusRequest.none;
   List<PetModel> userPetsListProfile = [];
   int selectedIndex = -1;
+  List<PostModel> userPosts = [];
 
   @override
   backToHomeScreen() {
@@ -155,6 +159,7 @@ class ProfileControllerImp extends ProfileController {
   @override
   refreshPage() {
     getUserPets();
+    getUserPosts();
   }
 
   @override
@@ -176,6 +181,7 @@ class ProfileControllerImp extends ProfileController {
   @override
   void onInit() {
     getUserPets();
+    getUserPosts();
     super.onInit();
   }
 
@@ -209,4 +215,74 @@ class ProfileControllerImp extends ProfileController {
     }
     update();
   }
+
+  @override
+  getUserPosts() async {
+    // TODO: implement getAllPosts
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await profileData.getUserPosts(
+        myServices.sharedPreferences.getString("userID")!,
+    );
+    print(response[0]['data']);
+    statusRequest = handlingData(response);
+
+    if (StatusRequest.success == statusRequest) {
+      if (response[0]['status'] == "success") {
+        print('successsss${response[0]['data']}');
+
+        List dataResponse = response[0]['data'];
+        // Clear the existing list before adding new items
+        userPosts.clear();
+        userPosts.addAll(dataResponse.map((e) => PostModel.fromJson(e)));
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
+
+
+  @override
+  removePost(String postID) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await profileData.removePost(
+      myServices.sharedPreferences.getString("userID")!,
+      postID,
+    );
+
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        Get.snackbar(
+            "تم حذف المنشور بنجاح",
+            '',
+            backgroundColor: Colors.grey[500],
+            duration: const Duration(seconds: 2),
+            snackPosition: SnackPosition.BOTTOM,
+            titleText: Text(
+              "تم حذف المنشور بنجاح",
+              style: TextStyle(fontSize: 16.0.sp),
+            ));
+        update();
+        return true; // Indicate success
+      } else {
+        Get.snackbar(
+            "لم يتم حذف المنشور,حاول مرة أخرى",
+            '',
+            backgroundColor: Colors.grey[500],
+            duration: const Duration(seconds: 2),
+            snackPosition: SnackPosition.BOTTOM,
+            titleText: Text(
+              "تم حذف المنشور بنجاح",
+              style: TextStyle(fontSize: 16.0.sp),
+            ));
+        statusRequest = StatusRequest.failure;
+      }
+      update();
+      return false; // Indicate failure
+    }
+  }
+
 }

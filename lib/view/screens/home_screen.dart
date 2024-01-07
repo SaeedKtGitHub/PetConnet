@@ -5,7 +5,6 @@ import 'package:pet_connect/controller/articles_controller.dart';
 import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/core/class/handling_data_view.dart';
 import 'package:pet_connect/core/constant/color.dart';
-import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/link_api.dart';
 import 'package:pet_connect/view/screens/view_article_Screen.dart';
@@ -42,27 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: CustomBottomNavigationBar(
           currentIndex: controller.currentNavIndex,
           onItemTapped: controller.onItemTapped,
-          onGalleryTap: () async {
-            await controller.getFilteredPosts(tag: 'social');
-            controller.goToDynamicScreen(
-              '58'.tr,
-              posts: controller.filteredPosts,
+          onGalleryTap:()async {
+            await  controller.getFilteredPosts(tag: 'social');
+            controller.goToDynamicScreen('65'.tr, posts:controller.filteredPosts,
             );
           },
-          onHomeTap: () {
-            if (Get.currentRoute == AppRoute.homeScreen) {
-              controller.scrollToTop();
-            } else {
-              Get.offNamed(AppRoute.homeScreen);
-            }
-          },
-          onSettingsTap: () {
-            if (Get.currentRoute == AppRoute.homeScreen) {
-              Get.toNamed(AppRoute.settingsScreen);
-            } else {
-              Get.offNamed(AppRoute.settingsScreen);
-            }
-          },
+          onHomeTap:controller.scrollToTopOrGoHome,
+          onSettingsTap:controller.goToSettingsScreen,
+          onProfieTap:  controller.goToProfilePage,
         ),
         body: GetBuilder<HomeControllerImp>(
           builder: (controller) => HandlingDataRequest(

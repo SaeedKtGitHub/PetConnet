@@ -5,7 +5,7 @@ class SettingTile extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  SettingTile({required this.text, required this.onPressed});
+  const SettingTile({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class SettingTile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           ),
-          trailing: Icon(Icons.arrow_forward), // Left arrow at the end
+          trailing: const Icon(Icons.arrow_forward), // Left arrow at the end
 
         ),
       ),

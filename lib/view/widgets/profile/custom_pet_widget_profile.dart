@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/link_api.dart';
@@ -14,7 +12,7 @@ class CustomPetWidgetProfile extends StatelessWidget {
     required this.petImage,
     required this.petName,
     required this.onPressed,
-    required this.onRemovePet,
+     this.onRemovePet,
   }) : super(key: key);
 
   //final String petIcon;
@@ -41,7 +39,8 @@ class CustomPetWidgetProfile extends StatelessWidget {
                       NetworkImage("${AppLink.linkImageRoot}/$petImage"),
                 ),
               ),
-              InkWell(
+             if(onRemovePet!=null)
+               InkWell(
                 onTap: onRemovePet,
                 child: CircleAvatar(
                   backgroundColor: AppColor.primaryColor,

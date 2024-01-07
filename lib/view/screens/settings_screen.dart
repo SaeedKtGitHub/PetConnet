@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
-import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/link_api.dart';
 import 'package:get/get.dart';
@@ -16,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeControllerImp controller=  Get.put(HomeControllerImp());
+
     MyServices myServices = Get.find();
     HomeControllerImp homeController = Get.put(HomeControllerImp());
 
@@ -26,32 +25,18 @@ class SettingsScreen extends StatelessWidget {
       floatingActionButton: CustomFloatingActionButton(onPressed: homeController.showChoosePostTypePopUp),
 
       //bottomNavigationBar
-      bottomNavigationBar:  CustomBottomNavigationBar(
-        currentIndex: controller.currentNavIndex,
-        onItemTapped: controller.onItemTapped,
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: homeController.currentNavIndex,
+        onItemTapped: homeController.onItemTapped,
         onGalleryTap:()async {
-          await  controller.getFilteredPosts(tag: 'social');
-                controller.goToDynamicScreen('58'.tr, posts:controller.filteredPosts,
-                );
+          await  homeController.getFilteredPosts(tag: 'social');
+          homeController.goToDynamicScreen('65'.tr, posts:homeController.filteredPosts,
+          );
         },
-        onHomeTap: () {
-          if (Get.currentRoute ==AppRoute.homeScreen) {
-            controller.scrollToTop();
-          } else {
-            Get.offNamed(AppRoute.homeScreen);
-          }
-        },
-        onSettingsTap: (){
-          if (Get.currentRoute ==AppRoute.homeScreen) {
-            Get.toNamed(AppRoute.settingsScreen);
-          }else{
-            Get.offNamed(AppRoute.settingsScreen);
-
-          }
-
-        },
-      ),
-      body: SafeArea(
+        onHomeTap:homeController.scrollToTopOrGoHome,
+        onSettingsTap:homeController.goToSettingsScreen,
+        onProfieTap:  homeController.goToProfilePage,
+      ),      body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -72,7 +57,7 @@ class SettingsScreen extends StatelessWidget {
                                width: 25.w,
                              ),
                            ),
-                           Spacer(),
+                           const Spacer(),
                            //username and profile
                          Row(
                                children: [
@@ -90,11 +75,11 @@ class SettingsScreen extends StatelessWidget {
                                  ),
                                  //user profile :
                                  CircleAvatar(
-                                   backgroundImage: controller.currentUser.profilePic == null
+                                   backgroundImage: homeController.currentUser.profilePic == null
                                        ? null
-                                       : NetworkImage("${AppLink.linkImageRoot}/${controller.currentUser.profilePic}"),
+                                       : NetworkImage("${AppLink.linkImageRoot}/${homeController.currentUser.profilePic}"),
                                    radius: 16.h, // Adjust the radius as needed
-                                   child: controller.currentUser.profilePic == null
+                                   child: homeController.currentUser.profilePic == null
                                        ? Icon(
                                      Icons.person,
                                      color: AppColor.primaryColor,

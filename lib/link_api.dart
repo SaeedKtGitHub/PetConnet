@@ -19,4 +19,10 @@ class AppLink {
   static String addPhone = "$server/users/addPhone";
   static String privacyPolicy = "$server/privacypolicy";
   static String termsCondition = "$server/termsofuse";
+  static String getUserPosts = "$server/users/getPosts";
+  static String removePost = "$server/posts/delete";
+  static String addComment = "$server/posts/addComment";
+  static String getComments = "$server/posts/getComments";
+  static String deleteComment = "$server/posts/deleteComment";
+  static String likeOrDislike = "$server/posts/like";
 }

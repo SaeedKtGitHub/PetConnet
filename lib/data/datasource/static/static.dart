@@ -71,6 +71,7 @@ List<SlideShow> slides = [
 //   ),
 //   // Add more posts as needed
 // ];
+
 // Temp user data for test purposes
 List<UserModel> users = [
   UserModel(
@@ -160,3 +161,56 @@ enum postsTags {
   lost,
   social,
 }
+
+
+    //  List<CommentModel> getDemoComments() {
+    // return [
+    // CommentModel(
+    // userID: '1',
+    // name: 'Saeed',
+    // content: 'This is the first comment.',
+    // profilePic: '',
+    // date: '2022-01-01',
+    // ),
+    // CommentModel(
+    // userID: '2',
+    // name: 'Ahmad',
+    // content: 'This is the second comment.',
+    // profilePic: '',
+    // date: '2022-01-02',
+    // ),
+    // CommentModel(
+    // userID: '3',
+    // name: 'Hassan',
+    // content: 'This is the third comment.',
+    // profilePic: '',
+    // date: '2022-01-03',
+    // ),
+    //   CommentModel(
+    //     userID: '3',
+    //     name: 'Hassan',
+    //     content: 'This is the third comment.',
+    //     profilePic: '',
+    //     date: '2022-01-03',
+    //   ), CommentModel(
+    //     userID: '3',
+    //     name: 'Hassan',
+    //     content: 'This is the third comment.',
+    //     profilePic: '',
+    //     date: '2022-01-03',
+    //   ), CommentModel(
+    //     userID: '3',
+    //     name: 'Hassan',
+    //     content: 'This is the third comment.',
+    //     profilePic: '',
+    //     date: '2022-01-03',
+    //   ),
+    //   CommentModel(
+    //     userID: '3',
+    //     name: 'Hassan',
+    //     content: 'This is the third comment.',
+    //     profilePic: '',
+    //     date: '2022-01-03',
+    //   ),
+    // ];
+    // }

@@ -10,20 +10,53 @@ import 'package:pet_connect/view/widgets/home/custom_button.dart';
 class PostWidget extends StatefulWidget {
   final PostModel post;
   final void Function()? onImageTap;
+  final void Function()? onDeletePost;
+  final void Function()? onLikeTap;
+  final void Function()? onCommentTap;
+  final void Function()? onProfilePicTap;
 
   const PostWidget({
     super.key,
     required this.post,
-    required this.onImageTap
-  });
+    required this.onImageTap,
+    required this.onDeletePost,
+    required this.onLikeTap,
+    required this.onCommentTap,
+    required this.onProfilePicTap,
+
+});
+
 
   @override
   State<PostWidget> createState() => _PostWidgetState();
+
 }
 
 class _PostWidgetState extends State<PostWidget> {
+  bool isLike=false;
+  int numberOfLikes=0;
+  get getNumberOfLikes =>numberOfLikes.toString();
+
   @override
+  void initState() {
+    // TODO: implement initState
+    isLike= widget.post.likes!.contains(currentUserId);
+    numberOfLikes=widget.post.likes!.length;
+    super.initState();
+  }
+
+
+    @override
   Widget build(BuildContext context) {
+       // Toggle like:
+      void toggleLike() {
+
+        setState(() {
+          numberOfLikes += isLike ? -1 : 1;
+          isLike = !isLike;
+        });
+       // widget.onLikeTap;// Assuming this method triggers a rebuild in your setup
+      }
     return Padding(
       padding: EdgeInsets.all(8.0.h),
       child: Column(
@@ -47,30 +80,48 @@ class _PostWidgetState extends State<PostWidget> {
             height: 2.h,
           ),
 
-          //The image
-
-          // ClipRRect(
-          //   borderRadius: BorderRadius.circular(5.0.h),
-          //   child: NetworkImage(
-          //    // 'linkImageRoot/widget.post.image!',
-          //     "${AppLink.linkImageRoot}/${controller.post.profilePic}"
-          //     width: 340.w,
-          //     height: 230.h,
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
-          GestureDetector(
-            onTap: widget.onImageTap,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5.0.h),
-              child: Image.network(
-                // 'linkImageRoot/widget.post.image!',
-                "${AppLink.linkImageRoot}/${widget.post.image}",
-                width: 340.w,
-                height: 230.h,
-                fit: BoxFit.cover,
+          //The post image
+          Stack(
+            children: [
+              // Image
+              GestureDetector(
+                onTap: widget.onImageTap,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5.0.h),
+                  child: Image.network(
+                    "${AppLink.linkImageRoot}/${widget.post.image}",
+                    width: 340.w,
+                    height: 230.h,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+
+
+              // Delete icon (x) at the top right
+              //to enable the user owner to delete his posts
+              if(widget.post.userID==currentUserId)
+              Positioned(
+                top: 6.0.h,
+                right: 8.0.w,
+                child: GestureDetector(//to delete the post
+                  onTap: widget.onDeletePost,
+                  child: Container(
+                    height: 30.h,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColor.primaryColor, // Customize the delete icon color
+                    ),
+                    //padding: EdgeInsets.all(8.0.h),
+                    child: Icon(
+                      Icons.clear,
+                      color: Colors.white, // Customize the delete icon color
+                      size: 23.h, // Customize the delete icon size
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
 
           SizedBox(
@@ -92,18 +143,21 @@ class _PostWidgetState extends State<PostWidget> {
                 //     size: 21.h, // Adjust the icon size as needed
                 //   ),
                 // ),
-                CircleAvatar(
-                  backgroundImage: widget.post.profilePic == null
-                      ? null
-                      : NetworkImage("${AppLink.linkImageRoot}/${widget.post.profilePic}"),
-                  radius: 16.h, // Adjust the radius as needed
-                  child: widget.post.profilePic == null
-                      ? Icon(
-                    Icons.person,
-                    color: AppColor.primaryColor,
-                    size: 24.h, // Adjust the icon size as needed
-                  )
-                      : null,  // No child for non-null profilePic
+                GestureDetector(
+                  onTap: widget.onProfilePicTap,
+                  child: CircleAvatar(
+                    backgroundImage: widget.post.profilePic == null
+                        ? null
+                        : NetworkImage("${AppLink.linkImageRoot}/${widget.post.profilePic}"),
+                    radius: 16.h, // Adjust the radius as needed
+                    child: widget.post.profilePic == null
+                        ? Icon(
+                      Icons.person,
+                      color: AppColor.primaryColor,
+                      size: 24.h, // Adjust the icon size as needed
+                    )
+                        : null,  // No child for non-null profilePic
+                  ),
                 ),
                 SizedBox(
                   width: 3.w,
@@ -129,6 +183,7 @@ class _PostWidgetState extends State<PostWidget> {
                 ),
                 SizedBox(
                   width: 3.w,
+
                 ),
                 //The animal icon
                 //  Image.asset(
@@ -149,46 +204,82 @@ class _PostWidgetState extends State<PostWidget> {
           SizedBox(
             height: 10.h,
           ),
-          widget.post.tag != 'social' ?
-          Row(
-            children: [
-              if(widget.post.tag =='trading')
 
-                //Price text
-              Padding(
-                padding: EdgeInsets.only(right: 13.0.w),
-                child: Row(
-                  children: [
-                    Text(
-                      'السعر: ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                    Text(
-                      ' ${widget.post.price.toString()} دأ ',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: AppColor.primaryColor,
-                      ),
+          Padding(
+            padding:  EdgeInsets.only(left:10.w,right: 10.w),
+            child: Row(
+              children: [
+                //like icon (love)
+                GestureDetector(
+                  onTap: () {
+                    toggleLike();
+                    widget.onLikeTap?.call(); // Call the onLikeTap callback
+                  },
+              // toggleLike;
+              // widget.onLikeTap;
+                  child: isLike==true
+                      ? Icon(Icons.favorite, size: 20.h, color: AppColor.primaryColor)
+                      : Icon(Icons.favorite_outline, size: 20.h),
+                ),
+                SizedBox(width:2.w ,),
+                //like number
+                Text(getNumberOfLikes),
+                SizedBox(width:10.w ,),
+                //comment  icon
+                GestureDetector(
+                    onTap: widget.onCommentTap,
+                    child: Icon(Icons.comment_outlined,size: 20.h,)),
+                SizedBox(width:2.w ,),
+                //comment  number
+                Text(widget.post.comments!.length.toString()),
+                const Spacer(),
+
+                widget.post.tag != 'social' ?
+                Row(
+                      children: [
+                        if(widget.post.tag =='trading')
+                        //Price text row
+                          Padding(
+                              padding: EdgeInsets.only(left: 8.0.w),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'السعر: ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14.sp,
+                                    ),
+                                  ),
+                                  Text(
+                                    ' ${widget.post.price.toString()} دأ ',
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: AppColor.primaryColor,
+                                    ),
+                                  )
+                                ],
+                              )
+                          ),
+                        //contact me button
+                        Padding(
+                          padding:  EdgeInsets.only(left: 1.0.w),
+                          child: CustomButton(
+                              onPressed: () {
+
+                              }, buttonText: '67'.tr),
+                        ),
+                      ],
                     )
-                  ],
-                )
-              ),
-              const Spacer(),
-              //contact me button
-              Padding(
-                padding:  EdgeInsets.only(left: 13.0.w),
-                child: CustomButton(
-                    onPressed: () {
-                    }, buttonText: '67'.tr),
-              ),
-            ],
-          )
 
-              ://not social
-              Container(),
+
+                    ://not social
+                Container(),
+
+
+              ],
+            ),
+          ),
+
 
 
           SizedBox(

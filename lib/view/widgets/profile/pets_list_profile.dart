@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pet_connect/controller/profile_controller.dart';
+import 'package:pet_connect/controller/profile/profile_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/data/model/pet_model.dart';
 import 'package:pet_connect/view/widgets/profile/custom_pet_widget_profile.dart';

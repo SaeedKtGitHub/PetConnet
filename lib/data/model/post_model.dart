@@ -1,4 +1,6 @@
 
+
+import 'package:pet_connect/data/model/comment.dart';
 import 'package:pet_connect/data/model/pet_model.dart';
 
 class PostModel {
@@ -15,6 +17,9 @@ class PostModel {
   String? tag;
   PetModel? petModel;
   double ? price;
+  List<String>? likes;//list of userids
+  List<CommentModel>? comments;
+
   PostModel(
       {this.userID,
       this.postID,
@@ -29,6 +34,8 @@ class PostModel {
        this.tag,
         this.petModel,
         this.price,
+        this.likes,
+        this.comments,
       });
 
   //After editing (according to json response) :
@@ -46,7 +53,16 @@ class PostModel {
     tag=json['tag'];
     petModel=PetModel.fromJson(json['petID']);
     price = json['price']?.toDouble();
-
+     likes = List<String>.from(json['likes'] ?? []);
+     //comments=List<CommentModel>.from(json['comments']);
+        if (json['comments'] != null) {
+          comments = (json['comments'] as List<dynamic>)
+              .map((commentJson) => CommentModel.fromJson(commentJson))
+              .toList()
+              .cast<CommentModel>();
+        } else {
+          comments = [];
+        }
 
   }
   // PostModel.fromJson(Map<String, dynamic> json) {
