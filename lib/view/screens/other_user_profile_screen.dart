@@ -27,11 +27,12 @@ class OtherUserProfileScreen extends StatefulWidget {
 }
 
 class _OtherUserProfileScreenState extends State<OtherUserProfileScreen> {
+
   @override
   Widget build(BuildContext context) {
     Get.put(OtherUserProfileControllerImp(widget.userId));
    // HomeControllerImp homeController = Get.find<HomeControllerImp>();
-    HomeControllerImp homeController = Get.put(HomeControllerImp());
+    HomeControllerImp homeController = Get.find<HomeControllerImp>();
 
     // Get.lazyPut(()=>HomeControllerImp());
     MyServices myServices = Get.find();

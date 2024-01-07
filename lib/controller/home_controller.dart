@@ -204,7 +204,8 @@ class HomeControllerImp extends HomeController {
   goToProfilePage() {
     // TODO: implement goToProfilePage
     if (Get.currentRoute != AppRoute.profileScreen) {
-      Get.offNamed(AppRoute.profileScreen,arguments: {"screenName": "home"});
+     // Get.offNamed(AppRoute.profileScreen,arguments: {"screenName": "home"});
+      Get.offNamed(AppRoute.profileScreen);
     }
   }
 

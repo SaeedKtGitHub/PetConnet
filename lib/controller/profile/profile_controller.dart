@@ -43,7 +43,7 @@ class ProfileControllerImp extends ProfileController {
   List<PostModel> userPosts = [];
 
   //TEST
-  var argData = Get.arguments['screenName'];
+  //var argData = Get.arguments['screenName'];
   //TEST
   @override
   backToHomeScreen() {

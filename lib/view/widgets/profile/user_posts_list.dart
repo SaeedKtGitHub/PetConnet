@@ -18,9 +18,18 @@ class UserPostsList extends StatefulWidget {
 }
 
 class _UserPostsListState extends State<UserPostsList> {
+  @override
+  void initState() {
+    super.initState();
+    // Lazy initialize CommentsControllerImp
+    Get.lazyPut(() => CommentsControllerImp());
+    // Retrieve the instance of CommentsControllerImp
+    commentsControllerImp = Get.find<CommentsControllerImp>();
+  }
   final HomeControllerImp homeController = Get.find<HomeControllerImp>(); // Get instance of HomeController
    final ProfileControllerImp controller = Get.find<ProfileControllerImp>();
-   final CommentsControllerImp commentsControllerImp = Get.find<CommentsControllerImp>();
+  late CommentsControllerImp commentsControllerImp;
+
   @override
 
   Widget build(BuildContext context) {

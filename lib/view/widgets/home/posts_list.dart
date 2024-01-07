@@ -17,8 +17,19 @@ class PostsList extends StatefulWidget {
 }
 
 class _PostsListState extends State<PostsList> {
+  @override
+  void initState() {
+    super.initState();
+    // Check if commentsControllerImp is already initialized
+    if (!Get.isRegistered<CommentsControllerImp>()) {
+      // Lazy initialize if not already initialized
+      Get.lazyPut(() => CommentsControllerImp());
+    }
+    // Retrieve the instance of CommentsControllerImp
+    commentsControllerImp = Get.find<CommentsControllerImp>();
+  }
   final HomeControllerImp controller = Get.find<HomeControllerImp>();
-  CommentsControllerImp commentsControllerImp = Get.put<CommentsControllerImp>(CommentsControllerImp());
+  late CommentsControllerImp commentsControllerImp ;
 
   @override
 

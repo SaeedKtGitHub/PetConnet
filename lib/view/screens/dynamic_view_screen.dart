@@ -24,10 +24,22 @@ class DynamicViewScreen extends StatefulWidget {
 }
 
 class _DynamicViewScreenState extends State<DynamicViewScreen> {
+  late CommentsControllerImp commentsControllerImp;
+
+  @override
+  void initState() {
+    super.initState();
+    // Check if commentsControllerImp is already initialized
+    if (!Get.isRegistered<CommentsControllerImp>()) {
+      // Lazy initialize if not already initialized
+      Get.lazyPut(() => CommentsControllerImp());
+    }
+    // Retrieve the instance of CommentsControllerImp
+    commentsControllerImp = Get.find<CommentsControllerImp>();
+  }
   @override
   Widget build(BuildContext context) {
     HomeControllerImp homeController = Get.find<HomeControllerImp>();
-    CommentsControllerImp commentsControllerImp = Get.find<CommentsControllerImp>();
 
     return Scaffold(
 

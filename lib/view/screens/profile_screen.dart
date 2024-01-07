@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileControllerImp());
-    HomeControllerImp homeController = Get.find<HomeControllerImp>();
+    HomeControllerImp homeController = Get.put(HomeControllerImp());
     MyServices myServices = Get.find();
     return Scaffold(
       //FAB
