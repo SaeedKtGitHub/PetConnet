@@ -31,31 +31,18 @@ class SettingsScreen extends StatelessWidget {
       floatingActionButton: CustomFloatingActionButton(
           onPressed: homeController.showChoosePostTypePopUp),
 
-      //bottomNavigationBar
+      //bottomNavigationBar:
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: controller.currentNavIndex,
         onItemTapped: controller.onItemTapped,
-        onGalleryTap: () async {
-          await controller.getFilteredPosts(tag: 'social');
-          controller.goToDynamicScreen(
-            '58'.tr,
-            posts: controller.filteredPosts,
+        onGalleryTap:()async {
+          await  controller.getFilteredPosts(tag: 'social');
+          controller.goToDynamicScreen('65'.tr, posts:controller.filteredPosts,
           );
         },
-        onHomeTap: () {
-          if (Get.currentRoute == AppRoute.homeScreen) {
-            controller.scrollToTop();
-          } else {
-            Get.offNamed(AppRoute.homeScreen);
-          }
-        },
-        onSettingsTap: () {
-          if (Get.currentRoute == AppRoute.homeScreen) {
-            Get.toNamed(AppRoute.settingsScreen);
-          } else {
-            Get.offNamed(AppRoute.settingsScreen);
-          }
-        },
+        onHomeTap:controller.scrollToTopOrGoHome,
+        onSettingsTap:controller.goToSettingsScreen,
+        onProfieTap:  controller.goToProfilePage,
       ),
       body: SafeArea(
           child: SingleChildScrollView(
