@@ -45,14 +45,16 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: CustomBottomNavigationBar(
           currentIndex: controller.currentNavIndex,
           onItemTapped: controller.onItemTapped,
-          onGalleryTap:()async {
-            await  controller.getFilteredPosts(tag: 'social');
-            controller.goToDynamicScreen('65'.tr, posts:controller.filteredPosts,
+          onGalleryTap: () async {
+            await controller.getFilteredPosts(tag: 'social');
+            controller.goToDynamicScreen(
+              '65'.tr,
+              posts: controller.filteredPosts,
             );
           },
-          onHomeTap:controller.scrollToTopOrGoHome,
-          onSettingsTap:controller.goToSettingsScreen,
-          onProfieTap:  controller.goToProfilePage,
+          onHomeTap: controller.scrollToTopOrGoHome,
+          onSettingsTap: controller.goToSettingsScreen,
+          onProfieTap: controller.goToProfilePage,
         ),
         body: WillPopScope(
           onWillPop: alertExitApp,
