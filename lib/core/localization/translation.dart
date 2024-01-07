@@ -86,7 +86,7 @@ class MyTranslation extends Translations {
           "78": "الذهاب لتسجيل الدخول",
           "79": "رمز التحقق",
           "80": "التحقق من الرمز",
-          "81": "الرجاء إدخال الرمز الرقمي المرسل إلى "
+          "81": "الرجاء إدخال الرمز الرقمي المرسل إلى ",
           "82": "",
           "83": "",
           "84": "",
@@ -104,9 +104,6 @@ class MyTranslation extends Translations {
           "96": "",
           "97": "",
           "98": "",
-
-
-
         },
         "en": {
           //AUTH
@@ -192,7 +189,7 @@ class MyTranslation extends Translations {
           "78": "Go To Login",
           "79": "Verification Code",
           "80": "Check code",
-          "81": "Please Enter The Digit Code Sent To "
+          "81": "Please Enter The Digit Code Sent To ",
           "82": "",
           "83": "",
           "84": "",
@@ -210,8 +207,6 @@ class MyTranslation extends Translations {
           "96": "",
           "97": "",
           "98": "",
-
-
         }
       };
 }
