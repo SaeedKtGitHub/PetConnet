@@ -44,7 +44,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
                         value: _progress,
                       ),
                     )
-                  : SizedBox()
+                  : const SizedBox()
             ],
           ),
         ),

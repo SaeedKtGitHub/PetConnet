@@ -1,4 +1,3 @@
-import 'package:pet_connect/controller/auth/login_controller.dart';
 import 'package:pet_connect/controller/auth/signup_controller.dart';
 import 'package:pet_connect/core/class/handling_data_view.dart';
 import 'package:pet_connect/core/constant/color.dart';

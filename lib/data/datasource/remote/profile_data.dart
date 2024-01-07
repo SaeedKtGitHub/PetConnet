@@ -43,4 +43,25 @@ class ProfileData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  // getUserPosts
+  getUserPosts(String userId) async {
+    //TODO:Edit the method
+    var response = await crud.postDataList(AppLink.getUserPosts, {
+      "userID": userId,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
+  //remove post:
+  removePost(String userId, String postId) async {
+    var response = await crud.postData(AppLink.removePost, {
+      "postID": postId,
+      "userID": userId,
+
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
+
 }

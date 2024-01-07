@@ -4,6 +4,7 @@ import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:intl/intl.dart';
 import 'package:pet_connect/core/constant/routes.dart';
+import 'package:pet_connect/core/services/services.dart';
 
 String formattedDate(String isoDateString) {
   DateTime dateTime = DateTime.parse(isoDateString);
@@ -82,4 +83,16 @@ String? validatePhoneNumber(String value) {
   }
 
   return null;
+}
+
+//getCurrent user Id
+MyServices myServices = Get.find();
+String get currentUserId {
+  return myServices.sharedPreferences.getString("userID")!;
+}
+//gets the today date formatted as dd-mm-yy
+String getFormattedTodayDate() {
+  DateTime now = DateTime.now();
+  String formattedDate = "${now.day}-${now.month}-${now.year}";
+  return formattedDate;
 }

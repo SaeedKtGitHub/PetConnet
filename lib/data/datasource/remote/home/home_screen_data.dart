@@ -37,4 +37,26 @@ class HomeScreenData {
 
     return response.fold((error) => error, (data) => data);
   }
+
+  //remove post:
+  removePost(String userId, String postId) async {
+    var response = await crud.postData(AppLink.removePost, {
+      "postID": postId,
+      "userID": userId,
+
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
+  //like post:
+  likeOrDislike(String userId, String postId) async {
+    var response = await crud.postData(AppLink.likeOrDislike, {
+      "postID": postId,
+      "userID": userId,
+
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
+
 }

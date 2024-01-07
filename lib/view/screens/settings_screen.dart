@@ -4,7 +4,6 @@ import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/controller/settings_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
-import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/link_api.dart';
 import 'package:get/get.dart';

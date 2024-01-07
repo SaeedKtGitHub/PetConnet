@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pet_connect/controller/profile_controller.dart';
-import 'package:pet_connect/core/constant/color.dart';
+import 'package:pet_connect/controller/profile/profile_controller.dart';
 
 class UserDataRow extends StatelessWidget {
   const UserDataRow({Key? key, required this.icon, required this.text})

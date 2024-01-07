@@ -38,10 +38,8 @@ class CustomTextForm extends StatelessWidget {
         obscureText: obscureText == null || obscureText == false ? false : true,
         controller: myController,
         decoration: InputDecoration(
-            suffixText: suffixText != null ? suffixText : null,
-            prefixText: prefixText != null
-                ? prefixText
-                : null, //prefixText != null ? prefixText : null,
+            suffixText: suffixText,
+            prefixText: prefixText, //prefixText != null ? prefixText : null,
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: AppColor.primaryColor),
             ),

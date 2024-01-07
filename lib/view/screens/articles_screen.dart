@@ -23,7 +23,7 @@ class ArticlesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeControllerImp homeController = Get.put(HomeControllerImp());
+    HomeControllerImp homeController = Get.find<HomeControllerImp>();
     ArticlesControllerImp articlesController = Get.put(ArticlesControllerImp());
     return Scaffold(
 
@@ -37,7 +37,7 @@ class ArticlesScreen extends StatelessWidget {
         onItemTapped: homeController.onItemTapped,
         onGalleryTap:()async {
           await  homeController.getFilteredPosts(tag: 'social');
-          homeController.goToDynamicScreen('58'.tr, posts:homeController.filteredPosts,
+          homeController.goToDynamicScreen('65'.tr, posts:homeController.filteredPosts,
           );
         },
         onHomeTap: () {
@@ -56,6 +56,7 @@ class ArticlesScreen extends StatelessWidget {
           }
 
         },
+        onProfieTap:  homeController.goToProfilePage,
       ),
       body : SafeArea(
         child: GetBuilder<HomeControllerImp>(
@@ -87,7 +88,7 @@ class ArticlesScreen extends StatelessWidget {
                           ),
                           //The title (depending on filter (tag)):
                           Text(
-                            'أخر المقالات والأخبار',
+                            'آخر المقالات والأخبار',
                             //textDirection: TextDirection.rtl,
                             style: TextStyle(
                                 color: AppColor.black,

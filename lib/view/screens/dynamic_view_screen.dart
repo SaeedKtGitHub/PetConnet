@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pet_connect/controller/commentsController.dart';
 import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/core/class/handling_data_view.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
-import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/data/model/post_model.dart';
 import 'package:pet_connect/link_api.dart';
 import 'package:pet_connect/view/widgets/home/bottom_navigation_bar.dart';
@@ -13,49 +13,43 @@ import 'package:pet_connect/view/widgets/home/floating_action_button.dart';
 import 'package:pet_connect/view/widgets/home/post_widget.dart';
 
 
-class DynamicViewScreen extends StatelessWidget {
+class DynamicViewScreen extends StatefulWidget {
   final String title;
   final List<PostModel> posts;
 
   const DynamicViewScreen({super.key, required this.title, required this.posts});
 
   @override
+  State<DynamicViewScreen> createState() => _DynamicViewScreenState();
+}
+
+class _DynamicViewScreenState extends State<DynamicViewScreen> {
+  @override
   Widget build(BuildContext context) {
-    HomeControllerImp controller = Get.put(HomeControllerImp());
+    HomeControllerImp homeController = Get.find<HomeControllerImp>();
+    CommentsControllerImp commentsControllerImp = Get.find<CommentsControllerImp>();
+
     return Scaffold(
 
       //FAB
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CustomFloatingActionButton(onPressed: controller.showChoosePostTypePopUp),
+      floatingActionButton: CustomFloatingActionButton(onPressed: homeController.showChoosePostTypePopUp),
 
       //bottomNavigationBar
-      bottomNavigationBar:  CustomBottomNavigationBar(
-        currentIndex: controller.currentNavIndex,
-        onItemTapped: controller.onItemTapped,
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: homeController.currentNavIndex,
+        onItemTapped: homeController.onItemTapped,
         onGalleryTap:()async {
-          await  controller.getFilteredPosts(tag: 'social');
-          controller.goToDynamicScreen('58'.tr, posts:controller.filteredPosts,
+          await  homeController.getFilteredPosts(tag: 'social');
+          homeController.goToDynamicScreen('65'.tr, posts:homeController.filteredPosts,
           );
         },
-        onHomeTap: () {
-          if (Get.currentRoute ==AppRoute.homeScreen) {
-            controller.scrollToTop();
-          } else {
-            Get.offNamed(AppRoute.homeScreen);
-          }
-        },
-        onSettingsTap: (){
-          if (Get.currentRoute ==AppRoute.homeScreen) {
-            Get.toNamed(AppRoute.settingsScreen);
-          }else{
-            Get.offNamed(AppRoute.settingsScreen);
-
-          }
-
-        },
+        onHomeTap:homeController.scrollToTopOrGoHome,
+        onSettingsTap:homeController.goToSettingsScreen,
+        onProfieTap:  homeController.goToProfilePage,
       ),
       body : SafeArea(
-        child:posts.isNotEmpty ?  GetBuilder<HomeControllerImp>(
+        child:widget.posts.isNotEmpty ?  GetBuilder<HomeControllerImp>(
             builder: (controller)=>
                 HandlingDataRequest(
                  statusRequest: controller.statusRequest,
@@ -74,8 +68,8 @@ class DynamicViewScreen extends StatelessWidget {
                                 },
                                 child: Image.asset(
                                   AppImageAsset.backIcon,
-                                  height: 25.h,
-                                  width: 25.w,
+                                  height: 22.h,
+                                  width: 22.w,
                                 ),
                               ),
 
@@ -84,11 +78,11 @@ class DynamicViewScreen extends StatelessWidget {
                             ),
                             //The title (depending on filter (tag)):
                             Text(
-                              title,
+                              widget.title,
                               //textDirection: TextDirection.rtl,
                               style: TextStyle(
                                   color: AppColor.black,
-                                  fontSize: 19.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.bold),
                             ),
                             const Spacer(),
@@ -119,16 +113,79 @@ class DynamicViewScreen extends StatelessWidget {
                             child: ListView.builder(
                             //shrinkWrap: true,
                            // physics: const NeverScrollableScrollPhysics(),
-                            itemCount: posts.length,
+                            itemCount: widget.posts.length,
                             itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: PostWidget(
-                                post: posts[index],
+                                post: widget.posts[index],
                                 onImageTap:(){
-                                  controller.openPopUpPetInfo(petModel: posts[index].petModel!, index: index);
+                                  controller.openPopUpPetInfo(petModel: widget.posts[index].petModel!, index: index);
+                                },
+                                onDeletePost: ()async   {
+                                  Get.defaultDialog(
+                                    titleStyle: const TextStyle(color: AppColor.primaryColor),
+                                    middleTextStyle:
+                                    const TextStyle(color: AppColor.black, fontSize: 20),
+                                    title: 'تنبيه',
+                                    middleText: 'هل انت متاكد من  حذف هذا المنشور؟',
+                                    actions: [
+                                      //no button
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          child: const Text(
+                                            'لا',
+                                            style: TextStyle(
+                                              color: AppColor.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          )),
+                                      //yes button
+                                      ElevatedButton(
+                                          onPressed: () async  {
+                                            Get.back();
+
+                                            bool success = await controller.removePost(widget.posts[index].postID!);
+                                            controller.filteredPosts.remove(widget.posts[index]);
+                                            if (success) {
+                                              controller.filteredPosts.remove(widget.posts[index]);
+                                              //Get.back();
+                                              setState(() {
+                                              });
+                                            }
+
+
+
+                                          },
+                                          child: const Text(
+                                            'نعم',
+                                            style: TextStyle(
+                                              color: AppColor.primaryColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          )),
+                                    ],
+                                  );
+                                },
+                                  onLikeTap: (){
+                                    controller.likeOrDislikePost(widget.posts[index].postID!);
+                                  },
+                                  onCommentTap: (){
+                                    commentsControllerImp.setCurrentPostId(widget.posts[index].postID!);
+                                    commentsControllerImp.openCommentsScreen(commentsControllerImp.comments,widget.posts[index].postID!);
+                                    //commentsControllerImp.setCurrentPostId(widget.posts[index].postID!);
+                                    // controller.openCommentsScreen(widget.posts[index].comments!);
+                                  },
+                                onProfilePicTap: (){
+                                  controller.goToOtherProfilePage(
+                                    widget.posts[index].userID!,
+                                    widget.posts[index].profilePic!,
+                                    widget.posts[index].username!,);
                                 }
-                                ,
                               ),
                         );
                       },
