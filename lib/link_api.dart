@@ -5,6 +5,13 @@ class AppLink {
   //Auth
   static String signUp = "$server/users/addUser";
   static String login = "$server/users/login";
+  //update
+  static String verifyCodeSignUp = "$server/users/login";
+  static String resend = "$server/users/login";
+  static String checkEmail = "$server/users/login";
+  static String resetPassword = "$server/users/login";
+  static String verifyCodeForgetPassword = "$server/users/login";
+  //
   //POST
   static String addPost = "$server/posts/addPost";
   static String getUserPets = "$server/users/getPets";
