@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_connect/core/class/status_request.dart';
+import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
 import 'package:pet_connect/core/functions/show_bottom_snack_bar.dart';
@@ -109,6 +110,7 @@ class ProfileControllerImp extends ProfileController {
       '',
       duration: const Duration(seconds: 2),
       snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: AppColor.primaryColor,
       titleText: Text(
         "تم النسخ بنجاح",
         style: TextStyle(fontSize: 18.0.sp), // Adjust the font size as needed

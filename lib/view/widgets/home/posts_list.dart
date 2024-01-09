@@ -113,8 +113,13 @@ class _PostsListState extends State<PostsList> {
                   widget.posts[index].userID!,
                   widget.posts[index].profilePic!,
                   widget.posts[index].username!,);
-              }
-
+              },
+            onContactMeTap:(){
+              controller.openContactMeInfo(
+                  widget.posts[index].username!,
+                  widget.posts[index].userPhone!,
+                  widget.posts[index].profilePic!);
+            }
 
           ),
         );

@@ -1,5 +1,5 @@
 class AppLink {
-  static String server = "http://149.200.255.255:47055";
+  static String server = "http://94.249.3.247:48540";
   static String linkImageRoot = "$server/uploads/images";
 
   //Auth

@@ -19,6 +19,7 @@ class PostModel {
   double ? price;
   List<String>? likes;//list of userids
   List<CommentModel>? comments;
+  String? userPhone;
 
   PostModel(
       {this.userID,
@@ -36,6 +37,7 @@ class PostModel {
         this.price,
         this.likes,
         this.comments,
+        this.userPhone,
       });
 
   //After editing (according to json response) :
@@ -54,7 +56,7 @@ class PostModel {
     petModel=PetModel.fromJson(json['petID']);
     price = json['price']?.toDouble();
      likes = List<String>.from(json['likes'] ?? []);
-     //comments=List<CommentModel>.from(json['comments']);
+        //comments:
         if (json['comments'] != null) {
           comments = (json['comments'] as List<dynamic>)
               .map((commentJson) => CommentModel.fromJson(commentJson))
@@ -63,6 +65,7 @@ class PostModel {
         } else {
           comments = [];
         }
+      userPhone = json['userID']['phone'];
 
   }
   // PostModel.fromJson(Map<String, dynamic> json) {
@@ -90,7 +93,7 @@ class PostModel {
     data['tag']=tag;
     data['petID']=petModel;
     data['price']=price;
-
+    data['userID']['phone']=userPhone;
     return data;
   }
 }

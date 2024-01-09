@@ -41,7 +41,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         onGalleryTap:()async {
           await  homeController.getFilteredPosts(tag: 'social');
           homeController.goToDynamicScreen('65'.tr, posts:homeController.filteredPosts,
+              tag:"social"
+
           );
+          homeController.resetSearchRefresh();
         },
         onHomeTap:homeController.scrollToTopOrGoHome,
         onSettingsTap:homeController.goToSettingsScreen,

@@ -67,7 +67,7 @@ final void Function()? onDeleteComment;
               if(currentUserId==commentModel.userID)
               GestureDetector(
                   onTap: onDeleteComment,
-                  child: const Icon(Icons.dangerous_sharp)),
+                  child:  Icon(Icons.dangerous_sharp,color: Colors.grey[500],)),
             ],
           ),
           SizedBox(height: 10.h),

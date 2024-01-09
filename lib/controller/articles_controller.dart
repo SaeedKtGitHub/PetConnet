@@ -15,6 +15,8 @@ class ArticlesControllerImp extends ArticlesController {
   ArticlesScreenData articlesScreenData = ArticlesScreenData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
   List<ArticleModel> articles=[];
+  List<ArticleModel> filteredArticles=[];
+  bool isSearching = false;
 
   @override
   getAllArticles() async {
@@ -50,6 +52,35 @@ class ArticlesControllerImp extends ArticlesController {
    getAllArticles();
    //print(articles.length);
     super.onInit();
+  }
+
+  @override
+  void searchArticles(String query) {
+    if (query.isEmpty) {
+      // If the query is empty, show all posts
+      filteredArticles = articles.toList(); // Assign a copy of all articles
+    } else {
+      // Filter posts based on the search query within the already filteredPosts
+      filteredArticles = articles.where((article) {
+        bool titleMatch =
+            article.title != null && article.title!.toLowerCase().contains(query.toLowerCase());
+        bool authorNameMatch =
+            article.author != null && article.author!.toLowerCase().contains(query.toLowerCase());
+        return titleMatch || authorNameMatch;
+      }).toList();
+    }
+   // print("What what what");
+   // print("1/9/2024 Saeed");
+    update();
+  }
+  void  cancelSearch(){
+    isSearching = false;
+    resetSearch();
+    update();
+  }
+  void resetSearch() {
+    filteredArticles.clear();
+    update();
   }
 
 }

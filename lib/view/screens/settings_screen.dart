@@ -4,6 +4,7 @@ import 'package:pet_connect/controller/home_controller.dart';
 import 'package:pet_connect/controller/settings_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
+import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/link_api.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,10 @@ class SettingsScreen extends StatelessWidget {
         onGalleryTap:()async {
           await  controller.getFilteredPosts(tag: 'social');
           controller.goToDynamicScreen('65'.tr, posts:controller.filteredPosts,
+              tag:"social"
+
           );
+          homeController.resetSearchRefresh();
         },
         onHomeTap:controller.scrollToTopOrGoHome,
         onSettingsTap:controller.goToSettingsScreen,
@@ -58,13 +62,13 @@ class SettingsScreen extends StatelessWidget {
                 children: [
                   //back Icon:
                   InkWell(
-                    onTap: () {
-                      Get.back();
+                    onTap: (){
+                      Get.offNamed(AppRoute.homeScreen);
                     },
                     child: Image.asset(
                       AppImageAsset.backIcon,
-                      height: 25.h,
-                      width: 25.w,
+                      height: 22.h,
+                      width: 22.w,
                     ),
                   ),
                   Spacer(),

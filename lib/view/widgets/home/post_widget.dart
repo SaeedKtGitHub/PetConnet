@@ -14,6 +14,7 @@ class PostWidget extends StatefulWidget {
   final void Function()? onLikeTap;
   final void Function()? onCommentTap;
   final void Function()? onProfilePicTap;
+  final void Function()? onContactMeTap;
 
   const PostWidget({
     super.key,
@@ -23,6 +24,7 @@ class PostWidget extends StatefulWidget {
     required this.onLikeTap,
     required this.onCommentTap,
     required this.onProfilePicTap,
+    required this.onContactMeTap,
 
 });
 
@@ -264,9 +266,10 @@ class _PostWidgetState extends State<PostWidget> {
                         Padding(
                           padding:  EdgeInsets.only(left: 1.0.w),
                           child: CustomButton(
-                              onPressed: () {
-
-                              }, buttonText: '67'.tr),
+                              onPressed:(){
+                                widget.onContactMeTap!.call();
+                              },
+                              buttonText: '67'.tr),
                         ),
                       ],
                     )

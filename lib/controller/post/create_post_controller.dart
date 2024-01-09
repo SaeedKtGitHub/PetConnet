@@ -193,7 +193,7 @@ class CreatePostControllerImp extends CreatePostController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // print('ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
-          Get.delete<CreatePostControllerImp>();
+          //Get.delete<CreatePostControllerImp>();
           homeControllerImp.refreshPage();
           Get.offNamed(AppRoute.homeScreen);
         } else {

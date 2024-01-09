@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pet_connect/controller/articles_controller.dart';
 import 'package:pet_connect/controller/commentsController.dart';
 import 'package:pet_connect/core/class/status_request.dart';
+import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
 import 'package:pet_connect/core/services/services.dart';
@@ -16,6 +19,7 @@ import 'package:pet_connect/view/screens/comments_screen.dart';
 import 'package:pet_connect/view/screens/dynamic_view_screen.dart';
 import 'package:pet_connect/view/screens/other_user_profile_screen.dart';
 import 'package:pet_connect/view/widgets/home/build_image_with_text.dart';
+import 'package:pet_connect/view/widgets/home/contact_info_popup.dart';
 import 'package:pet_connect/view/widgets/pet_data_popup.dart';
 import 'package:pet_connect/view/widgets/pop_up_chose_post_type.dart';
 
@@ -23,7 +27,7 @@ abstract class HomeController extends GetxController {
   getUserData();
   getAllPosts();
   goToAllArticlesScreen();
-  goToDynamicScreen(String title, {required List<PostModel> posts});
+  goToDynamicScreen(String title, {required List<PostModel> posts, required String tag});
   refreshPage();
   getFilteredPosts({
     required String tag,
@@ -36,6 +40,8 @@ abstract class HomeController extends GetxController {
  // removePost({required int index});
   goToOtherProfilePage(String userId,String userProfilePath,String username);
   likeOrDislikePost(String postId);
+   openContactMeInfo(String username,String phone,String imagePath);
+  copyText(String text);
 
 }
 
@@ -47,6 +53,9 @@ class HomeControllerImp extends HomeController {
   List<PostModel> allPosts = [];
   List<PostModel> filteredPosts = [];
   final ScrollController _scrollController = ScrollController();
+  List<PostModel> searchResults = [];
+  bool isSearchingInHome = false;
+  bool isSearchingInDynamic = false;
 
   ScrollController get scrollController => _scrollController;
 
@@ -126,7 +135,6 @@ class HomeControllerImp extends HomeController {
         statusRequest = StatusRequest.failure;
       }
     }
-    print(filteredPosts.length);
     update();
   }
 
@@ -156,6 +164,8 @@ class HomeControllerImp extends HomeController {
   @override
   goToAllArticlesScreen() {
     // TODO: implement goToAllArticlesScreen
+    ArticlesControllerImp articlesControllerImp=Get.find<ArticlesControllerImp>();
+    articlesControllerImp.isSearching=false;
     Get.toNamed(AppRoute.articlesScreen);
   }
 
@@ -168,9 +178,9 @@ class HomeControllerImp extends HomeController {
   }
 
   @override
-  goToDynamicScreen(String title, {required List<PostModel> posts}) {
+  goToDynamicScreen(String title, {required List<PostModel> posts,String? tag}) {
     // TODO:
-    Get.to(() => DynamicViewScreen(title: title, posts: posts));
+    Get.to(() => DynamicViewScreen(title: title, posts: posts, tag: tag));
   }
 
   @override
@@ -178,7 +188,11 @@ class HomeControllerImp extends HomeController {
     // TODO: implement refresgPage
     getAllPosts();
   }
-
+  resetSearchRefresh(){
+    isSearchingInHome=false;
+    isSearchingInDynamic=false;
+    update();
+  }
   @override
   void openPopUpPetInfo({required PetModel petModel, required int index}) {
     Get.dialog(
@@ -281,12 +295,14 @@ class HomeControllerImp extends HomeController {
     } else {
       // Go to home screen
       Get.offNamed(AppRoute.homeScreen);
+      resetSearchRefresh();
     }
   }
   void goToSettingsScreen() {
     if (Get.currentRoute != AppRoute.settingsScreen) {
       Get.offNamed(AppRoute.settingsScreen);
     }
+    update();
   }
 
   @override
@@ -315,5 +331,89 @@ class HomeControllerImp extends HomeController {
     return false;
 
   }
+  @override
+  void copyText(String text) {
+    Clipboard.setData(ClipboardData(text: text));
+    Get.snackbar(
+      "تم النسخ بنجاح",
+      '',
+      duration: const Duration(seconds: 2),
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: AppColor.primaryColor,
+      titleText: Text(
+        "تم النسخ بنجاح",
+        style: TextStyle(fontSize: 18.0.sp), // Adjust the font size as needed
+      ),
+    );
+  }
+  @override
+  openContactMeInfo(String username, String phone, String imagePath) {
+    Get.dialog(
+      Dialog(
+        child:ContactInfoPopup(
+            phone: phone,
+            username: username,
+            imagePath: imagePath,
+             onCopyText:(){
+               copyText(phone);
+             },
+        ),
+      ),
+    );
+  }
+  void resetSearch() {
+    searchResults.clear();
+    update();
+  }
+  @override
+  void searchPosts(String query) {
+    print('searchhhh $query');
+    if (query.isEmpty) {
+      // If the query is empty, show all posts
+      if(Get.currentRoute==AppRoute.homeScreen){
+        searchResults=allPosts.toList();
+      }else {
+        searchResults=filteredPosts.toList();//dynamic screen (Filters screens)
+
+      }
+
+    } else {
+      // Filter posts based on the search query within the already filteredPosts
+      searchResults.clear();
+      if(Get.currentRoute==AppRoute.homeScreen){
+        searchResults = allPosts
+            .where((post) {
+          bool contentMatch = post.content != null && post.content!.toLowerCase().contains(query.toLowerCase());
+          bool breedMatch = post.petModel!.breed != null && post.petModel!.breed !.toLowerCase().contains(query.toLowerCase());
+          return contentMatch || breedMatch ;
+        })
+            .toList();
+      }
+      else{//dynamic screen (Filters screens)
+        searchResults = filteredPosts
+            .where((post) {
+          bool contentMatch = post.content != null && post.content!.toLowerCase().contains(query.toLowerCase());
+          bool breedMatch = post.petModel!.breed != null && post.petModel!.breed !.toLowerCase().contains(query.toLowerCase());
+          return contentMatch || breedMatch ;
+
+        })
+            .toList();
+      }
+
+
+    }
+
+    update();
+  }
+
+
+    void  cancelSearch(){
+      isSearchingInHome = false;
+      isSearchingInDynamic=false;
+      resetSearch();
+      update();
+}
+
+
 
 }
