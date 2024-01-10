@@ -246,14 +246,14 @@ class _PostWidgetState extends State<PostWidget> {
                               child: Row(
                                 children: [
                                   Text(
-                                    'السعر: ',
+                                    '93'.tr,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14.sp,
                                     ),
                                   ),
                                   Text(
-                                    ' ${widget.post.price.toString()} دأ ',
+                                    ' ${widget.post.price.toString()} ${'105'.tr} ',
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       color: AppColor.primaryColor,

@@ -68,10 +68,10 @@ class AnimalDataPopup extends StatelessWidget {
               SizedBox(height: 8.h,),
 
               //animal data:
-              AnimalDataRow(info:petModel.type!, category: 'النوع'),
-              AnimalDataRow(info:petModel.gender!, category: 'الجنس',genderIcon: getIconGender(gender: petModel.gender!)),
-              AnimalDataRow(info:calculateAge(petModel.birthDate!), category: 'العمر'),
-              AnimalDataRow(info:petModel.breed!, category:'السلالة'),
+              AnimalDataRow(info:petModel.type!, category: '118'.tr),
+              AnimalDataRow(info:petModel.gender!, category: '119'.tr,genderIcon: getIconGender(gender: petModel.gender!)),
+              AnimalDataRow(info:calculateAge(petModel.birthDate!), category: '120'.tr),
+              AnimalDataRow(info:petModel.breed!, category:'121'.tr),
 
             ],
           ),

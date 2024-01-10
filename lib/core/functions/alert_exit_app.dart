@@ -8,15 +8,15 @@ Future<bool> alertExitApp() {
   Get.defaultDialog(
     titleStyle: const TextStyle(color: AppColor.primaryColor),
     middleTextStyle: const TextStyle(color: AppColor.black, fontSize: 20),
-    title: 'تنبيه',
-    middleText: 'هل تريد الخروج من التطبيق',
+    title: '101'.tr,
+    middleText: '102'.tr,
     actions: [
       ElevatedButton(
           onPressed: () {
             Get.back();
           },
-          child: const Text(
-            'لا',
+          child:  Text(
+            '104'.tr,
             style: TextStyle(
               color: AppColor.black,
               fontWeight: FontWeight.bold,
@@ -27,8 +27,8 @@ Future<bool> alertExitApp() {
           onPressed: () {
             exit(0);
           },
-          child: const Text(
-            'نعم',
+          child:  Text(
+            '103'.tr,
             style: TextStyle(
               color: AppColor.primaryColor,
               fontWeight: FontWeight.bold,

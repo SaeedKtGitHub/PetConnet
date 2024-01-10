@@ -113,11 +113,11 @@ class SettingsScreen extends StatelessWidget {
             ),
             ////////personal data///////////
             Padding(
-              padding: EdgeInsets.only(right: 22.0.w),
+              padding: EdgeInsets.only(right: 22.0.w,left: 22.w),
               child: Row(
                 children: [
                   Text(
-                    'معلوماتي الشخصية',
+                    '139'.tr,
                     style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
@@ -132,7 +132,7 @@ class SettingsScreen extends StatelessWidget {
 
             //change user image
             SettingTile(
-                text: 'الصورة الشخصية',
+                text: '129'.tr,
                 onPressed: () {
                   settingsControllerImp.goToProfilePage();
                 }),
@@ -140,7 +140,7 @@ class SettingsScreen extends StatelessWidget {
               height: 5.h,
             ),
             SettingTile(
-                text: 'رقم الهاتف',
+                text: '130'.tr,
                 onPressed: () {
                   settingsControllerImp.goToAddPhoneNumberScreen();
                 }),
@@ -154,11 +154,11 @@ class SettingsScreen extends StatelessWidget {
             ),
             //////////account data/////////
             Padding(
-              padding: EdgeInsets.only(right: 22.0.w),
+              padding: EdgeInsets.only(right: 22.0.w,left: 22.w),
               child: Row(
                 children: [
                   Text(
-                    'الحساب',
+                    '137'.tr,
                     style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
@@ -173,7 +173,7 @@ class SettingsScreen extends StatelessWidget {
 
             //logout
             SettingTile(
-                text: 'تسجيل الخروج من الحساب',
+                text: '131'.tr,
                 onPressed: () {
                   settingsControllerImp.logout();
                 }),
@@ -182,7 +182,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             //delete account
             SettingTile(
-                text: 'حذف الحساب',
+                text: '133'.tr,
                 onPressed: () {
                   settingsControllerImp.deleteAccount();
                 }),
@@ -190,7 +190,7 @@ class SettingsScreen extends StatelessWidget {
               height: 5.h,
             ),
             SettingTile(
-                text: 'حذف رقم الهاتف',
+                text: '133'.tr,
                 onPressed: () {
                   settingsControllerImp.deletePhone();
                 }),
@@ -200,11 +200,11 @@ class SettingsScreen extends StatelessWidget {
             ),
             //conditions and policies
             Padding(
-              padding: EdgeInsets.only(right: 22.0.w),
+              padding: EdgeInsets.only(right: 22.0.w,left: 22.w),
               child: Row(
                 children: [
                   Text(
-                    'السياسات والشروط',
+                    '138'.tr,
                     style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
@@ -219,7 +219,7 @@ class SettingsScreen extends StatelessWidget {
 
             ////////////terms and conditions//////
             SettingTile(
-                text: 'الشروط والأحكام',
+                text: '134'.tr,
                 onPressed: () {
                   Get.to(
                     WebViewScreen(
@@ -232,7 +232,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             //privacy policy
             SettingTile(
-                text: 'سياسة الخصوصية',
+                text: '135'.tr,
                 onPressed: () {
                   Get.to(
                     WebViewScreen(

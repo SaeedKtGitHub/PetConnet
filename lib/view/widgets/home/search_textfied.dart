@@ -35,14 +35,13 @@ class _BuildSearchTextFieldState extends State<BuildSearchTextField> {
             articlesControllerImp.searchArticles(query);
           }
           else{//dynamic (filters screens)
-            print("hellloooo");
             homeController.searchPosts(query);
           }
 
         },
         decoration: InputDecoration(
-          hintText:Get.currentRoute==AppRoute.articlesScreen ?'ابحث عن عنوان مقالة,اسم كاتب......'
-              :  'ابحث عن منشور,سلالة حيوان.....',
+          hintText:Get.currentRoute==AppRoute.articlesScreen ?'117'.tr
+              :  '116'.tr,
           prefixIcon: IconButton(
             icon: Icon(Icons.search,color: AppColor.primaryColor,),
             onPressed:widget.onCloseSearch,

@@ -26,7 +26,7 @@ class ViewArticlesScreen extends StatelessWidget {
               SizedBox(height: 10.h,),
               //The back icon
               Padding(
-                padding:  EdgeInsets.only(right:16.w),
+                padding:  EdgeInsets.only(right:16.w,left: 10.w),
                 child: Row(
                   children: [
                     InkWell(
@@ -51,7 +51,7 @@ class ViewArticlesScreen extends StatelessWidget {
               SizedBox(height: 10.h,),
                   //article title
                   Padding(
-                    padding:  EdgeInsets.only(right: 12.0.w),
+                    padding:  EdgeInsets.only(right: 12.0.w,left: 10.w),
                     child: Row(
                       children: [
                         Text(
@@ -70,7 +70,7 @@ class ViewArticlesScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'من: ',
+                      '112'.tr,
                       style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,

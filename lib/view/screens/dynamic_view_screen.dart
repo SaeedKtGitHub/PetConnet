@@ -86,7 +86,7 @@ class _DynamicViewScreenState extends State<DynamicViewScreen> {
                           SizedBox(height: 10.h,),
                           //  First row with an icon and title
                           Padding(
-                            padding: EdgeInsets.only(right: 15.0.w),
+                            padding: EdgeInsets.only(right: 12.0.w,left: 12.w),
                             child:homeController.isSearchingInDynamic ?
                             BuildSearchTextField(
                               onCloseSearch:(){
@@ -145,8 +145,8 @@ class _DynamicViewScreenState extends State<DynamicViewScreen> {
                     ),
                   ),
             ):
-            const Center(
-              child: Text('لا يوجد منشورات بعد,حاول لاحقا'),
+             Center(
+              child: Text('113'.tr),
             )
         ),
 

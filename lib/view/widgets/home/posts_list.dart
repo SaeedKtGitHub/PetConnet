@@ -60,16 +60,16 @@ class _PostsListState extends State<PostsList> {
                   titleStyle: const TextStyle(color: AppColor.primaryColor),
                   middleTextStyle:
                   const TextStyle(color: AppColor.black, fontSize: 20),
-                  title: 'تنبيه',
-                  middleText: 'هل انت متاكد من  حذف هذا المنشور؟',
+                  title: '101'.tr,
+                  middleText: '127'.tr,
                   actions: [
                     //no button
                     ElevatedButton(
                         onPressed: () {
                           Get.back();
                         },
-                        child: const Text(
-                          'لا',
+                        child:  Text(
+                          '104'.tr,
                           style: TextStyle(
                             color: AppColor.black,
                             fontWeight: FontWeight.bold,
@@ -88,8 +88,8 @@ class _PostsListState extends State<PostsList> {
                             });
                           }
                         },
-                        child: const Text(
-                          'نعم',
+                        child:  Text(
+                          '103'.tr,
                           style: TextStyle(
                             color: AppColor.primaryColor,
                             fontWeight: FontWeight.bold,

@@ -38,15 +38,15 @@ class PetsListProfile extends GetView<ProfileControllerImp> {
                   titleStyle: const TextStyle(color: AppColor.primaryColor),
                   middleTextStyle:
                       const TextStyle(color: AppColor.black, fontSize: 20),
-                  title: 'تنبيه',
-                  middleText: 'هل تريد حذف هذا الحيوان؟',
+                  title: '101'.tr,
+                  middleText: '128'.tr,
                   actions: [
                     ElevatedButton(
                         onPressed: () {
                           Get.back();
                         },
-                        child: const Text(
-                          'لا',
+                        child:  Text(
+                          '104'.tr,
                           style: TextStyle(
                             color: AppColor.black,
                             fontWeight: FontWeight.bold,
@@ -58,8 +58,8 @@ class PetsListProfile extends GetView<ProfileControllerImp> {
                           controller.removePet(index: index);
                           Get.back();
                         },
-                        child: const Text(
-                          'نعم',
+                        child:  Text(
+                          '103'.tr,
                           style: TextStyle(
                             color: AppColor.primaryColor,
                             fontWeight: FontWeight.bold,

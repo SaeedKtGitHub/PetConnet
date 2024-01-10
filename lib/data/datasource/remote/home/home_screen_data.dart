@@ -57,6 +57,10 @@ class HomeScreenData {
     });
     return response.fold((l) => l, (r) => r);
   }
-
+  getRecentPosts() async {
+    //TODO:Edit the method
+    var response = await crud.postData(AppLink.getRecentPosts, {});
+    return response.fold((l) => l, (r) => r);
+  }
 
 }

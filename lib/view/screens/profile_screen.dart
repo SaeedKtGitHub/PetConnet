@@ -93,15 +93,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     //The user location:
-                    Center(
-                      child: Text(
-                        'عمان_الأردن',
-                        style: TextStyle(
-                            color: AppColor.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.sp),
-                      ),
-                    ),
+                    // Center(
+                    //   child: Text(
+                    //     'عمان_الأردن',
+                    //     style: TextStyle(
+                    //         color: AppColor.black,
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 16.sp),
+                    //   ),
+                    // ),
                     //Email Row
                     UserDataRow(
                       icon: const Icon(
@@ -115,20 +115,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //The pets list:
                     SizedBox(
                       height: 140.h, // Adjust the height as needed
-                      child: Row(
-                        children: [
-                          CustomAddPetButton(
-                            onPressed: () {
-                              controller.goToAddPetScreen();
-                            },
-                          ),
-                          SizedBox(width: 10.w),
-                          //TODO: Make this list dynamic.
-                          PetsListProfile(
-                            listPetsModel: controller.userPetsListProfile,
-                          ),
-                        //  SizedBox(height: 15.h,),
-                        ],
+                      child: Padding(
+                        padding:  EdgeInsets.only(left: 5.0.w,right: 5.w),
+                        child: Row(
+                          children: [
+                            CustomAddPetButton(
+                              onPressed: () {
+                                controller.goToAddPetScreen();
+                              },
+                            ),
+                            SizedBox(width: 10.w),
+                            //TODO: Make this list dynamic.
+                            PetsListProfile(
+                              listPetsModel: controller.userPetsListProfile,
+                            ),
+                          //  SizedBox(height: 15.h,),
+                          ],
+                        ),
                       ),
                     ),
 
@@ -147,7 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: EdgeInsets.only(top: 17.0.h,left: 13.w,right: 13.w),
                           child: Center(
                             child: Text(
-                              "لا توجد منشورات حاليًا، ابدأ بإضافة منشوراتك لتحسين تجربتك!",
+                              "113".tr,
                               style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold),

@@ -84,7 +84,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                       SizedBox(height: 10.h,),
                       //  First row with an icon and title
                       Padding(
-                        padding: EdgeInsets.only(right: 15.0.w),
+                        padding: EdgeInsets.only(right: 15.0.w,left: 15.w),
                         child:articlesControllerImp.isSearching==true ?
                         BuildSearchTextField(
                           onCloseSearch:(){
@@ -110,7 +110,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                             ),
                             //The title (depending on filter (tag)):
                             Text(
-                              'آخر المقالات والأخبار',
+                              '111'.tr,
                               //textDirection: TextDirection.rtl,
                               style: TextStyle(
                                   color: AppColor.black,

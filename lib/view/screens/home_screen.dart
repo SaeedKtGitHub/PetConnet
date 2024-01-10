@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   //The text:
                                   Text(
-                                    "مرحبا, ${myServices.sharedPreferences.getString("username")!}!",
+                                    "${'100'.tr} ${myServices.sharedPreferences.getString("username")!}!",
                                     //textDirection: TextDirection.rtl,
                                     style: TextStyle(
                                         color: AppColor.primaryColor,
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         //The welcome message :
                         Padding(
-                          padding: EdgeInsets.only(right: 15.0.w),
+                          padding: EdgeInsets.only(right: 15.0.w,left: 15.w),
                           child:controller.isSearchingInHome ?
                           BuildSearchTextField(
                             onCloseSearch:(){
@@ -185,8 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ? Icon(
                                           Icons.person,
                                           color: AppColor.primaryColor,
-                                          size: 24
-                                              .h, // Adjust the icon size as needed
+                                          size: 24.h, // Adjust the icon size as needed
                                         )
                                       : null, // No child for non-null profilePic
                                 ),
@@ -198,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               //The text:
                               Text(
                                 // "مرحبا, ${controller.currentUser.name}!",
-                                "مرحبا, ${myServices.sharedPreferences.getString("username")!}!",
+                                "${'100'.tr} ${myServices.sharedPreferences.getString("username")!}!",
                                 //textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                     color: AppColor.primaryColor,
@@ -227,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         //All articles line:
                         Padding(
-                          padding: EdgeInsets.only(right: 10.0.w),
+                          padding: EdgeInsets.only(right: 10.0.w,left: 15.w),
                           child: Row(
                             children: [
                               Text(
@@ -239,12 +238,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontSize: 14.sp,
                                 ),
                               ),
-                              SizedBox(
-                                width: 22.w,
+                              Spacer(),
+                              Padding(
+                                padding:  EdgeInsets.only(left: 10.0.w,right: 10.w),
+                                child: CustomButton(
+                                    onPressed: controller.goToAllArticlesScreen,
+                                    buttonText: '94'.tr),
                               ),
-                              CustomButton(
-                                  onPressed: controller.goToAllArticlesScreen,
-                                  buttonText: 'جميع المقالات'),
                             ],
                           ),
                         ),
@@ -264,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         //pets for sale list
                         Padding(
-                          padding: EdgeInsets.only(right: 10.0.w),
+                          padding: EdgeInsets.only(right: 24.0.w,left: 10.w),
                           child: TextAndButtonRow(
                             text: '59'.tr,
                             onPressed: () async {
@@ -280,14 +280,29 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 7.h,
                         ),
-                        const TwoImagesRow(),
+                        GestureDetector(
+                            onTap:() async {
+                              await controller.getFilteredPosts(tag: 'trading');
+                              controller.goToDynamicScreen(
+                                  '63'.tr,
+                                  posts: controller.filteredPosts,
+                                  tag: "trading"
+                              );
+                            } ,
+                           // child:
+                            //TwoImagesRow(firstImageUrl: controller.recentPosts[4].image!,secondImageUrl: controller.recentPosts[5].image!)),
+                            child: TwoImagesRow(
+                        firstImageUrl: controller.recentPosts.length > 0 ? controller.recentPosts[0].image! : '',
+                          secondImageUrl: controller.recentPosts.length > 1 ? controller.recentPosts[1].image! : '',
+                        ),
+                           ),
                         SizedBox(
                           height: 7.h,
                         ),
 
                         //pets for adoption list
                         Padding(
-                          padding: EdgeInsets.only(right: 10.0.w),
+                          padding: EdgeInsets.only(right: 24.0.w,left: 10.w),
                           child: TextAndButtonRow(
                               text: '60'.tr,
                               onPressed: () async {
@@ -304,14 +319,26 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 7.h,
                         ),
 
-                        const TwoImagesRow(),
-
+                        GestureDetector(
+                            onTap:() async {
+                              await controller.getFilteredPosts(
+                                  tag: 'adoption');
+                              controller.goToDynamicScreen(
+                                  '60'.tr,
+                                  posts: controller.filteredPosts,
+                                  tag: "adoption"
+                              );
+                            } ,
+                          child: TwoImagesRow(
+                            firstImageUrl: controller.recentPosts.length > 8 ? controller.recentPosts[8].image! : '',
+                            secondImageUrl: controller.recentPosts.length > 9 ? controller.recentPosts[9].image! : '',
+                          ),),
                         SizedBox(
                           height: 7.h,
                         ),
                         //pets for mating list
                         Padding(
-                          padding: EdgeInsets.only(right: 10.0.w),
+                          padding: EdgeInsets.only(right: 24.0.w,left: 10.w),
                           child: TextAndButtonRow(
                               text: '61'.tr,
                               onPressed: () async {
@@ -327,13 +354,26 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 7.h,
                         ),
 
-                        const TwoImagesRow(),
+                        GestureDetector(
+                            onTap: () async {
+                              await controller.getFilteredPosts(tag: 'mating');
+                              controller.goToDynamicScreen(
+                                  '66'.tr,
+                                  posts: controller.filteredPosts,
+                                  tag: "mating"
+                              );
+                            },
+                           // child: TwoImagesRow(firstImageUrl: controller.recentPosts[8].image!,secondImageUrl: controller.recentPosts[9].image!)),
+                        child: TwoImagesRow(
+                          firstImageUrl: controller.recentPosts.length > 4 ? controller.recentPosts[4].image! : '',
+                          secondImageUrl: controller.recentPosts.length > 5 ? controller.recentPosts[5].image! : '',
+                        ),),
                         SizedBox(
                           height: 7.h,
                         ),
                         // lost pets  list
                         Padding(
-                          padding: EdgeInsets.only(right: 10.0.w),
+                          padding: EdgeInsets.only(right: 24.0.w,left: 10.w),
                           child: TextAndButtonRow(
                               text: '62'.tr,
                               onPressed: () async {
@@ -350,18 +390,30 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 7.h,
                         ),
 
-                        const TwoImagesRow(),
+                        GestureDetector(
+                            onTap:  () async {
+                              await controller.getFilteredPosts(tag: 'lost');
+                              controller.goToDynamicScreen(
+                                  '64'.tr,
+                                  posts: controller.filteredPosts,
+                                  tag: "lost"
+                              );
+                            },
+                            child: TwoImagesRow(
+                              firstImageUrl: controller.recentPosts.length > 2 ? controller.recentPosts[2].image! : '',
+                              secondImageUrl: controller.recentPosts.length > 3 ? controller.recentPosts[3].image! : '',
+                            )),
                         SizedBox(
                           height: 7.h,
                         ),
 
                         //Favorite animals row
                         Padding(
-                          padding: EdgeInsets.only(right: 13.0.w),
+                          padding: EdgeInsets.only(right: 13.0.w,left: 13.w),
                           child: Row(
                             children: [
                               Text(
-                                "الحيوانات المفضلة اليوم!",
+                                "92".tr,
                                 //textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                   color: AppColor.black,
@@ -369,20 +421,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontSize: 14.sp,
                                 ),
                               ),
-                              SizedBox(
-                                width: 75.w,
-                              ),
+                              Spacer(),
                               //all posts
-                              CustomButton(
-                                  onPressed: () async {
-                                    await controller.getAllPosts();
-                                    controller.goToDynamicScreen(
-                                      '65'.tr,
-                                      posts: controller.allPosts,
+                              Padding(
+                                padding:  EdgeInsets.only(left: 8.0.w,right: 8.w),
+                                child: CustomButton(
+                                    onPressed: () async {
+                                      await controller.getAllPosts();
+                                      controller.goToDynamicScreen(
+                                        '65'.tr,
+                                        posts: controller.allPosts,
 
-                                    );
-                                  },
-                                  buttonText: 'جميع المنشورات'),
+                                      );
+                                    },
+                                    buttonText: '95'.tr),
+                              ),
                             ],
                           ),
                         ),
@@ -397,7 +450,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: EdgeInsets.only(top: 30.0.h),
                                 child: Center(
                                   child: Text(
-                                    "لا يوجد منشورات, حاول لاحقا!",
+                                    "113".tr,
                                     style: TextStyle(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.bold),

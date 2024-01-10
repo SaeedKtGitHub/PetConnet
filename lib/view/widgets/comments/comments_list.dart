@@ -47,8 +47,8 @@ class _CommentsListState extends State<CommentsList> {
                       titleStyle: const TextStyle(color: AppColor.primaryColor),
                       middleTextStyle:
                       const TextStyle(color: AppColor.black, fontSize: 20),
-                      title: 'تنبيه',
-                      middleText: 'هل انت متاكد من  حذف هذا التعليق؟',
+                      title: '101'.tr,
+                      middleText: '110'.tr,
                       actions: [
                         //no button
                         ElevatedButton(
@@ -72,8 +72,8 @@ class _CommentsListState extends State<CommentsList> {
                                   widget.comments[index].commentId!);
 
                             },
-                            child: const Text(
-                              'نعم',
+                            child:  Text(
+                              '103'.tr,
                               style: TextStyle(
                                 color: AppColor.primaryColor,
                                 fontWeight: FontWeight.bold,

@@ -119,7 +119,7 @@ class _OtherUserProfileScreenState extends State<OtherUserProfileScreen> {
                             Padding(
                               padding:  EdgeInsets.only(bottom: 25.0.h),
                               child: Center(child: Center(child: Text(
-                                'لا يوجد حيوانات أليفة'
+                                '115'.tr
                               ,style:TextStyle(fontWeight: FontWeight.bold,
                               fontSize: 16.sp
                               )

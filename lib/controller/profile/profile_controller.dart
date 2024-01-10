@@ -92,10 +92,10 @@ class ProfileControllerImp extends ProfileController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         //TODO: SomeThing to do
-        showBottomSnackBar(text: 'تم تحديث الصور بنجاح.');
+        showBottomSnackBar(text: '126'.tr);
       } else {
         //TODO: SomeThing to do
-        showBottomSnackBar(text: 'حدث خطأ ما, يرجى المحاولة لاحقا.');
+        showBottomSnackBar(text: '123'.tr);
         statusRequest = StatusRequest.failure;
       }
     }
@@ -106,13 +106,13 @@ class ProfileControllerImp extends ProfileController {
   void copyText(String text) {
     Clipboard.setData(ClipboardData(text: text));
     Get.snackbar(
-      "تم النسخ بنجاح",
+      "114".tr,
       '',
       duration: const Duration(seconds: 2),
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: AppColor.primaryColor,
       titleText: Text(
-        "تم النسخ بنجاح",
+        "114".tr,
         style: TextStyle(fontSize: 18.0.sp), // Adjust the font size as needed
       ),
     );
@@ -159,7 +159,7 @@ class ProfileControllerImp extends ProfileController {
         userPetsListProfile
             .addAll(dataResponse.map((e) => PetModel.fromJson(e)));
       } else {
-        showBottomSnackBar(text: 'حدث خطأ ما, يرجى المحاولة لاحقا.');
+        showBottomSnackBar(text: '123'.tr);
         statusRequest = StatusRequest.failure;
       }
       // End
@@ -207,10 +207,10 @@ class ProfileControllerImp extends ProfileController {
     if (StatusRequest.success == statusRequest) {
       // Start backend
       if (response['status'] == "success") {
-        showBottomSnackBar(text: 'تم حذف الحيوان بنجاح.');
+        showBottomSnackBar(text: '122'.tr);
         refreshPage();
       } else {
-        showBottomSnackBar(text: 'حدث خطأ ما, يرجى المحاولة لاحقا.');
+        showBottomSnackBar(text: '123'.tr);
         statusRequest = StatusRequest.failure;
       }
       // End
@@ -279,26 +279,26 @@ class ProfileControllerImp extends ProfileController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         Get.snackbar(
-            "تم حذف المنشور بنجاح",
+            "124".tr,
             '',
             backgroundColor: Colors.grey[500],
             duration: const Duration(seconds: 2),
             snackPosition: SnackPosition.BOTTOM,
             titleText: Text(
-              "تم حذف المنشور بنجاح",
+              "124".tr,
               style: TextStyle(fontSize: 16.0.sp),
             ));
         update();
         return true; // Indicate success
       } else {
         Get.snackbar(
-            "لم يتم حذف المنشور,حاول مرة أخرى",
+            "125".tr,
             '',
             backgroundColor: Colors.grey[500],
             duration: const Duration(seconds: 2),
             snackPosition: SnackPosition.BOTTOM,
             titleText: Text(
-              "تم حذف المنشور بنجاح",
+              "124".tr,
               style: TextStyle(fontSize: 16.0.sp),
             ));
         statusRequest = StatusRequest.failure;

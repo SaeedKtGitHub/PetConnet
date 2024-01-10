@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pet_connect/core/constant/color.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -23,7 +24,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       height: 60.h,
-      notchMargin: 7.0.h,
+      notchMargin:6.0.h,
       shape: const CircularNotchedRectangle(),
       color: AppColor.primaryColor,
       child: Row(
@@ -43,7 +44,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
                 ),
                 Text(
-                  "الرئيسية",
+                  "96".tr,
                   style: TextStyle(color: Colors.white, fontSize: 9.sp,
                   fontWeight: FontWeight.bold
                   ),
@@ -56,7 +57,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
           GestureDetector(
             onTap:onGalleryTap,
             child: Padding(
-              padding: EdgeInsets.only(left: 100.0.w),
+              padding:Get.locale!.languageCode=='ar' ? EdgeInsets.only(left: 100.0.w):EdgeInsets.only(right: 100.0.w),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -66,7 +67,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     size: 24.h,
                   ),
                   Text(
-                    "المعرض",
+                      "97".tr,
                     style: TextStyle(color: AppColor.white, fontSize: 9.sp,
                         fontWeight: FontWeight.bold
                     ),
@@ -88,7 +89,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   size: 24.h,
                 ),
                 Text(
-                  "حسابي",
+                  "98".tr,
                   style: TextStyle(color: AppColor.white, fontSize: 9.sp,
                       fontWeight: FontWeight.bold
                   ),
@@ -109,7 +110,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   size: 24.h,
                 ),
                 Text(
-                  "إعدادات",
+                  "99".tr,
                   style: TextStyle(color: Colors.white, fontSize: 9.sp,
                       fontWeight: FontWeight.bold
                   ),

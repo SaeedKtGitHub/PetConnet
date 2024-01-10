@@ -43,7 +43,7 @@ class ArticleWidget extends StatelessWidget {
             ),
               width: double.infinity,
               child:Padding(
-                padding:  EdgeInsets.only(right: 10.0.w),
+                padding:  EdgeInsets.only(right: 10.0.w,left: 10.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

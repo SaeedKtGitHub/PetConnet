@@ -67,7 +67,7 @@ class _ChoosePostTypePopUpState extends State<CommentsScreen> {
                       SizedBox(width: 50.w),
                       //The title:
                       Text(
-                        'التعليقات',
+                        '106'.tr,
                         style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -77,7 +77,7 @@ class _ChoosePostTypePopUpState extends State<CommentsScreen> {
                   Expanded(
                     child: widget.comments.isNotEmpty
                         ? CommentsList(comments: widget.comments)
-                        : const Center(child: Text('لا يوجد تعليقات')),
+                        :  Center(child: Text('107'.tr)),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 12.w, bottom: 5.h,left: 2.w),

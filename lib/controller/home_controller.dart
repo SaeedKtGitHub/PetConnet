@@ -42,7 +42,7 @@ abstract class HomeController extends GetxController {
   likeOrDislikePost(String postId);
    openContactMeInfo(String username,String phone,String imagePath);
   copyText(String text);
-
+  getRecentPosts();
 }
 
 class HomeControllerImp extends HomeController {
@@ -56,6 +56,7 @@ class HomeControllerImp extends HomeController {
   List<PostModel> searchResults = [];
   bool isSearchingInHome = false;
   bool isSearchingInDynamic = false;
+  List<PostModel> recentPosts = [];
 
   ScrollController get scrollController => _scrollController;
 
@@ -170,10 +171,11 @@ class HomeControllerImp extends HomeController {
   }
 
   @override
-  void onInit() {
+  void onInit() async{
     // TODO: implement onInit
     getUserData();
     getAllPosts();
+     await getRecentPosts();
     super.onInit();
   }
 
@@ -237,26 +239,26 @@ class HomeControllerImp extends HomeController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         Get.snackbar(
-            "تم حذف المنشور بنجاح",
+            "124".tr,
             '',
             backgroundColor: Colors.grey[500],
             duration: const Duration(seconds: 2),
             snackPosition: SnackPosition.BOTTOM,
             titleText: Text(
-              "تم حذف المنشور بنجاح",
+              "124".tr,
               style: TextStyle(fontSize: 16.0.sp),
             ));
             update();
         return true; // Indicate success
       } else {
         Get.snackbar(
-            "لم يتم حذف المنشور,حاول مرة أخرى",
+            "125".tr,
             '',
             backgroundColor: Colors.grey[500],
             duration: const Duration(seconds: 2),
             snackPosition: SnackPosition.BOTTOM,
             titleText: Text(
-              "تم حذف المنشور بنجاح",
+              "124".tr,
               style: TextStyle(fontSize: 16.0.sp),
             ));
         statusRequest = StatusRequest.failure;
@@ -335,13 +337,13 @@ class HomeControllerImp extends HomeController {
   void copyText(String text) {
     Clipboard.setData(ClipboardData(text: text));
     Get.snackbar(
-      "تم النسخ بنجاح",
+      "114".tr,
       '',
       duration: const Duration(seconds: 2),
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: AppColor.primaryColor,
       titleText: Text(
-        "تم النسخ بنجاح",
+        "114".tr,
         style: TextStyle(fontSize: 18.0.sp), // Adjust the font size as needed
       ),
     );
@@ -413,6 +415,51 @@ class HomeControllerImp extends HomeController {
       resetSearch();
       update();
 }
+
+  @override
+  Future<void> getRecentPosts() async {
+    statusRequest = StatusRequest.loading;
+    print('heeeeeeeeeeeeeey ${recentPosts.length}');
+    update();
+
+    var response = await homeScreenData.getRecentPosts();
+    statusRequest = handlingData(response);
+    print(response);
+
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        if (response['data'] != null && response['data']['Message'] != null) {
+          List<Map<String, dynamic>> dataResponse =
+          List.from(response['data']['Message']);
+
+          // Clear the existing list before adding new items
+          recentPosts.clear();
+          print(dataResponse.length);
+
+          for (int i = 0; i < dataResponse.length; i++) {
+            // Access the 'posts' field from each object in 'Message'
+            List<dynamic> posts = dataResponse[i]['posts'];
+
+            // Iterate through the 'posts' list
+            for (int j = 0; j < posts.length; j++) {
+              PostModel post = PostModel.fromJson(posts[j]);
+              recentPosts.add(post);
+            }
+          }
+        } else {
+          // Handle the case where 'Message' is missing or not a list
+          statusRequest = StatusRequest.failure;
+        }
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+
+    print('heeeeeeeeeeeeeey ${recentPosts.length}');
+  }
+
+
+
 
 
 

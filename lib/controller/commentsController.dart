@@ -154,13 +154,13 @@ class CommentsControllerImp extends CommentsController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         Get.snackbar(
-            "تم حذف التعليق بنجاح",
+            "108".tr,
             '',
             backgroundColor: Colors.grey[500],
             duration: const Duration(seconds: 2),
             snackPosition: SnackPosition.BOTTOM,
             titleText: Text(
-              "تم حذف التعليق بنجاح",
+              "108".tr,
               style: TextStyle(fontSize: 16.0.sp),
             ));
         await getComments(postID);//refresh the comments screen
@@ -168,13 +168,13 @@ class CommentsControllerImp extends CommentsController {
         return true; // Indicate success
       } else {
         Get.snackbar(
-            "لم يتم حذف المنشور,حاول مرة أخرى",
+            "109".tr,
             '',
             backgroundColor: Colors.grey[500],
             duration: const Duration(seconds: 2),
             snackPosition: SnackPosition.BOTTOM,
             titleText: Text(
-              "تم حذف المنشور بنجاح",
+              "108".tr,
               style: TextStyle(fontSize: 16.0.sp),
             ));
         statusRequest = StatusRequest.failure;
