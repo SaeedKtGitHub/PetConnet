@@ -36,17 +36,15 @@ class SettingsScreen extends StatelessWidget {
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: controller.currentNavIndex,
         onItemTapped: controller.onItemTapped,
-        onGalleryTap:()async {
-          await  controller.getFilteredPosts(tag: 'social');
-          controller.goToDynamicScreen('65'.tr, posts:controller.filteredPosts,
-              tag:"social"
-
-          );
+        onGalleryTap: () async {
+          await controller.getFilteredPosts(tag: 'social');
+          controller.goToDynamicScreen('65'.tr,
+              posts: controller.filteredPosts, tag: "social");
           homeController.resetSearchRefresh();
         },
-        onHomeTap:controller.scrollToTopOrGoHome,
-        onSettingsTap:controller.goToSettingsScreen,
-        onProfieTap:  controller.goToProfilePage,
+        onHomeTap: controller.scrollToTopOrGoHome,
+        onSettingsTap: controller.goToSettingsScreen,
+        onProfieTap: controller.goToProfilePage,
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -62,7 +60,7 @@ class SettingsScreen extends StatelessWidget {
                 children: [
                   //back Icon:
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       Get.offNamed(AppRoute.homeScreen);
                     },
                     child: Image.asset(
@@ -109,11 +107,11 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 25.h,
+              height: 15.h,
             ),
             ////////personal data///////////
             Padding(
-              padding: EdgeInsets.only(right: 22.0.w,left: 22.w),
+              padding: EdgeInsets.only(right: 22.0.w, left: 22.w),
               child: Row(
                 children: [
                   Text(
@@ -150,11 +148,11 @@ class SettingsScreen extends StatelessWidget {
             ),
             //First row:profile pic and back button
             SizedBox(
-              height: 25.h,
+              height: 15.h,
             ),
             //////////account data/////////
             Padding(
-              padding: EdgeInsets.only(right: 22.0.w,left: 22.w),
+              padding: EdgeInsets.only(right: 22.0.w, left: 22.w),
               child: Row(
                 children: [
                   Text(
@@ -182,7 +180,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             //delete account
             SettingTile(
-                text: '133'.tr,
+                text: '132'.tr,
                 onPressed: () {
                   settingsControllerImp.deleteAccount();
                 }),
@@ -194,13 +192,35 @@ class SettingsScreen extends StatelessWidget {
                 onPressed: () {
                   settingsControllerImp.deletePhone();
                 }),
-
             SizedBox(
-              height: 25.h,
+              height: 15.h,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 22.0.w, left: 22.w),
+              child: Row(
+                children: [
+                  Text(
+                    '82'.tr,
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.black),
+                  ),
+                ],
+              ),
+            ),
+
+            SettingTile(
+                text: '83'.tr,
+                onPressed: () {
+                  settingsControllerImp.chooseLanguage();
+                }),
+            SizedBox(
+              height: 15.h,
             ),
             //conditions and policies
             Padding(
-              padding: EdgeInsets.only(right: 22.0.w,left: 22.w),
+              padding: EdgeInsets.only(right: 22.0.w, left: 22.w),
               child: Row(
                 children: [
                   Text(
