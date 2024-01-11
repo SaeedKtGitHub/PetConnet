@@ -60,15 +60,15 @@ class HomeControllerImp extends HomeController {
 
   ScrollController get scrollController => _scrollController;
 
-  List<Widget> slider_articles_widgets(List images) {
-    List<Widget> list = [];
-
-    for (int i = 0; i < images.length; i++) {
-      list.add(BuildImageWithText(
-          imagePath: slides[i].imagepath, text: slides[i].slideText));
-    }
-    return list;
-  }
+  // List<Widget> slider_articles_widgets(List images) {
+  //   List<Widget> list = [];
+  //
+  //   for (int i = 0; i < images.length; i++) {
+  //     list.add(BuildImageWithText(
+  //         imagePath: slides[i].imagepath, text: slides[i].slideText));
+  //   }
+  //   return list;
+  // }
 
   int currentSliderIndex = 0;
   setCurrentSliderIndex(index) {

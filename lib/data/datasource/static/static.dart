@@ -21,6 +21,7 @@
 //some temp data for the home screen:
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/data/model/pet_model.dart';
 import 'package:pet_connect/data/model/slide_show.dart';
@@ -124,18 +125,18 @@ List<PetModel> testPetList = [
 
 //List of traffic users tags :
 List<TagItem> trafficTagsItems = [
-  const TagItem(
+   TagItem(
       iconPath: 'assets/images/tags_items_popup_icons/adoptAnimalTagIcon.png',
-      text: 'التبرع بحيوان'),
-  const TagItem(
+      text: '170'.tr),
+   TagItem(
       iconPath: 'assets/images/tags_items_popup_icons/mating.png',
-      text: 'البحث عن تزاوج'),
-  const TagItem(
+      text: '171'.tr),
+   TagItem(
       iconPath: 'assets/images/tags_items_popup_icons/offer_for_sale.png',
-      text: 'عرض للبيع'),
-  const TagItem(
+      text: '172'.tr),
+   TagItem(
       iconPath: 'assets/images/tags_items_popup_icons/lost_animal.png',
-      text: 'ابلاغ عن حيوان ضائع'),
+      text: '173'.tr),
 ];
 
 //List of other users(vets,shops,writer) tags :

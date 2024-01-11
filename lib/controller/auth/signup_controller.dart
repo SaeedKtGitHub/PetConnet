@@ -44,12 +44,12 @@ class SignUpControllerImp extends SignUpController {
           // Get.offNamed(AppRoute.verifyCodeSignUp,
           //     arguments: {"email": email.text});
           Get.snackbar(
-            "تم اٍنشاء الحساب بنجاح, قم بتسجيل الدخول.",
+            "159".tr,
             '',
             duration: const Duration(seconds: 2),
             snackPosition: SnackPosition.BOTTOM,
             titleText: Text(
-              "تم اٍنشاء الحساب بنجاح, قم بتسجيل الدخول.",
+              "159".tr,
               style: TextStyle(
                   fontSize: 18.0.sp), // Adjust the font size as needed
             ),
@@ -57,7 +57,7 @@ class SignUpControllerImp extends SignUpController {
           Get.offNamed(AppRoute.loginScreen);
         } else {
           Get.defaultDialog(
-              title: "تحذير!!", middleText: "حدث خطأ ما, يرجى المحاولة لاحقا.");
+              title: "101".tr, middleText: "156".tr);
           statusRequest = StatusRequest.failure;
         }
       }

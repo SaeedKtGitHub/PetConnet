@@ -43,16 +43,16 @@ class AddPhoneControllerImp extends AddPhoneController {
           if (response['status'] == "success") {
             myServices.sharedPreferences.setString("phone", phone.text);
             showBottomSnackBar(
-                text: 'تم اٍضافة رقمك بنجاح. الان يمكنك اضافة اي منشور تريده.');
+                text: '161'.tr);
           } else {
-            showBottomSnackBar(text: 'حدث خطأ ما, يرجى المحاولة لاحقا.');
+            showBottomSnackBar(text: '156'.tr);
             statusRequest = StatusRequest.failure;
           }
         }
       } else {
         //isEditing = !isEditing;
         if (isEditing == true) {
-          showBottomSnackBar(text: 'لقد تم حفظ هذا الرقم سابقا!');
+          showBottomSnackBar(text: '162'.tr);
         }
       }
 

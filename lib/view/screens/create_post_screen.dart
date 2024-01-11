@@ -42,6 +42,7 @@ class CreatePostScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(height: 8.h,),
                       CustomTitleWithIcon(
                         numOfText: '13',
                         imagePath: AppImageAsset.backIcon,
@@ -57,7 +58,6 @@ class CreatePostScreen extends StatelessWidget {
                         builder: (controller) => controller.isShowImage
                             ? CustomShowImage(
                                 imageFile: controller.myFile!,
-
                             onPressed: () {
                                   controller.removeImage();
                                 })

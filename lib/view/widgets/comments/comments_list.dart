@@ -55,8 +55,8 @@ class _CommentsListState extends State<CommentsList> {
                             onPressed: () {
                               Get.back();
                             },
-                            child: const Text(
-                              'لا',
+                            child:  Text(
+                              '104'.tr,
                               style: TextStyle(
                                 color: AppColor.black,
                                 fontWeight: FontWeight.bold,

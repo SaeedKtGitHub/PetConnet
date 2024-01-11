@@ -39,7 +39,7 @@ class NewSocialPostContainer extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColor.primaryColor,
                 borderRadius: BorderRadius.circular(
-                    10), // Adjust the value for the desired roundness
+                    10.h), // Adjust the value for the desired roundness
               ),
               // Add any child widgets or content here if needed
             ),
@@ -49,7 +49,7 @@ class NewSocialPostContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'منشور اجتماعي جديد',
+                    '140'.tr,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.sp,
@@ -58,7 +58,7 @@ class NewSocialPostContainer extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    'ماذا يفعل حيوانك الأليف؟\nشارك معنا!',
+                    '141'.tr,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 13.sp,

@@ -39,7 +39,7 @@ class ChoosePostTypePopUp extends StatelessWidget {
                 SizedBox(width: 50.w),
                 //The title:
                 Text(
-                  'اختر نوع المنشور',
+                  '143'.tr,
                   style:
                       TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                 ),
@@ -51,11 +51,11 @@ class ChoosePostTypePopUp extends StatelessWidget {
             ),
             //Pets text
             Padding(
-              padding: EdgeInsets.only(right: 10.0.w),
+              padding: EdgeInsets.only(right: 10.0.w,left: 10.w),
               child: Row(
                 children: [
                   Text(
-                    'الحيوانات الأليفة',
+                    '144'.tr,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,

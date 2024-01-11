@@ -15,8 +15,8 @@ class TagItem extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 98.h,
-        width: 88.w,
+        height: 120.h,
+        width: 98.w,
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(12.h),

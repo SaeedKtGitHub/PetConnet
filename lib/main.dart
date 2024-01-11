@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           translations: MyTranslation(),
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          locale: const Locale('en'),
+          locale: const Locale('ar'),
           // theme: controller.appTheme,
           initialBinding: InitialBindings(),
           // routes: routes,

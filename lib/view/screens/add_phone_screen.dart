@@ -122,7 +122,7 @@ class AddPhoneScreen extends StatelessWidget {
                     ),
                     GetBuilder<AddPhoneControllerImp>(
                       builder: (controller) => CustomButtonAuth(
-                          text: controller.isEditing ? 'تعديل' : 'حفظ',
+                          text: controller.isEditing ? '169'.tr : '168'.tr,
                           onPressed: () {
                             // print('ISEDI before ---> ${controller.isEditing}');
                             controller.addPhone();

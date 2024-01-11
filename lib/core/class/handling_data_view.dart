@@ -1,4 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pet_connect/core/class/status_request.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
@@ -20,7 +21,7 @@ class HandlingDataView extends StatelessWidget {
                   children: [
                     SizedBox(height: 190.h,),
                     Text(
-                      'No Internet!!',
+                      '157'.tr,
                       style: TextStyle(fontSize: 20.sp),
                     ),
                     Image.asset(AppImageAsset.noInternet,height:100.h,width: 100.w,),
@@ -33,7 +34,7 @@ class HandlingDataView extends StatelessWidget {
                       children: [
                         SizedBox(height: 190.h,),
                         Text(
-                          'Something Went Wrong! try later.',
+                          '156'.tr,
                           style: TextStyle(fontSize: 20.sp),
                         ),
                         Image.asset(AppImageAsset.serverFailure,width: 100.w,height: 100.h,),
@@ -47,7 +48,7 @@ class HandlingDataView extends StatelessWidget {
                             children: [
                               SizedBox(height: 190.h,),
                               Text(
-                                'No Data!',
+                                '158'.tr,
                                 style: TextStyle(fontSize: 20.sp),
                               ),
                               Image.asset(AppImageAsset.noData,width: 100.w,height: 100.h,),
@@ -78,7 +79,7 @@ class HandlingDataRequest extends StatelessWidget {
                     children: [
                       SizedBox(height: 190.h,),
                       Text(
-                        ' ! No Internet',
+                        '157'.tr,
                         style: TextStyle(fontSize: 20.sp),
                       ),
                       Image.asset(AppImageAsset.noInternet,height:100.h,width: 100.w,),                    ],
@@ -92,7 +93,7 @@ class HandlingDataRequest extends StatelessWidget {
                         children: [
                           SizedBox(height: 190.h,),
                           Text(
-                            'Something Went Wrong! try later.',
+                            '156'.tr,
                             style: TextStyle(fontSize: 20.sp),
                           ),
                           Image.asset(AppImageAsset.serverFailure,width: 100.w,height: 100.h,),

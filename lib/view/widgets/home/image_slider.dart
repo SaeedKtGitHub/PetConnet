@@ -42,7 +42,7 @@ class _MyImageSliderState extends State<MyImageSlider> {
                         controller.setCurrentSliderIndex(index);
                       });
                     },
-                    reverse: true,
+                    reverse: Get.locale!.languageCode=='ar' ? true:false  ,
                   ),
                   items: widget.articles,
                 ),

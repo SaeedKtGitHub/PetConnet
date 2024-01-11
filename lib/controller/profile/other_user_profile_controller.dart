@@ -50,12 +50,12 @@ class OtherUserProfileControllerImp extends OtherUserProfileController {
   void copyText(String text) {
     Clipboard.setData(ClipboardData(text: text));
     Get.snackbar(
-      "تم النسخ بنجاح",
+      "114".tr,
       '',
       duration: const Duration(seconds: 2),
       snackPosition: SnackPosition.BOTTOM,
       titleText: Text(
-        "تم النسخ بنجاح",
+        "114".tr,
         style: TextStyle(fontSize: 18.0.sp), // Adjust the font size as needed
       ),
     );

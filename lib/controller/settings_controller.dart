@@ -25,9 +25,9 @@ class SettingsControllerImp extends SettingsController {
   @override
   deleteAccount() {
     showDefDialog(
-        title: 'تحذير',
+        title: '101'.tr,
         message:
-            'سيتم حذف جميع البيانات المتعلقة بهذا الحساب \n هل انت متأكد من حذف حسابك؟',
+            '163'.tr,
         onNoPressed: () {
           Get.back();
         },
@@ -41,11 +41,11 @@ class SettingsControllerImp extends SettingsController {
           //print('SSSSSSSSSSSSSSSSSSSSSSS--->  $response');
           if (StatusRequest.success == statusRequest) {
             if (response['status'] == "success") {
-              showBottomSnackBar(text: 'تم حذف الحساب بنجاح.');
+              showBottomSnackBar(text: '164'.tr);
               myServices.sharedPreferences.clear();
               Get.offAllNamed(AppRoute.loginScreen);
             } else {
-              showBottomSnackBar(text: 'حدث خطأ ما, يرجى المحاولة لاحقا.');
+              showBottomSnackBar(text: '156'.tr);
               statusRequest = StatusRequest.failure;
             }
           }
@@ -56,9 +56,9 @@ class SettingsControllerImp extends SettingsController {
   @override
   deletePhone() {
     showDefDialog(
-        title: 'تحذير',
+        title: '101'.tr,
         message:
-            'عند حذف رقم الهاتف سيتم حذف جميع المنشورات التي تتضمن رقم هاتفك \n هل تريد حذف رقمك؟',
+            '165'.tr,
         onNoPressed: () {
           Get.back();
         },
@@ -73,10 +73,10 @@ class SettingsControllerImp extends SettingsController {
           //print('SSSSSSSSSSSSSSSSSSSSSSS--->  $response');
           if (StatusRequest.success == statusRequest) {
             if (response['status'] == "success") {
-              showBottomSnackBar(text: 'تم حذف رقم الهاتف بنجاح.');
+              showBottomSnackBar(text: '166'.tr);
               myServices.sharedPreferences.setString("phone", "");
             } else {
-              showBottomSnackBar(text: 'حدث خطأ ما, يرجى المحاولة لاحقا.');
+              showBottomSnackBar(text: '156'.tr);
               statusRequest = StatusRequest.failure;
             }
           }
@@ -87,8 +87,8 @@ class SettingsControllerImp extends SettingsController {
   @override
   logout() {
     showDefDialog(
-        title: 'تنبيه',
-        message: 'هل تريد تسجيل الخروج؟',
+        title: '101'.tr,
+        message: '167'.tr,
         onNoPressed: () {
           Get.back();
         },

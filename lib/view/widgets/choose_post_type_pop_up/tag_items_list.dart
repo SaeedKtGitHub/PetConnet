@@ -26,7 +26,8 @@ class TagItemList extends StatelessWidget {
         height: 100.h,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          reverse: true,
+          reverse:
+          Get.locale!.languageCode=='ar' ? true:false, 
           itemCount: tagItems.length,
           itemBuilder: (context, index) {
             return Container(
@@ -41,9 +42,9 @@ class TagItemList extends StatelessWidget {
                     print('INDEX ----> $index');
                   } else {
                     showDefDialog(
-                        title: 'تنبيه',
+                        title: '101'.tr,
                         message:
-                            'لاٍضافة هكذا نوع من المنشورات,\n يرجى الذهاب الى الاٍعدادات و اٍضافة رقم الهاتف\n هل تريد الذهاب اٍلى الاٍعدادات؟',
+                            '142'.tr,
                         onNoPressed: () {
                           Get.back();
                         },

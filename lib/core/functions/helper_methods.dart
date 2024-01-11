@@ -26,7 +26,7 @@ String calculateAge(String birthDate) {
   }
 
   // Format the age as desired
-  String ageString = '$age سنوات';
+  String ageString = '$age ${'154'.tr}';
 
   return ageString;
 }
@@ -74,12 +74,12 @@ Future<bool> backToHomeScreen() {
 
 String? validatePhoneNumber(String value) {
   if (value.length != 10) {
-    return 'يجب ان يتكون رقم الهاتف من عشر ارقام';
+    return '155'.tr;
   }
 
   final validPrefixes = ['078', '079', '077'];
   if (!validPrefixes.any(value.startsWith)) {
-    return 'يجب ان يبدأ الرقم ب 077 أو 078 أو 079';
+    return '151'.tr;
   }
 
   return null;

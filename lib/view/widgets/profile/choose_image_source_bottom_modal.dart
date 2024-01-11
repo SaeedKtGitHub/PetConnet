@@ -13,14 +13,14 @@ class ImagePickerModal extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.camera_alt),
-            title: const Text('من الكاميرا'),
+            title:  Text('145'.tr),
             onTap: () {
               Get.back(result: 0); // Return 0 for camera
             },
           ),
           ListTile(
             leading: const Icon(Icons.photo),
-            title: const Text('من معرض الصور'),
+            title:  Text('146'.tr),
             onTap: () {
               Get.back(result: 1); // Return 1 for gallery
             },

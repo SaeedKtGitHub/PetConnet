@@ -84,7 +84,7 @@ class _AddNewPetState extends State<AddNewPet> {
 
                       //asking about the animal type (text and buttons)
                       Padding(
-                        padding:  EdgeInsets.only(right: 75.0.w,left: 75.w),
+                        padding:  EdgeInsets.only(right: 40.0.w,left: 40.w),
                         child: const CustomText(numOfText: '30'),
                       ),
                       SizedBox(height: 8.h,),

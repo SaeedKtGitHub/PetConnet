@@ -16,8 +16,8 @@ showDefDialog({
     actions: [
       ElevatedButton(
           onPressed: onNoPressed,
-          child: const Text(
-            'لا',
+          child:  Text(
+            '104'.tr,
             style: TextStyle(
               color: AppColor.black,
               fontWeight: FontWeight.bold,
@@ -26,8 +26,8 @@ showDefDialog({
           )),
       ElevatedButton(
           onPressed: onYesPressed,
-          child: const Text(
-            'نعم',
+          child:  Text(
+            '103'.tr,
             style: TextStyle(
               color: AppColor.primaryColor,
               fontWeight: FontWeight.bold,
