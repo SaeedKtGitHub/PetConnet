@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/core/class/status_request.dart';
+import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
 import 'package:pet_connect/core/functions/show_bottom_snack_bar.dart';
 import 'package:pet_connect/core/functions/show_dialog.dart';
+import 'package:pet_connect/core/localization/changelocal.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/data/datasource/remote/settings_data.dart';
 
@@ -15,6 +17,7 @@ abstract class SettingsController extends GetxController {
   logout();
   deleteAccount();
   deletePhone();
+  chooseLanguage();
 }
 
 class SettingsControllerImp extends SettingsController {
@@ -110,5 +113,45 @@ class SettingsControllerImp extends SettingsController {
   goToAddPhoneNumberScreen() {
     // TODO: implement addPhoneNumber
     Get.toNamed(AppRoute.addPhoneScreen);
+  }
+
+  @override
+  chooseLanguage() {
+    // TODO: implement chooseLanguage
+    LocaleController controller = Get.put(LocaleController());
+    Get.defaultDialog(
+      titleStyle: const TextStyle(color: AppColor.primaryColor),
+      middleTextStyle: const TextStyle(color: AppColor.black, fontSize: 20),
+      title: '83'.tr,
+      middleText: '84'.tr,
+      actions: [
+        ElevatedButton(
+            onPressed: () {
+              controller.changeLang("ar");
+              Get.back();
+            },
+            child: Text(
+              '85'.tr,
+              style: TextStyle(
+                color: AppColor.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            )),
+        ElevatedButton(
+            onPressed: () {
+              controller.changeLang("en");
+              Get.back();
+            },
+            child: Text(
+              '86'.tr,
+              style: TextStyle(
+                color: AppColor.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            )),
+      ],
+    );
   }
 }

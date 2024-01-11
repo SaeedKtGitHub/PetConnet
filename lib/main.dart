@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/bindings/initial_bindings.dart';
+import 'package:pet_connect/core/localization/changelocal.dart';
 import 'package:pet_connect/core/localization/translation.dart';
 import 'package:pet_connect/core/services/services.dart';
 import 'package:pet_connect/routes.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LocaleController controller = Get.put(LocaleController());
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
           translations: MyTranslation(),
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          locale: const Locale('ar'),
+          locale: controller.language,
           // theme: controller.appTheme,
           initialBinding: InitialBindings(),
           // routes: routes,
