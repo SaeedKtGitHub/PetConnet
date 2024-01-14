@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:pet_connect/controller/articles_controller.dart';
 import 'package:pet_connect/controller/commentsController.dart';
 import 'package:pet_connect/controller/home_controller.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/class/handling_data_view.dart';
+import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/core/constant/routes.dart';
@@ -42,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Get.lazyPut(() => CommentsControllerImp());
     final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
     GlobalKey<RefreshIndicatorState>();
-
+    Get.put(CreatePostControllerImp());
 
   return Scaffold(
         //FAB:
@@ -150,10 +152,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             SizedBox(height: 10.h,),
+                            controller.statusRequest==StatusRequest.loading ?
+                                CircularProgressIndicator() :
                             PostsList(posts: controller.searchResults)
                           ],
                         )
-                    :
+                    ://not searching
                     Column(
                       children: [
                         SizedBox(

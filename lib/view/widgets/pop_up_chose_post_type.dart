@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/controller/home_controller.dart';
+import 'package:pet_connect/controller/post/create_post_controller.dart';
 import 'package:pet_connect/core/constant/color.dart';
 import 'package:pet_connect/core/constant/imageasset.dart';
 import 'package:pet_connect/data/datasource/static/static.dart';
@@ -15,6 +16,8 @@ class ChoosePostTypePopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Get.put(CreatePostControllerImp());
+    Get.find<HomeControllerImp>();
     return Container(
       height: 370.h,
       decoration: BoxDecoration(

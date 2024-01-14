@@ -17,6 +17,17 @@ class ArticlesScreenData{
     return response.fold((l) => l, (r) => r);
   }
 
+  //getSearched Articles
+
+  getSearchedArticles(String userId,{required String query,required int limit}) async {
+    //TODO:Edit the method
+    var response = await crud.postDataList(AppLink.getSearchedArticles, {
+      "userID": userId,
+      "query":query,
+      "limit":limit.toString()
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 
 
 

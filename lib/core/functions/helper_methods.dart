@@ -66,9 +66,18 @@ String getValueAtIndex(int index) {
   return (index >= 0 && index < options.length) ? options[index] : "social";
 }
 
+// Future<bool> backToHomeScreen() {
+//   Get.delete<CreatePostControllerImp>();
+//   //CreatePostControllerImp createPostControllerImp=Get.find<CreatePostControllerImp>();
+//   //createPostControllerImp.myFile=null;
+//   Get.offNamed(AppRoute.homeScreen);
+//   //createPostControllerImp.update();
+//   return Future.value(true);
+// }
 Future<bool> backToHomeScreen() {
-  Get.delete<CreatePostControllerImp>();
+  //Get.delete<CreatePostControllerImp>();
   Get.offNamed(AppRoute.homeScreen);
+
   return Future.value(true);
 }
 

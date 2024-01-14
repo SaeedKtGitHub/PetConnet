@@ -36,4 +36,7 @@ class AppLink {
   static String deleteComment = "$server/posts/deleteComment";
   static String likeOrDislike = "$server/posts/like";
   static String getRecentPosts = "$server/posts/getRecentPostsByTag";
+  static String getSearchedPosts = "$server/posts/filterPosts";
+  static String getSearchedArticles = "$server/articles/filter";
+
 }

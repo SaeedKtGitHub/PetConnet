@@ -175,7 +175,7 @@ class HomeControllerImp extends HomeController {
     // TODO: implement onInit
     getUserData();
     getAllPosts();
-     await getRecentPosts();
+    getRecentPosts();
     super.onInit();
   }
 
@@ -458,7 +458,32 @@ class HomeControllerImp extends HomeController {
     print('heeeeeeeeeeeeeey ${recentPosts.length}');
   }
 
+  @override
+  getSearchedPosts({required String query,required int limit}) async {
+    // TODO: implement getAllPosts
+    statusRequest = StatusRequest.loading;
+    //update();
+    //await Future.delayed(Duration(seconds: 1));
+    var response = await homeScreenData.getSearchedPosts(
+        myServices.sharedPreferences.getString("userID")!,
+      query: query,
+      limit:limit
+    );
+    print(response);
+    statusRequest = handlingData(response);
 
+    if (StatusRequest.success == statusRequest) {
+      if (response[0]['status'] == "success") {
+        List dataResponse = response[0]['data'];
+        // Clear the existing list before adding new items
+        searchResults.clear();
+        searchResults.addAll(dataResponse.map((e) => PostModel.fromJson(e)));
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
 
 
 

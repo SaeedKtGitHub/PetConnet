@@ -24,6 +24,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+  GlobalKey<RefreshIndicatorState>();
+
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileControllerImp());
@@ -57,111 +60,122 @@ class _ProfileScreenState extends State<ProfileScreen> {
               builder: (controller) =>
                   HandlingDataRequest(
                     statusRequest: controller.statusRequest,
-                    widget: Column(
-                                    children: [
-                    SizedBox(height: 10.h),
-                    // Back button :
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 12.w,
-                        ),
+                    widget: RefreshIndicator(
+                      key: _refreshIndicatorKey,
+                      onRefresh: () async {
+                        // Trigger the refresh
+                        print("Refreshing...");
+                        controller.getUserPets();
+                        controller.getUserPosts();
 
-                        //The back button
-                        InkWell(
-                          onTap: controller.backToHomeScreen,
-                          child: Image.asset(
-                            AppImageAsset.backIcon,
-                            height: 35.h,
-                            width: 35.w,
+                      },
+                      child: Column(
+                                      children: [
+                      SizedBox(height: 10.h),
+                      // Back button :
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 12.w,
+                          ),
+
+                          //The back button
+                          InkWell(
+                            onTap: controller.backToHomeScreen,
+                            child: Image.asset(
+                              AppImageAsset.backIcon,
+                              height: 35.h,
+                              width: 35.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      //The profile image
+                      ProfileImage(onPressed: controller.getImageSourceOption),
+                      SizedBox(height: 10.h),
+                      //The username:
+                      Center(
+                        child: Text(
+                          myServices.sharedPreferences.getString("username")!,
+                          style: TextStyle(
+                              color: AppColor.primaryColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30.sp),
+                        ),
+                      ),
+                      //The user location:
+                      // Center(
+                      //   child: Text(
+                      //     'عمان_الأردن',
+                      //     style: TextStyle(
+                      //         color: AppColor.black,
+                      //         fontWeight: FontWeight.bold,
+                      //         fontSize: 16.sp),
+                      //   ),
+                      // ),
+                      //Email Row
+                      UserDataRow(
+                        icon: const Icon(
+                          Icons.email,
+                          color: AppColor.primaryColor,
+                        ),
+                        text: myServices.sharedPreferences.getString("email")!,
+                      ),
+                      //Phone Row
+                      SizedBox(height: 20.h),
+                      //The pets list:
+                      SizedBox(
+                        height: 140.h, // Adjust the height as needed
+                        child: Padding(
+                          padding:  EdgeInsets.only(left: 5.0.w,right: 5.w),
+                          child: Row(
+                            children: [
+                              CustomAddPetButton(
+                                onPressed: () {
+                                  controller.goToAddPetScreen();
+                                },
+                              ),
+                              SizedBox(width: 10.w),
+                              //TODO: Make this list dynamic.
+                              PetsListProfile(
+                                listPetsModel: controller.userPetsListProfile,
+
+                              ),
+                            //  SizedBox(height: 15.h,),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 10.h),
-                    //The profile image
-                    ProfileImage(onPressed: controller.getImageSourceOption),
-                    SizedBox(height: 10.h),
-                    //The username:
-                    Center(
-                      child: Text(
-                        myServices.sharedPreferences.getString("username")!,
+                      ),
+
+                      Text('90'.tr,
                         style: TextStyle(
-                            color: AppColor.primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30.sp),
-                      ),
-                    ),
-                    //The user location:
-                    // Center(
-                    //   child: Text(
-                    //     'عمان_الأردن',
-                    //     style: TextStyle(
-                    //         color: AppColor.black,
-                    //         fontWeight: FontWeight.bold,
-                    //         fontSize: 16.sp),
-                    //   ),
-                    // ),
-                    //Email Row
-                    UserDataRow(
-                      icon: const Icon(
-                        Icons.email,
-                        color: AppColor.primaryColor,
-                      ),
-                      text: myServices.sharedPreferences.getString("email")!,
-                    ),
-                    //Phone Row
-                    SizedBox(height: 20.h),
-                    //The pets list:
-                    SizedBox(
-                      height: 140.h, // Adjust the height as needed
-                      child: Padding(
-                        padding:  EdgeInsets.only(left: 5.0.w,right: 5.w),
-                        child: Row(
-                          children: [
-                            CustomAddPetButton(
-                              onPressed: () {
-                                controller.goToAddPetScreen();
-                              },
-                            ),
-                            SizedBox(width: 10.w),
-                            //TODO: Make this list dynamic.
-                            PetsListProfile(
-                              listPetsModel: controller.userPetsListProfile,
-                            ),
-                          //  SizedBox(height: 15.h,),
-                          ],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 23.sp,
                         ),
                       ),
-                    ),
+                                      //  SizedBox(height: 10.h,),
 
-                    Text('90'.tr,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 23.sp,
-                      ),
-                    ),
-                                    //  SizedBox(height: 10.h,),
-
-                    //List of posts:
-                    controller.userPosts.isNotEmpty
-                        ? UserPostsList(posts: controller.userPosts)
-                        : Padding(
-                          padding: EdgeInsets.only(top: 17.0.h,left: 13.w,right: 13.w),
-                          child: Center(
-                            child: Text(
-                              "113".tr,
-                              style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold),
+                      //List of posts:
+                      controller.userPosts.isNotEmpty
+                          ? UserPostsList(posts: controller.userPosts)
+                          : Padding(
+                            padding: EdgeInsets.only(top: 17.0.h,left: 13.w,right: 13.w),
+                            child: Center(
+                              child: Text(
+                                "113".tr,
+                                style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
+
+
+
+                                      ],
+                                    ),
                     ),
-
-
-
-                                    ],
-                                  ),
                   ),
             ),
           ),

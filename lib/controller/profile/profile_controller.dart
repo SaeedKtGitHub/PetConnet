@@ -26,11 +26,12 @@ abstract class ProfileController extends GetxController {
   uploadProfileImageToServer();
   goToAddPetScreen();
   getUserPets();
-  openPopUpPetInfo({required PetModel petModel});
+  openPopUpPetInfoFromPosts({required PetModel petModel, required int index});
+  openPopUpPetInfoFromPetlList({required PetModel petModel});
   refreshPage();
   removePet({required int index});
   getUserPosts();
-
+  refreshPetsList();
   getProfilePic();
 }
 
@@ -167,14 +168,17 @@ class ProfileControllerImp extends ProfileController {
     update();
   }
 
-  @override
-  refreshPage() {
-    getUserPets();
-    getUserPosts();
-  }
 
   @override
-  void openPopUpPetInfo({required PetModel petModel}) {
+  void openPopUpPetInfoFromPosts({required PetModel petModel, required int index}) {
+    Get.dialog(
+      Dialog(
+        child: AnimalDataPopup(petModel: userPosts[index].petModel!),
+      ),
+    );
+  }
+  @override
+  void openPopUpPetInfoFromPetlList({required PetModel petModel}) {
     Get.dialog(
       Dialog(
         child: AnimalDataPopup(petModel: userPetsListProfile[selectedIndex]),
@@ -186,7 +190,8 @@ class ProfileControllerImp extends ProfileController {
   goToAddPetScreen() {
     // TODO: implement goToAddPetScreen
     // Arguments
-    Get.toNamed(AppRoute.addNewPetScreen);
+    Get.toNamed(AppRoute.addNewPetScreen,arguments: {"screenName": "profile"});
+
   }
 
   @override
@@ -306,6 +311,19 @@ class ProfileControllerImp extends ProfileController {
       update();
       return false; // Indicate failure
     }
+  }
+
+  @override
+  refreshPage() {
+    selectedIndex=-1;
+    getUserPets();
+    getUserPosts();
+  }
+  @override
+  refreshPetsList() {
+    selectedIndex=-1;
+    getUserPets();
+    getUserPosts();
   }
 
 }

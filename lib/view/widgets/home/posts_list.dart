@@ -47,8 +47,7 @@ class _PostsListState extends State<PostsList> {
             post: widget.posts[index],
             onImageTap: (){
 
-              controller.openPopUpPetInfo(petModel: widget.posts[index].petModel!,
-                  index: index);
+              controller.openPopUpPetInfo(petModel: widget.posts[index].petModel!, index: index);
             },
              // await  controller.removePost(widget.posts[index].postID!);
              //  controller.allPosts.remove(widget.posts[index]);

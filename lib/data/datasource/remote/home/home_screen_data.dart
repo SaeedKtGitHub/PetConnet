@@ -62,5 +62,15 @@ class HomeScreenData {
     var response = await crud.postData(AppLink.getRecentPosts, {});
     return response.fold((l) => l, (r) => r);
   }
+  //get the posts that the user search on from the homescreen
+  getSearchedPosts(String userId,{required String query,required int limit}) async {
+    //TODO:Edit the method
+    var response = await crud.postDataList(AppLink.getSearchedPosts, {
+      "userID": userId,
+      "query":query,
+      "limit":limit.toString()
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 
 }

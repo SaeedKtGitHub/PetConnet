@@ -44,9 +44,27 @@ class CreatePostControllerImp extends CreatePostController {
   // bool isLoading = false;
   CreatePostData createPostData = CreatePostData(Get.find());
   MyServices myServices = Get.find();
+  // @override
+  // backToHomeScreen() {
+  //   print("delete the bitaaaaaaaaaaaaaaa");
+  //  //Get.delete<CreatePostControllerImp>();
+  //   //myFile=null;
+  //   Get.offNamed(AppRoute.homeScreen);
+  //   Get.back();
+  //
+  //   //CreatePostControllerImp createPostControllerImp=Get.put(CreatePostControllerImp());
+  //   // myFile=null;
+  //   // Get.offNamed(AppRoute.homeScreen);
+  //   //Get.back();
+  // }
   @override
   backToHomeScreen() {
-    Get.delete<CreatePostControllerImp>();
+    //Get.delete<CreatePostControllerImp>();
+    isShowImage=false;
+    selectedIndex = -1;
+    content.clear();
+    price.clear();
+    phone.clear();
     Get.offNamed(AppRoute.homeScreen);
   }
 
@@ -81,6 +99,7 @@ class CreatePostControllerImp extends CreatePostController {
     }
   }
 
+
   @override
   removeImage() {
     myFile = null;
@@ -91,7 +110,7 @@ class CreatePostControllerImp extends CreatePostController {
   @override
   goToAddPetScreen() {
     // TODO: implement goToAddPetScreen
-    Get.toNamed(AppRoute.addNewPetScreen);
+    Get.toNamed(AppRoute.addNewPetScreen, arguments: {"screenName": "create"});
   }
 
   // @override
@@ -149,6 +168,7 @@ class CreatePostControllerImp extends CreatePostController {
 
   @override
   addPost() async {
+    print("CreatePostControllerImp registered: ${Get.isRegistered<CreatePostControllerImp>()}");
     //if no image of post
     if (myFile == null) {
       return showSnackBar(numOfText1: '23', numOfText2: '24');
@@ -184,7 +204,7 @@ class CreatePostControllerImp extends CreatePostController {
           myTag,
           myFile!,
         );
-        print('in else block');
+        //print('in else block');
       }
 
       // print("=============================== Controller $response ");
@@ -193,9 +213,16 @@ class CreatePostControllerImp extends CreatePostController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // print('ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
-          //Get.delete<CreatePostControllerImp>();
           homeControllerImp.refreshPage();
           Get.offNamed(AppRoute.homeScreen);
+          isShowImage=false;
+          selectedIndex = -1;
+          content.clear();
+          price.clear();
+          phone.clear();
+
+          // Get.delete<CreatePostControllerImp>();
+
         } else {
           showSnackBar(numOfText1: '23', numOfText2: '25');
           statusRequest = StatusRequest.failure;
@@ -204,11 +231,14 @@ class CreatePostControllerImp extends CreatePostController {
 
       update();
     } else {}
+    update();
+
   }
 
   @override
   getTagFromPopUp({required int index}) {
     indexTag = index;
+    myTag = getValueAtIndex(indexTag);
     myTag = getValueAtIndex(indexTag);
   }
 

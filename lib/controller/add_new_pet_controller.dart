@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_connect/controller/post/create_post_controller.dart';
+import 'package:pet_connect/controller/profile/profile_controller.dart';
 import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/constant/routes.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
@@ -213,7 +214,13 @@ class AddNewPetControllerImp extends AddNewPetController {
           //TEST
           createPostControllerImp.refreshPage();
           //TEST
-          Get.offAndToNamed(AppRoute.createPostScreen);
+          if(Get.arguments['screenName']=="create"){
+            Get.offAndToNamed(AppRoute.createPostScreen);
+          }else{
+            ProfileControllerImp profileControllerImp=Get.find<ProfileControllerImp>();
+            await profileControllerImp.refreshPetsList();
+            Get.offAndToNamed(AppRoute.profileScreen);
+          }
           //Get.back();
         } else {
           showSnackBar(numOfText1: '23', numOfText2: '25');

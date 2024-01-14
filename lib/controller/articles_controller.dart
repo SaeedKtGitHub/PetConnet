@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_connect/core/class/status_request.dart';
 import 'package:pet_connect/core/functions/handling_data_controller.dart';
@@ -8,6 +9,7 @@ import 'package:pet_connect/data/model/article_model.dart';
 
 abstract class ArticlesController extends GetxController {
   getAllArticles();
+  getSearchedArticles({required String query,required int limit});
 }
 
 class ArticlesControllerImp extends ArticlesController {
@@ -45,7 +47,35 @@ class ArticlesControllerImp extends ArticlesController {
     }
   }
 
+  @override
+  getSearchedArticles({required String query,required int limit}) async {
+    try {
+      statusRequest = StatusRequest.loading;
+      //update();
+     // await Future.delayed(Duration(seconds: 1));
+      var response = await articlesScreenData.getSearchedArticles(
+        myServices.sharedPreferences.getString("userID")!,
+        limit: limit,
+        query: query
+      );
+      statusRequest = handlingData(response);
 
+      if (StatusRequest.success == statusRequest) {
+        if (response[0]['status'] == "success") {
+          List dataResponse = response[0]['data'];
+          filteredArticles.clear();
+          filteredArticles.addAll(dataResponse.map((e) => ArticleModel.fromJson(e)));
+        } else {
+          statusRequest = StatusRequest.failure;
+        }
+      }
+    } catch (error) {
+      statusRequest = StatusRequest.failure;
+      print('Error fetching articles: $error');
+    } finally {
+      update();
+    }
+  }
  @override
   void onInit() {
     // TODO: implement onInit
@@ -54,25 +84,25 @@ class ArticlesControllerImp extends ArticlesController {
     super.onInit();
   }
 
-  @override
-  void searchArticles(String query) {
-    if (query.isEmpty) {
-      // If the query is empty, show all posts
-      filteredArticles = articles.toList(); // Assign a copy of all articles
-    } else {
-      // Filter posts based on the search query within the already filteredPosts
-      filteredArticles = articles.where((article) {
-        bool titleMatch =
-            article.title != null && article.title!.toLowerCase().contains(query.toLowerCase());
-        bool authorNameMatch =
-            article.author != null && article.author!.toLowerCase().contains(query.toLowerCase());
-        return titleMatch || authorNameMatch;
-      }).toList();
-    }
-   // print("What what what");
-   // print("1/9/2024 Saeed");
-    update();
-  }
+  // @override
+  // void searchArticles(String query) {
+  //   if (query.isEmpty) {
+  //     // If the query is empty, show all posts
+  //     filteredArticles = articles.toList(); // Assign a copy of all articles
+  //   } else {
+  //     // Filter posts based on the search query within the already filteredPosts
+  //     filteredArticles = articles.where((article) {
+  //       bool titleMatch =
+  //           article.title != null && article.title!.toLowerCase().contains(query.toLowerCase());
+  //       bool authorNameMatch =
+  //           article.author != null && article.author!.toLowerCase().contains(query.toLowerCase());
+  //       return titleMatch || authorNameMatch;
+  //     }).toList();
+  //   }
+  //  // print("What what what");
+  //  // print("1/9/2024 Saeed");
+  //   update();
+  // }
   void  cancelSearch(){
     isSearching = false;
     resetSearch();

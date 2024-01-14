@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:pet_connect/controller/articles_controller.dart';
 import 'package:pet_connect/controller/home_controller.dart';
@@ -15,9 +17,11 @@ class BuildSearchTextField extends StatefulWidget {
 
 class _BuildSearchTextFieldState extends State<BuildSearchTextField> {
   ArticlesControllerImp articlesControllerImp = Get.find<ArticlesControllerImp>();
-
+  //Timer? _debounce;
   @override
   Widget build(BuildContext context) {
+
+
     print('buillllld');
     HomeControllerImp homeController = Get.find<HomeControllerImp>();
     return  Visibility(
@@ -29,10 +33,12 @@ class _BuildSearchTextFieldState extends State<BuildSearchTextField> {
 
       child: TextField(
         onChanged: (query) {
+          //_debounce?.cancel(); // Cancel the previous timer
+
           if(Get.currentRoute==AppRoute.homeScreen ) {
-            homeController.searchPosts(query); // Make sure this method is correctly implemented
+            homeController.getSearchedPosts(query: query,limit: 12); // Make sure this method is correctly implemented
           }else if(Get.currentRoute==AppRoute.articlesScreen){
-            articlesControllerImp.searchArticles(query);
+            articlesControllerImp.getSearchedArticles(query: query,limit: 12);
           }
           else{//dynamic (filters screens)
             homeController.searchPosts(query);
@@ -53,5 +59,11 @@ class _BuildSearchTextFieldState extends State<BuildSearchTextField> {
         ),
       ),
     );
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+   // _debounce?.cancel();
+    super.dispose();
   }
 }

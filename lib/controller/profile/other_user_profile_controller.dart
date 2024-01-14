@@ -14,9 +14,10 @@ abstract class OtherUserProfileController extends GetxController {
   backToHomeScreen();
   copyText(String text);
   getUserPets();
-  openPopUpPetInfo({required PetModel petModel});
+  //openPopUpPetInfo({required PetModel petModel});
   getUserPosts(String userId);
-
+  openPopUpPetInfoFromPetlList({required PetModel petModel});
+  openPopUpPetInfoFromPosts({required PetModel petModel, required int index});
 }
 
 class OtherUserProfileControllerImp extends OtherUserProfileController {
@@ -88,6 +89,7 @@ class OtherUserProfileControllerImp extends OtherUserProfileController {
       // End
     }
     update();
+    print(userPetsListProfile);
   }
 
 
@@ -103,12 +105,12 @@ class OtherUserProfileControllerImp extends OtherUserProfileController {
 
 
 
-  // @override
-  // void onInit() {
-  //   getUserPets(String userId);
-  //   getUserPosts(String userId);
-  //   super.onInit();
-  // }
+  @override
+  void onInit() {
+    getUserPets();
+    getUserPosts(userId);
+    super.onInit();
+  }
 
 
 
@@ -138,7 +140,22 @@ class OtherUserProfileControllerImp extends OtherUserProfileController {
     update();
   }
 
-
+  @override
+  void openPopUpPetInfoFromPosts({required PetModel petModel, required int index}) {
+    Get.dialog(
+      Dialog(
+        child: AnimalDataPopup(petModel: userPosts[index].petModel!),
+      ),
+    );
+  }
+  @override
+  void openPopUpPetInfoFromPetlList({required PetModel petModel}) {
+    Get.dialog(
+      Dialog(
+        child: AnimalDataPopup(petModel: userPetsListProfile[selectedIndex]),
+      ),
+    );
+  }
 
 
 }

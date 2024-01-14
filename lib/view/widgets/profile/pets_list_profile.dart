@@ -28,7 +28,8 @@ class PetsListProfile extends GetView<ProfileControllerImp> {
               petImage: '${listPetsModel[index].image}',
               onPressed: () {
                 controller.selectedIndex = index;
-                controller.openPopUpPetInfo(petModel: listPetsModel[index]);
+                print(controller.selectedIndex);
+                controller.openPopUpPetInfoFromPetlList(petModel: listPetsModel[index]);
               },
               onRemovePet: () {
                 // listPetsModel[index].petID;
