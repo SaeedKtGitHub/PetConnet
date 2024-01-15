@@ -59,8 +59,7 @@ class LoginControllerImp extends LoginController {
           print('LOGIN ---> ${response['data']['profilePic']}');
           Get.offNamed(AppRoute.homeScreen);
         } else {
-          Get.defaultDialog(
-              title: "Warning", middleText: "Email Or Password Not Correct");
+          Get.defaultDialog(title: "23".tr, middleText: "87".tr);
           statusRequest = StatusRequest.failure;
         }
       }
