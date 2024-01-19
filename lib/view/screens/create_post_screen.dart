@@ -24,40 +24,41 @@ class CreatePostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CreatePostControllerImp createPostControllerImp=Get.put(CreatePostControllerImp());
+    CreatePostControllerImp createPostControllerImp =
+        Get.put(CreatePostControllerImp());
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.backgroundColorWhite,
       body: WillPopScope(
-        onWillPop: ()=>createPostControllerImp.backToHomeScreen(),
+        onWillPop: () => createPostControllerImp.backToHomeScreen(),
         child: GetBuilder<CreatePostControllerImp>(
-          builder: (controller) =>
-              SafeArea(
-                child: HandlingDataRequest(
-                  statusRequest: createPostControllerImp.statusRequest,
-                  widget: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(11.w, 0, 11.w, 0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 8.h,),
-                          CustomTitleWithIcon(
-                            numOfText: '13',
-                            imagePath: AppImageAsset.backIcon,
-                            onPressed: () {
-                              ///Call function to go back to home screen (from controller).
-                              createPostControllerImp.backToHomeScreen();
-                            },
-                          ),
-                          const CustomTextBody(numOfText: '14'),
-                          // TODO: Call function to replace this row
-                          // TODO: with image that took from user (from controller).
-                          GetBuilder<CreatePostControllerImp>(
-                            builder: (controller) => controller.isShowImage
-                                 ?
-                            CustomShowImage(
+          builder: (controller) => SafeArea(
+            child: HandlingDataRequest(
+              statusRequest: createPostControllerImp.statusRequest,
+              widget: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(11.w, 0, 11.w, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      CustomTitleWithIcon(
+                        numOfText: '13',
+                        imagePath: AppImageAsset.backIcon,
+                        onPressed: () {
+                          ///Call function to go back to home screen (from controller).
+                          createPostControllerImp.backToHomeScreen();
+                        },
+                      ),
+                      const CustomTextBody(numOfText: '14'),
+                      // TODO: Call function to replace this row
+                      // TODO: with image that took from user (from controller).
+                      GetBuilder<CreatePostControllerImp>(
+                        builder: (controller) => controller.isShowImage
+                            ? CustomShowImage(
                                 imageFile: controller.myFile!,
                                 onPressed: () {
                                   controller.removeImage();
@@ -69,129 +70,172 @@ class CreatePostScreen extends StatelessWidget {
                             //     }
                             // )
 
-                                : Row(
-                              children: [
-                                CustomChooseImageButton(
-                                  numOfText: '15',
-                                  iconData: Icons.camera_alt,
-                                  onPressed: () {
-                                    ///Call function to open camera (from controller).
-                                    controller.chooseImageFromCamera();
-                                  },
-                                ),
-                                SizedBox(width: 16.w),
-                                CustomChooseImageButton(
-                                  numOfText: '16',
-                                  iconData: Icons.photo_library_outlined,
-                                  onPressed: () {
-                                    ///Call function to open gallery (from controller).
-                                    controller.chooseImageFromGallery();
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          const CustomTextBody(numOfText: '17'),
-                          Text(
-                            '18'.tr,
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColor.grey,
-                            ),
-                          ),
-                          SizedBox(height: 16.h),
-                          SizedBox(
-                            height: 125.h, // Adjust the height as needed
-                            child: Row(
-                              children: [
-                                CustomAddPetButton(
-                                  onPressed: () {
-                                    // TODO: Call function to allow the user to choose a pet.
-                                    // TODO: Go to the Add Pet screen.
-                                    controller.goToAddPetScreen();
-                                  },
-                                ),
-                                SizedBox(width: 10.w),
-                                //TODO: Make this list dynamic.
-                                PetsListCreatePost(
-                                  listPetsModel: controller.userPetsListCreate,
-                                ),
-                                //test PetsList(listPetsModel: testPetList),
-                              ],
-                            ),
-                          ),
-
-                          ///TRADING
-                          controller.myTag == "trading"
-                              ? SizedBox(
-                            //height: 100.h, // Adjust the height as needed
-                            child: Form(
-                              key: controller.formState,
-                              child: Column(
+                            : Row(
                                 children: [
-                                  const CustomText(numOfText: '21'),
-                                  CustomTextForm(
-                                    isNumber: false,
-                                    valid: (val) {
-                                      return validInput(val!, 3, 500, 'text');
+                                  CustomChooseImageButton(
+                                    numOfText: '15',
+                                    iconData: Icons.camera_alt,
+                                    onPressed: () {
+                                      ///Call function to open camera (from controller).
+                                      controller.chooseImageFromCamera();
                                     },
-                                    iconData: Icons.text_fields_outlined,
-                                    myController: controller.content,
-                                    hintText: '20'.tr,
                                   ),
-                                  const CustomText(numOfText: '52'),
-                                  CustomTextForm(
-                                    suffixText: '54'.tr,
-                                    isNumber: true,
-                                    valid: (val) {
-                                      return validInput(val!, 1, 10, 'text');
+                                  SizedBox(width: 16.w),
+                                  CustomChooseImageButton(
+                                    numOfText: '16',
+                                    iconData: Icons.photo_library_outlined,
+                                    onPressed: () {
+                                      ///Call function to open gallery (from controller).
+                                      controller.chooseImageFromGallery();
                                     },
-                                    iconData: Icons.attach_money_outlined,
-                                    myController: controller.price,
-                                    hintText: '53'.tr,
                                   ),
                                 ],
                               ),
-                            ),
-                          )
-
-                          ///Any thing lost, adoption...
-                              : SizedBox(
-                            //height: 100.h, // Adjust the height as needed
-                            child: Form(
-                              key: controller.formState,
-                              child: Column(
-                                children: [
-                                  const CustomText(numOfText: '21'),
-                                  CustomTextForm(
-                                    isNumber: false,
-                                    valid: (val) {
-                                      return validInput(val!, 3, 500, 'text');
-                                    },
-                                    iconData: Icons.text_fields_outlined,
-                                    myController: controller.content,
-                                    hintText: '20'.tr,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-
-                          Center(
-                            child: CustomButtonAuth(
-                                text: '22'.tr,
-                                onPressed: () {
-                                  controller.addPost();
-                                }),
-                          )
-                        ],
                       ),
-                    ),
+
+                      const CustomTextBody(numOfText: '17'),
+                      Text(
+                        '18'.tr,
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.grey,
+                        ),
+                      ),
+                      SizedBox(height: 16.h),
+                      SizedBox(
+                        height: 125.h, // Adjust the height as needed
+                        child: Row(
+                          children: [
+                            CustomAddPetButton(
+                              onPressed: () {
+                                // TODO: Call function to allow the user to choose a pet.
+                                // TODO: Go to the Add Pet screen.
+                                controller.goToAddPetScreen();
+                              },
+                            ),
+                            SizedBox(width: 10.w),
+                            //TODO: Make this list dynamic.
+                            PetsListCreatePost(
+                              listPetsModel: controller.userPetsListCreate,
+                            ),
+                            //test PetsList(listPetsModel: testPetList),
+                          ],
+                        ),
+                      ),
+
+                      ///TRADING
+                      controller.myTag == "trading"
+                          ? SizedBox(
+                              //height: 100.h, // Adjust the height as needed
+                              child: Form(
+                                key: controller.formState,
+                                child: Column(
+                                  children: [
+                                    const CustomText(numOfText: '21'),
+                                    CustomTextForm(
+                                      isNumber: false,
+                                      valid: (val) {
+                                        return validInput(val!, 3, 500, 'text');
+                                      },
+                                      iconData: Icons.text_fields_outlined,
+                                      myController: controller.content,
+                                      hintText: '20'.tr,
+                                    ),
+                                    const CustomText(numOfText: '52'),
+                                    CustomTextForm(
+                                      suffixText: '54'.tr,
+                                      isNumber: true,
+                                      valid: (val) {
+                                        return validInput(val!, 1, 10, 'text');
+                                      },
+                                      iconData: Icons.attach_money_outlined,
+                                      myController: controller.price,
+                                      hintText: '53'.tr,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+
+                          ///lost
+                          : controller.myTag == "lost"
+                              ? SizedBox(
+                                  //height: 100.h, // Adjust the height as needed
+                                  child: Form(
+                                    key: controller.formState,
+                                    child: Column(
+                                      children: [
+                                        const CustomText(numOfText: '21'),
+                                        CustomTextForm(
+                                          isNumber: false,
+                                          valid: (val) {
+                                            return validInput(
+                                                val!, 3, 500, 'text');
+                                          },
+                                          iconData: Icons.text_fields_outlined,
+                                          myController: controller.content,
+                                          hintText: '20'.tr,
+                                        ),
+                                        //TODO: sizedBox
+                                        Center(
+                                          child: GetBuilder<
+                                                  CreatePostControllerImp>(
+                                              builder: (controller) =>
+                                                  controller.isHasLocation
+                                                      ? Text(controller.address)
+                                                      : CustomButtonAuth(
+                                                          text: '89'.tr,
+                                                          onPressed: () {
+                                                            controller
+                                                                .getCurrentLocation();
+                                                          })),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              :
+
+                              ///any thing else
+                              SizedBox(
+                                  //height: 10.h, // Adjust the height as needed
+                                  child: Form(
+                                    key: controller.formState,
+                                    child: Column(
+                                      children: [
+                                        const CustomText(numOfText: '21'),
+                                        CustomTextForm(
+                                          isNumber: false,
+                                          valid: (val) {
+                                            return validInput(
+                                                val!, 3, 500, 'text');
+                                          },
+                                          iconData: Icons.text_fields_outlined,
+                                          myController: controller.content,
+                                          hintText: '20'.tr,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Center(
+                        child: CustomButtonAuth(
+                            text: '22'.tr,
+                            onPressed: () {
+                              controller.addPost();
+                            }),
+                      )
+                    ],
                   ),
                 ),
               ),
+            ),
+          ),
         ),
       ),
     );

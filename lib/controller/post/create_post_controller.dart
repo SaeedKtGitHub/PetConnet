@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_connect/controller/home_controller.dart';
@@ -27,6 +29,7 @@ abstract class CreatePostController extends GetxController {
   addPost(); // CreatePostData
   getTagFromPopUp({required int index});
   refreshPage();
+  getCurrentLocation();
 }
 
 class CreatePostControllerImp extends CreatePostController {
@@ -36,6 +39,8 @@ class CreatePostControllerImp extends CreatePostController {
   late TextEditingController price;
   late TextEditingController phone;
   bool isShowImage = false;
+  bool isHasLocation = false;
+  String address = '';
   int selectedIndex = -1;
   int indexTag = -1;
   String myTag = "";
@@ -60,11 +65,12 @@ class CreatePostControllerImp extends CreatePostController {
   @override
   backToHomeScreen() {
     //Get.delete<CreatePostControllerImp>();
-    isShowImage=false;
+    isShowImage = false;
     selectedIndex = -1;
     content.clear();
     price.clear();
     phone.clear();
+    isHasLocation = false;
     Get.offNamed(AppRoute.homeScreen);
   }
 
@@ -98,7 +104,6 @@ class CreatePostControllerImp extends CreatePostController {
       isShowImage = false;
     }
   }
-
 
   @override
   removeImage() {
@@ -168,7 +173,8 @@ class CreatePostControllerImp extends CreatePostController {
 
   @override
   addPost() async {
-    print("CreatePostControllerImp registered: ${Get.isRegistered<CreatePostControllerImp>()}");
+    print(
+        "CreatePostControllerImp registered: ${Get.isRegistered<CreatePostControllerImp>()}");
     //if no image of post
     if (myFile == null) {
       return showSnackBar(numOfText1: '23', numOfText2: '24');
@@ -180,6 +186,9 @@ class CreatePostControllerImp extends CreatePostController {
     //if no selected pet by (onLongPress)
     if (selectedIndex == -1) {
       return showSnackBar(numOfText1: '23', numOfText2: '27');
+    }
+    if (isHasLocation == false) {
+      return showSnackBar(numOfText1: '23', numOfText2: '88');
     }
     // print('UUUUUUUUUUUUUUU -->  ${userPetsList[selectedIndex].petID}');
     if (formState.currentState!.validate()) {
@@ -215,14 +224,13 @@ class CreatePostControllerImp extends CreatePostController {
           // print('ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
           homeControllerImp.refreshPage();
           Get.offNamed(AppRoute.homeScreen);
-          isShowImage=false;
+          isShowImage = false;
           selectedIndex = -1;
           content.clear();
           price.clear();
           phone.clear();
-
+          isHasLocation = false;
           // Get.delete<CreatePostControllerImp>();
-
         } else {
           showSnackBar(numOfText1: '23', numOfText2: '25');
           statusRequest = StatusRequest.failure;
@@ -232,7 +240,6 @@ class CreatePostControllerImp extends CreatePostController {
       update();
     } else {}
     update();
-
   }
 
   @override
@@ -264,5 +271,52 @@ class CreatePostControllerImp extends CreatePostController {
     price.dispose();
     phone.dispose();
     super.dispose();
+  }
+
+  @override
+  getCurrentLocation() async {
+    bool serviceEnabled;
+
+    LocationPermission permission;
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      await Geolocator.openLocationSettings();
+      return Future.error('Location services are disabled.');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    Position position = await Geolocator.getCurrentPosition();
+    getAddressFromLatLang(position);
+    isHasLocation = true;
+    update();
+  }
+
+  Future<void> getAddressFromLatLang(Position position) async {
+    List<Placemark> placemark =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    Placemark place = placemark[0];
+    address = 'Address: ${place.street},${place.locality},${place.country}';
+    update();
   }
 }
